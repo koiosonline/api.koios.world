@@ -23,7 +23,8 @@ const merkleClaimHandler = async ({ claimAddress, tokenId }) => {
 
     return { proof: proof };
   } catch (e) {
-    return e;
+    console.log(e);
+    return { proof: "An error occured. " + e };
   }
 };
 
