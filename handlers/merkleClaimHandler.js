@@ -2,6 +2,7 @@ import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
 import Web3 from "web3";
 import whitelistAddresses from "../data/addresses.json" assert { type: "json" };
+import { response } from "express";
 
 const merkleClaimHandler = async ({ claimAddress, tokenId }) => {
   try {
@@ -24,7 +25,7 @@ const merkleClaimHandler = async ({ claimAddress, tokenId }) => {
     return { proof: proof };
   } catch (e) {
     console.log(e);
-    return { proof: "An error occured. " + e };
+    return response.statusCode(400);
   }
 };
 
