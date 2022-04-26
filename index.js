@@ -50,7 +50,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/merkleClaim", async function (req, res) {
-  res.send(await merkleClaimHandler(req.body));
+  try {
+    res.send(await merkleClaimHandler(req.body));
+  } catch (e) {
+    res.status(400).send("Bad Request");
+  }
 });
 
 app.post("/claim", async function (req, res) {
