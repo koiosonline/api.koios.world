@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   }
 
   // Request methods you wish to allow
-  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader("Access-Control-Allow-Methods", ["GET", "POST"]);
 
   // Request headers you wish to allow
   res.setHeader(
