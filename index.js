@@ -1,5 +1,4 @@
 import express from "express";
-//const cors = require("cors");
 import helmet from "helmet";
 import axios from "axios";
 import merkleClaimHandler from "./handlers/merkleClaimHandler.js";
