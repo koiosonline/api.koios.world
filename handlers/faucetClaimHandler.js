@@ -1,4 +1,4 @@
-import ABI from "../ABI.json" assert { type: "json" };
+import ABI from "../data/ABI.json" assert { type: "json" };
 import Web3 from "web3";
 import axios from "axios";
 

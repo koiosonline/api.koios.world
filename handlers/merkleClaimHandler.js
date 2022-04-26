@@ -1,7 +1,7 @@
 import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
 import Web3 from "web3";
-import whitelistAddresses from "./addresses.json" assert { type: "json" };
+import whitelistAddresses from "../data/addresses.json" assert { type: "json" };
 
 const merkleClaimHandler = async ({ claimAddress, tokenId }) => {
   const whitelistAddressesLeaves = whitelistAddresses.claims.map((x) =>
