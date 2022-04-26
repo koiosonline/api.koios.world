@@ -1,6 +1,5 @@
 import express from "express";
 import helmet from "helmet";
-import axios from "axios";
 import merkleClaimHandler from "./handlers/merkleClaimHandler.js";
 import faucetClaimhandler from "./handlers/faucetClaimHandler.js";
 import dotenv from "dotenv";
