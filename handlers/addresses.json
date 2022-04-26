@@ -1,0 +1,22 @@
+{
+  "merkleRoot": "",
+  "totalNFTs": "4",
+  "claims": [
+    {
+      "tokenID": 1,
+      "owner": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+    },
+    {
+      "tokenID": 3,
+      "owner": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+    },
+    {
+      "tokenID": 10,
+      "owner": "0x2B246456B71a2C761F861b85E38E9d98547b8D32"
+    },
+    {
+      "tokenID": 20,
+      "owner": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+    }
+  ]
+}
