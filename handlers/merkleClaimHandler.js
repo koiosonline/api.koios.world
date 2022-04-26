@@ -23,7 +23,7 @@ const merkleClaimHandler = async ({ claimAddress, tokenId }) => {
 
     return { proof: proof };
   } catch (e) {
-    return { proos: e };
+    return e;
   }
 };
 
