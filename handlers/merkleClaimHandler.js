@@ -6,7 +6,7 @@ import whitelistAddresses from "../data/addresses.json" assert { type: "json" };
 const merkleClaimHandler = async ({ claimAddress, tokenId, res }) => {
   try {
     const whitelistAddressesLeaves = whitelistAddresses.claims.map((x) =>
-      Web3.utils.soliditySha3(x.tokenID, x.owner)
+      Web3.utils.soliditySha3(x.tokenID, x.claimAddress)
     );
     const merkleTree = new MerkleTree(whitelistAddressesLeaves, keccak256, {
       sortPairs: true,

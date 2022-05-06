@@ -2,13 +2,26 @@ import express from "express";
 import helmet from "helmet";
 import merkleClaimHandler from "./handlers/merkleClaimHandler.js";
 import faucetClaimhandler from "./handlers/faucetClaimHandler.js";
+import fetchDiscordLevels from "./services/fetchDiscordLevels.js";
+import { scheduleJob } from "node-schedule";
 import dotenv from "dotenv";
+import handleDiscordLevel from "./handlers/discordLevelHandler.js";
+import handleDiscordLevelPerUser from "./handlers/discordLevelPerUserHandler.js";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();
 const app = express();
 app.use(helmet());
 app.use(express.json());
+
+// Callback to get data on the first load
+fetchDiscordLevels();
+
+// Scheduler to get new data for every day
+const calendarSchedule = scheduleJob("* 1 * * *", async () => {
+  await fetchCalendar();
+  await fetchDiscordLevels();
+});
 
 app.use((req, res, next) => {
   // Website you wish to allow to connect. for now only koios.world and app.koios.world
@@ -41,15 +54,20 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
-  console.log("server is listening on port " + PORT);
+// discordLevel endpoints
+app.get("/discordLevels", async (req, res) => {
+  res.send(await handleDiscordLevel());
+});
+
+app.get("/discordLevels/:username", async (req, res) => {
+  res.send(await handleDiscordLevelPerUser(req.params.username));
 });
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Koios middleware");
 });
 
-app.post("/merkleClaim", async function (req, res) {
+app.post("/merkleClaim", async (req, res) => {
   try {
     res.send(await merkleClaimHandler(req.body));
   } catch (e) {
@@ -57,6 +75,10 @@ app.post("/merkleClaim", async function (req, res) {
   }
 });
 
-app.post("/claim", async function (req, res) {
+app.post("/claim", async (req, res) => {
   res.send(await faucetClaimhandler(req.body));
+});
+
+app.listen(PORT, () => {
+  console.log("server is listening on port " + PORT);
 });
