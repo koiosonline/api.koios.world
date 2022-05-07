@@ -1,7 +1,7 @@
 import express from "express";
 
-import { discordRouter } from "./discord/index";
-import { faucetRouter } from "./faucet/index";
+import { discordRouter } from "./routes/DiscordRouter";
+import { faucetRouter } from "./routes/FaucetRouter";
 
 export const services = express.Router();
 

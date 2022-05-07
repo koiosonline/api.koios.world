@@ -16,20 +16,20 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const merkleClaimHandler_js_1 = __importDefault(require("./handlers/merkleClaimHandler.js"));
-const fetchDiscordLevels_js_1 = __importDefault(require("./services/discord/fetchDiscordLevels.js"));
+const DiscordService_1 = require("./api/services/DiscordService");
 const node_schedule_1 = __importDefault(require("node-schedule"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const index_js_1 = require("./services/index.js");
+const index_js_1 = require("./api/index.js");
 const PORT = process.env.PORT || 8000;
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use(express_1.default.json());
 // Callback to get data on the first load.
-(0, fetchDiscordLevels_js_1.default)();
+(0, DiscordService_1.fetchDiscordLevels)();
 // Scheduler to get new data for every day
 node_schedule_1.default.scheduleJob("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, fetchDiscordLevels_js_1.default)();
+    yield (0, DiscordService_1.fetchDiscordLevels)();
 }));
 app.use("/api", (0, cors_1.default)({
     origin: [

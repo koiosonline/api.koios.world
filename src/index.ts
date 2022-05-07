@@ -2,10 +2,10 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import merkleClaimHandler from "./handlers/merkleClaimHandler.js";
-import fetchDiscordLevels from "./services/discord/fetchDiscordLevels.js";
+import { fetchDiscordLevels } from "./api/services/DiscordService";
 import schedule from "node-schedule";
 import dotenv from "dotenv";
-import { services } from "./services/index.js";
+import { services } from "./api/index.js";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();

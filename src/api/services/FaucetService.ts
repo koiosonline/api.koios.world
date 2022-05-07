@@ -1,7 +1,7 @@
-import ABI from "./data/ABI.json";
+import ABI from "../json/ABI.json";
 import Web3 from "web3";
 
-const executeClaim = async (claimerAddress, data) => {
+export const executeClaim = async (claimerAddress, data) => {
   console.log(process.env.CONTRACT_ADDRESS);
   const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
   const privateKey = process.env.PRIV_KEY;
@@ -50,5 +50,3 @@ const executeClaim = async (claimerAddress, data) => {
 
   return status;
 };
-
-export default executeClaim;

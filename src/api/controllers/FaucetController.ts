@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import axios from "axios";
-import executeClaim from "./executeClaim";
+import { executeClaim } from "../services/FaucetService";
 
 export const post = async (req: Request, res: Response, next: NextFunction) => {
   const googleRes = await axios.post(
