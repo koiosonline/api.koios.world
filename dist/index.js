@@ -25,7 +25,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use(express_1.default.json());
-// Callback to get data on the first load
+// Callback to get data on the first load.
 (0, fetchDiscordLevels_js_1.default)();
 // Scheduler to get new data for every day
 node_schedule_1.default.scheduleJob("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
