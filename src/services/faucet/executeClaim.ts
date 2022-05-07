@@ -1,16 +1,7 @@
-import ABI from "../data/ABI.json" assert { type: "json" };
+import ABI from "./data/ABI.json";
 import Web3 from "web3";
-import axios from "axios";
 
-const faucetClaimhandler = async ({ claimerAddress, captchaToken }) => {
-  const googleRes = await axios.post(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET}&response=${captchaToken}`
-  );
-  const data = googleRes.data;
-  return executeClaim(claimerAddress, data);
-};
-
-async function executeClaim(claimerAddress, data) {
+const executeClaim = async (claimerAddress, data) => {
   console.log(process.env.CONTRACT_ADDRESS);
   const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
   const privateKey = process.env.PRIV_KEY;
@@ -28,8 +19,6 @@ async function executeClaim(claimerAddress, data) {
   if (data.success) {
     web3.eth.accounts.wallet.add(account);
     web3.eth.defaultAccount = account.address;
-    contract.defaultChain = "rinkeby";
-    contract.defaultHardfork = "london";
 
     console.log("Checking address: " + claimerAddress);
 
@@ -60,6 +49,6 @@ async function executeClaim(claimerAddress, data) {
   }
 
   return status;
-}
+};
 
-export default faucetClaimhandler;
+export default executeClaim;

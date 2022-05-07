@@ -1,0 +1,24 @@
+{
+    "claims": [
+        {
+            "tokenID": 1,
+            "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+        },
+        {
+            "tokenID": 3,
+            "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+        },
+        {
+            "tokenID": 10,
+            "claimAddress": "0x2B246456B71a2C761F861b85E38E9d98547b8D32"
+        },
+        {
+            "tokenID": 20,
+            "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+        },
+        {
+            "tokenID": 100,
+            "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+        }
+    ]
+}
