@@ -8,23 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const store_1 = __importDefault(require("store"));
-const handleDiscordLevelPerUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    const callData = store_1.default.get("discordLevels");
-    if (callData) {
-        let foundUsername;
-        callData.map((element) => {
-            const result = element.filter((callDataFilter) => callDataFilter.username.toLowerCase() === user.toLowerCase());
-            if (result.length >= 1) {
-                foundUsername = result;
+exports.post = void 0;
+const MintService_1 = require("../services/MintService");
+const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const merkleClaim = req.body;
+        if (merkleClaim.claimAddress && merkleClaim.tokenId) {
+            const proof = yield (0, MintService_1.getProof)(merkleClaim.claimAddress, merkleClaim.tokenId);
+            if (proof.success) {
+                res.send(proof);
+                return;
             }
-        });
-        return foundUsername;
+        }
+        res.status(400).send("Bad Request");
+        return;
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send("Bad Request");
     }
 });
-exports.default = handleDiscordLevelPerUser;
-//# sourceMappingURL=discordLevelPerUserHandler.js.map
+exports.post = post;
+//# sourceMappingURL=MintController.js.map

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
-const merkleClaimHandler_js_1 = __importDefault(require("./handlers/merkleClaimHandler.js"));
 const DiscordService_1 = require("./api/services/DiscordService");
 const node_schedule_1 = __importDefault(require("node-schedule"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -43,14 +42,6 @@ app.use("/api", (0, cors_1.default)({
 app.get("/", (req, res) => {
     res.send("Welcome to the Koios middleware");
 });
-app.post("/merkleClaim", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        res.send(yield (0, merkleClaimHandler_js_1.default)(req.body));
-    }
-    catch (e) {
-        res.status(400).send("Bad Request");
-    }
-}));
 app.listen(PORT, () => {
     console.log("server is listening on port " + PORT);
 });

@@ -15,14 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.get = void 0;
 const store_1 = __importDefault(require("store"));
 const DiscordService_1 = require("../services/DiscordService");
-const get = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const callData = store_1.default.get("discordLevels");
     if (callData) {
         res.send(callData);
     }
 });
 exports.get = get;
-const getUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const callData = yield (0, DiscordService_1.fetchUserInfo)(req.params.username);
     if (callData) {
         return res.send(callData);

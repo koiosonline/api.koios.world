@@ -26,9 +26,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.faucetRouter = void 0;
+exports.mintRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const controller = __importStar(require("./controller"));
-exports.faucetRouter = express_1.default.Router();
-exports.faucetRouter.route("/claim").post(controller.post);
-//# sourceMappingURL=routes.js.map
+const mintController = __importStar(require("../controllers/MintController"));
+exports.mintRouter = express_1.default.Router();
+exports.mintRouter.route("/merkleClaim").post(mintController.post);
+//# sourceMappingURL=MintRouter.js.map

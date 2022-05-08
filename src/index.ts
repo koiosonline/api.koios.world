@@ -1,7 +1,6 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
-import merkleClaimHandler from "./handlers/merkleClaimHandler.js";
 import { fetchDiscordLevels } from "./api/services/DiscordService";
 import schedule from "node-schedule";
 import dotenv from "dotenv";
@@ -37,14 +36,6 @@ app.use(
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Koios middleware");
-});
-
-app.post("/merkleClaim", async (req, res) => {
-  try {
-    res.send(await merkleClaimHandler(req.body));
-  } catch (e) {
-    res.status(400).send("Bad Request");
-  }
 });
 
 app.listen(PORT, () => {

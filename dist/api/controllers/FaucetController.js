@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.post = void 0;
 const axios_1 = __importDefault(require("axios"));
 const FaucetService_1 = require("../services/FaucetService");
-const post = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const googleRes = yield axios_1.default.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET}&response=${req.body.captchaToken}`);
     const data = googleRes.data;
     res.send(yield (0, FaucetService_1.executeClaim)(req.body.claimerAddress, data));

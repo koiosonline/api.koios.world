@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getProof = void 0;
 const merkletreejs_1 = require("merkletreejs");
 const keccak256_1 = __importDefault(require("keccak256"));
 const web3_1 = __importDefault(require("web3"));
-const addresses_json_1 = __importDefault(require("../data/addresses.json"));
-const merkleClaimHandler = ({ claimAddress, tokenId, res }) => __awaiter(void 0, void 0, void 0, function* () {
+const addresses_json_1 = __importDefault(require("../json/addresses.json"));
+const getProof = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const whitelistAddressesLeaves = addresses_json_1.default.claims.map((x) => web3_1.default.utils.soliditySha3(x.tokenID, x.claimAddress));
         const merkleTree = new merkletreejs_1.MerkleTree(whitelistAddressesLeaves, keccak256_1.default, {
@@ -32,8 +33,8 @@ const merkleClaimHandler = ({ claimAddress, tokenId, res }) => __awaiter(void 0,
     }
     catch (e) {
         console.log(e);
-        return res.status(400).send("Bad Request");
+        return { proof: [], success: false };
     }
 });
-exports.default = merkleClaimHandler;
-//# sourceMappingURL=merkleClaimHandler.js.map
+exports.getProof = getProof;
+//# sourceMappingURL=MintService.js.map

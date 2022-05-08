@@ -1,9 +1,9 @@
 import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
 import Web3 from "web3";
-import whitelistAddresses from "../data/addresses.json" assert { type: "json" };
+import whitelistAddresses from "../json/addresses.json";
 
-const merkleClaimHandler = async ({ claimAddress, tokenId, res }) => {
+export const getProof = async (claimAddress: string, tokenId: number) => {
   try {
     const whitelistAddressesLeaves = whitelistAddresses.claims.map((x) =>
       Web3.utils.soliditySha3(x.tokenID, x.claimAddress)
@@ -24,8 +24,6 @@ const merkleClaimHandler = async ({ claimAddress, tokenId, res }) => {
     return { proof: proof, success: true };
   } catch (e) {
     console.log(e);
-    return res.status(400).send("Bad Request");
+    return { proof: [], success: false };
   }
 };
-
-export default merkleClaimHandler;

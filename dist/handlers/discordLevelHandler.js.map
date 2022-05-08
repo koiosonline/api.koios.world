@@ -1,1 +1,0 @@
-{"version":3,"file":"discordLevelHandler.js","sourceRoot":"","sources":["../../src/handlers/discordLevelHandler.js"],"names":[],"mappings":";;;;;;;;;;;;;;AAAA,kDAA0B;AAE1B,MAAM,kBAAkB,GAAG,GAAS,EAAE;IACpC,MAAM,QAAQ,GAAG,eAAK,CAAC,GAAG,CAAC,eAAe,CAAC,CAAC;IAC5C,IAAI,QAAQ,EAAE;QACZ,OAAO,MAAM,QAAQ,CAAC;KACvB;AACH,CAAC,CAAA,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
