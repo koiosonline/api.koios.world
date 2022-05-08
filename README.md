@@ -11,7 +11,7 @@ The architecture currently follows a layered pattern, keep in mind this may be u
 - Routes, the different API endpoints the client is able to call. The requests get routed to their corresponding controler.
 - Controllers, this is where the API requests get handled through the different endpoints. 
 - Services, controllers call their corresponding service, in the service business logic gets handled. 
-- Repositores, when a service needs to make a call to a database it will be handled within its corresponding repository component. 
+- Repositores, when a service needs to make a call to a database it will be handled within its corresponding repository component (not created yet not needed)
 - Interfaces, folder for all the interfaces that are being used. 
 - Json, folder for static .json data. 
 
