@@ -1,0 +1,20 @@
+{
+  "minters": [
+    {
+      "amount": 30,
+      "minterAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+    },
+    {
+      "amount": 40,
+      "minterAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+    },
+    {
+      "amount": 12,
+      "minterAddress": "0x2B246456B71a2C761F861b85E38E9d98547b8D32"
+    },
+    {
+      "amount": 50,
+      "minterAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    }
+  ]
+}

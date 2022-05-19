@@ -1,23 +1,55 @@
 {
   "claims": [
     {
-      "tokenID": 1,
+      "tokenId": 1,
       "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
     },
     {
-      "tokenID": 3,
+      "tokenId": 3,
       "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
     },
     {
-      "tokenID": 10,
+      "tokenId": 10,
       "claimAddress": "0x2B246456B71a2C761F861b85E38E9d98547b8D32"
     },
     {
-      "tokenID": 20,
+      "tokenId": 20,
       "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
     },
     {
-      "tokenID": 100,
+      "tokenId": 100,
+      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    },
+    {
+      "tokenId": 93,
+      "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+    },
+    {
+      "tokenId": 34,
+      "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+    },
+    {
+      "tokenId": 87,
+      "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+    },
+    {
+      "tokenId": 72,
+      "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+    },
+    {
+      "tokenId": 9,
+      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    },
+    {
+      "tokenId": 36,
+      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    },
+    {
+      "tokenId": 52,
+      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    },
+    {
+      "tokenId": 24,
       "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
     }
   ]

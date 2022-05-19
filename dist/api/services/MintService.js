@@ -16,10 +16,11 @@ exports.getProof = void 0;
 const merkletreejs_1 = require("merkletreejs");
 const keccak256_1 = __importDefault(require("keccak256"));
 const web3_1 = __importDefault(require("web3"));
-const addresses_json_1 = __importDefault(require("../json/addresses.json"));
+const fs_1 = __importDefault(require("fs"));
 const getProof = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const whitelistAddressesLeaves = addresses_json_1.default.claims.map((x) => web3_1.default.utils.soliditySha3(x.tokenID, x.claimAddress));
+        const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
+        const whitelistAddressesLeaves = addressList.claims.map((x) => web3_1.default.utils.soliditySha3(x.tokenId, x.claimAddress));
         const merkleTree = new merkletreejs_1.MerkleTree(whitelistAddressesLeaves, keccak256_1.default, {
             sortPairs: true,
         });
