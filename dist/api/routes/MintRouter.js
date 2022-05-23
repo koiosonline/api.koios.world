@@ -31,4 +31,6 @@ const express_1 = __importDefault(require("express"));
 const mintController = __importStar(require("../controllers/MintController"));
 exports.mintRouter = express_1.default.Router();
 exports.mintRouter.route("/merkleClaim").post(mintController.post);
+exports.mintRouter.route("/getTokensForAccount").get(mintController.get);
+exports.mintRouter.route("/getHexRoot").get(mintController.rootHash);
 //# sourceMappingURL=MintRouter.js.map

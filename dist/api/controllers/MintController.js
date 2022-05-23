@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.post = void 0;
+exports.rootHash = exports.get = exports.post = void 0;
 const MintService_1 = require("../services/MintService");
 const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -30,4 +30,39 @@ const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.post = post;
+const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const claimAddress = req.body.claimAddress;
+        if (claimAddress) {
+            const tokens = yield (0, MintService_1.getTokensForAccount)(claimAddress);
+            if (tokens.success) {
+                res.send(tokens);
+                return;
+            }
+        }
+        res.status(404).send("Bad Request");
+        return;
+    }
+    catch (err) {
+        console.log(err);
+        res.status(404).send("Bad Request");
+    }
+});
+exports.get = get;
+const rootHash = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const root = yield (0, MintService_1.getHexProofForList)();
+        if (root.success) {
+            res.send(root);
+            return;
+        }
+        res.status(500).send("Internal Server Error");
+        return;
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+exports.rootHash = rootHash;
 //# sourceMappingURL=MintController.js.map
