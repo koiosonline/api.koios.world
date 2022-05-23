@@ -29,7 +29,8 @@ export const post = async (req: Request, res: Response) => {
 
 export const get = async (req: Request, res: Response) => {
   try {
-    const claimAddress: string = req.body.claimAddress;
+    console.log(req.params);
+    const claimAddress: string = req.params.claimAddress;
     if (claimAddress) {
       const tokens = await getTokensForAccount(claimAddress);
       if (tokens.success) {

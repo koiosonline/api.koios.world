@@ -32,7 +32,8 @@ const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.post = post;
 const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const claimAddress = req.body.claimAddress;
+        console.log(req.params);
+        const claimAddress = req.params.claimAddress;
         if (claimAddress) {
             const tokens = yield (0, MintService_1.getTokensForAccount)(claimAddress);
             if (tokens.success) {
