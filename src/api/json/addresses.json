@@ -51,6 +51,14 @@
     {
       "tokenId": 24,
       "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+    },
+    {
+      "tokenId": 192,
+      "claimAddress": "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db"
+    },
+    {
+      "tokenId": 500,
+      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
     }
   ]
 }

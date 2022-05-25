@@ -5,3 +5,4 @@ export const mintRouter = express.Router();
 mintRouter.route("/merkleClaim").post(mintController.post);
 mintRouter.route("/getTokensForAccount/:claimAddress").get(mintController.get);
 mintRouter.route("/getHexRoot").get(mintController.rootHash);
+mintRouter.route("/signature").post(mintController.signature);

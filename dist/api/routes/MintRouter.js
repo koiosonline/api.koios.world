@@ -33,4 +33,5 @@ exports.mintRouter = express_1.default.Router();
 exports.mintRouter.route("/merkleClaim").post(mintController.post);
 exports.mintRouter.route("/getTokensForAccount/:claimAddress").get(mintController.get);
 exports.mintRouter.route("/getHexRoot").get(mintController.rootHash);
+exports.mintRouter.route("/signature").post(mintController.signature);
 //# sourceMappingURL=MintRouter.js.map

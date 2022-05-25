@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rootHash = exports.get = exports.post = void 0;
+exports.signature = exports.rootHash = exports.get = exports.post = void 0;
 const MintService_1 = require("../services/MintService");
 const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -66,4 +66,27 @@ const rootHash = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.rootHash = rootHash;
+const signature = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const merkleClaim = req.body;
+        if (merkleClaim.claimAddress && merkleClaim.tokenId) {
+            const proof = yield (0, MintService_1.getSignature)(merkleClaim.claimAddress, merkleClaim.tokenId);
+            if (proof.success) {
+                res.send(proof);
+                return;
+            }
+            if (proof.invalid) {
+                res.status(400).send("Not Whitelisted!");
+                return;
+            }
+        }
+        res.status(400).send("Bad Request");
+        return;
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send("Bad Request");
+    }
+});
+exports.signature = signature;
 //# sourceMappingURL=MintController.js.map

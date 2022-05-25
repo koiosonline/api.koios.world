@@ -1,6 +1,7 @@
 import fs from "fs";
 import { MinterModel } from "../interfaces/MinterModel";
 import { MerkleClaimModel } from "../interfaces/MerkleClaimModel";
+import { makeObjectArray } from "../util/MerkleClaimModelMaker";
 
 export const generateJson = async () => {
   try {
@@ -37,19 +38,6 @@ export const generateJson = async () => {
     console.log(e);
     return { success: false };
   }
-};
-
-const makeObjectArray = (addressList) => {
-  let newMerkleClaimArray: MerkleClaimModel[] = [];
-
-  for (let item of addressList.claims) {
-    const newItem: MerkleClaimModel = {
-      tokenId: item.tokenId,
-      claimAddress: item.claimAddress,
-    };
-    newMerkleClaimArray.push(newItem);
-  }
-  return newMerkleClaimArray;
 };
 
 const createTokenArray = (addressList) => {

@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkPassword = exports.generateJson = void 0;
 const fs_1 = __importDefault(require("fs"));
+const MerkleClaimModelMaker_1 = require("../util/MerkleClaimModelMaker");
 const generateJson = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
         const mintersFromFile = JSON.parse(fs_1.default.readFileSync("src/api/json/minters.json", "utf8"));
         const minterArray = mintersFromFile.minters;
-        let newMerkleClaimArray = makeObjectArray(addressList);
+        let newMerkleClaimArray = (0, MerkleClaimModelMaker_1.makeObjectArray)(addressList);
         let tokenIds = createTokenArray(addressList);
         const newFile = generateNewMintList(addressList, newMerkleClaimArray, minterArray, tokenIds);
         const newAddressesFile = {
@@ -37,17 +38,6 @@ const generateJson = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.generateJson = generateJson;
-const makeObjectArray = (addressList) => {
-    let newMerkleClaimArray = [];
-    for (let item of addressList.claims) {
-        const newItem = {
-            tokenId: item.tokenId,
-            claimAddress: item.claimAddress,
-        };
-        newMerkleClaimArray.push(newItem);
-    }
-    return newMerkleClaimArray;
-};
 const createTokenArray = (addressList) => {
     let tokenIds = Array.from(Array(100).keys()).map((x) => x + 1);
     for (let item of addressList.claims) {

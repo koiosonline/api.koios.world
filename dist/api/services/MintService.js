@@ -12,11 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTokensForAccount = exports.getProof = exports.getHexProofForList = void 0;
+exports.getSignature = exports.getTokensForAccount = exports.getProof = exports.getHexProofForList = void 0;
 const merkletreejs_1 = require("merkletreejs");
 const keccak256_1 = __importDefault(require("keccak256"));
 const web3_1 = __importDefault(require("web3"));
+const ethers_1 = require("ethers");
 const fs_1 = __importDefault(require("fs"));
+const crypto_1 = __importDefault(require("crypto"));
+const MerkleClaimModelMaker_1 = require("../util/MerkleClaimModelMaker");
 const getHexProofForList = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
@@ -70,4 +73,56 @@ const getTokensForAccount = (claimAddress) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.getTokensForAccount = getTokensForAccount;
+const getSignature = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const wallet = new ethers_1.ethers.Wallet("0x6299a7bce82384f3e452aaadd3cd04c6f54a24e7ecb55aeb18b72723fc5a8ad7");
+        const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
+        let newMerkleClaimArray = (0, MerkleClaimModelMaker_1.makeObjectArray)(addressList);
+        const claimModel = {
+            tokenId: tokenId,
+            claimAddress: claimAddress,
+        };
+        if (containsObject(claimModel, newMerkleClaimArray)) {
+            const salt = crypto_1.default.randomBytes(16).toString("base64");
+            const payload = ethers_1.ethers.utils.defaultAbiCoder.encode(["string", "address", "address", "uint256"], [
+                salt,
+                "0x5c4c2811c562060FCE6896D1Fc117d939638De99",
+                claimAddress,
+                tokenId,
+            ]);
+            let payloadHash = ethers_1.ethers.utils.keccak256(payload);
+            const token = yield wallet.signMessage(ethers_1.ethers.utils.arrayify(payloadHash));
+            const proof = {
+                tokenId: tokenId,
+                salt: salt,
+                token: token,
+            };
+            return {
+                proof: proof,
+                invalid: false,
+                success: true,
+            };
+        }
+        return {
+            proof: [],
+            invalid: true,
+            success: false,
+        };
+    }
+    catch (e) {
+        console.log(e);
+        return { proof: [], invalid: true, success: false };
+    }
+});
+exports.getSignature = getSignature;
+const containsObject = (obj, list) => {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].claimAddress === obj.claimAddress &&
+            list[i].tokenId === obj.tokenId) {
+            return true;
+        }
+    }
+    return false;
+};
 //# sourceMappingURL=MintService.js.map
