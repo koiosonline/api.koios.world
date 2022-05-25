@@ -81,9 +81,7 @@ export const getTokensForAccount = async (claimAddress: string) => {
 
 export const getSignature = async (claimAddress: string, tokenId: number) => {
   try {
-    const wallet = new ethers.Wallet(
-      "0x6299a7bce82384f3e452aaadd3cd04c6f54a24e7ecb55aeb18b72723fc5a8ad7" //process.env.PRIV_KEY
-    );
+    const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
     const addressList = JSON.parse(
       fs.readFileSync("src/api/json/addresses.json", "utf8")
     );
@@ -97,12 +95,7 @@ export const getSignature = async (claimAddress: string, tokenId: number) => {
       const salt = crypto.randomBytes(16).toString("base64");
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address", "uint256"],
-        [
-          salt,
-          "0x5c4c2811c562060FCE6896D1Fc117d939638De99", //process.env.CONTRACT_ADDRESS
-          claimAddress,
-          tokenId,
-        ]
+        [salt, process.env.CONTRACT_ADDRESS_NFT_NEW, claimAddress, tokenId]
       );
       let payloadHash = ethers.utils.keccak256(payload);
       const token: string = await wallet.signMessage(
