@@ -2,9 +2,11 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import { fetchDiscordLevels } from "./api/services/DiscordService";
+import { generateJson } from "./api/services/GenerationService";
 import schedule from "node-schedule";
 import dotenv from "dotenv";
 import { services } from "./api/index.js";
+import cron from "node-cron";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();
@@ -19,6 +21,14 @@ fetchDiscordLevels();
 schedule.scheduleJob("0 0 * * *", async () => {
   await fetchDiscordLevels();
 });
+
+cron.schedule(
+  "*/30 * * * * *",
+  async () => {
+    await generateJson();
+  },
+  {}
+);
 
 app.use(
   "/api",

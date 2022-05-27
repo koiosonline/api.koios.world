@@ -2,16 +2,18 @@ import fs from "fs";
 import { MinterModel } from "../interfaces/MinterModel";
 import { MerkleClaimModel } from "../interfaces/MerkleClaimModel";
 import { makeObjectArray } from "../util/MerkleClaimModelMaker";
+import axios from "axios";
+import { MintersList } from "../interfaces/MintersList";
+import { MinterGraphModel } from "../interfaces/MinterGraphModel";
 
 export const generateJson = async () => {
   try {
     const addressList = JSON.parse(
       fs.readFileSync("src/api/json/addresses.json", "utf8")
     );
-    const mintersFromFile = JSON.parse(
-      fs.readFileSync("src/api/json/minters.json", "utf8")
-    );
-    const minterArray: MinterModel[] = mintersFromFile.minters;
+    
+    const mintersNew: MintersList = await getMinterList();
+    const minterArray: MinterGraphModel[] = mintersNew.data.users;
 
     let newMerkleClaimArray: MerkleClaimModel[] = makeObjectArray(addressList);
     let tokenIds: number[] = createTokenArray(addressList);
@@ -40,8 +42,24 @@ export const generateJson = async () => {
   }
 };
 
+const getMinterList = async () => {
+  const query = `
+  {
+    users(orderBy: transferedMint, orderDirection: desc, where: {transferedMint_gt: 0}) {
+      address
+      transferedMint
+    }
+  }
+          `;
+  const URL =
+    "https://api.thegraph.com/subgraphs/name/koiosonline/titan-token-rinkeby";
+  const body = JSON.stringify({ query: query });
+  const test = await axios.post(URL, body);
+  return test.data;
+};
+
 const createTokenArray = (addressList) => {
-  let tokenIds: number[] = Array.from(Array(100).keys()).map((x) => x + 1);
+  let tokenIds: number[] = Array.from(Array(1000).keys()).map((x) => x + 1);
 
   for (let item of addressList.claims) {
     for (var i = 0; i < tokenIds.length; i++) {
@@ -56,14 +74,14 @@ const createTokenArray = (addressList) => {
 const generateNewMintList = (
   addressList: any,
   newMerkleClaimArray: MerkleClaimModel[],
-  minterArray: MinterModel[],
+  minterArray: MinterGraphModel[],
   tokenIds: number[]
 ) => {
   for (let item of minterArray) {
-    const mintable = Math.floor(item.amount / 10);
+    const mintable = Math.floor(item.transferedMint / 1000000000000000000 / 10);
 
     const amountInWhitelist = addressList.claims.filter(
-      (x) => x.claimAddress == item.minterAddress
+      (x) => x.claimAddress == item.address
     );
     const amountInWhitelistForAddress = amountInWhitelist.length;
 
@@ -72,7 +90,7 @@ const generateNewMintList = (
     for (let i = 0; i < amountToAdd; i++) {
       const minterModelAddition: MerkleClaimModel = {
         tokenId: tokenIds[(tokenIds.length * Math.random()) | 0],
-        claimAddress: item.minterAddress,
+        claimAddress: item.address,
       };
       for (var l = 0; l < tokenIds.length; l++) {
         if (tokenIds[l] === minterModelAddition.tokenId) {

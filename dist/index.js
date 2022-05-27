@@ -16,9 +16,11 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const DiscordService_1 = require("./api/services/DiscordService");
+const GenerationService_1 = require("./api/services/GenerationService");
 const node_schedule_1 = __importDefault(require("node-schedule"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const index_js_1 = require("./api/index.js");
+const node_cron_1 = __importDefault(require("node-cron"));
 const PORT = process.env.PORT || 8000;
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -30,6 +32,10 @@ app.use(express_1.default.json());
 node_schedule_1.default.scheduleJob("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, DiscordService_1.fetchDiscordLevels)();
 }));
+node_cron_1.default.schedule("*/10 * * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Generating new list at every 10 seconds");
+    yield (0, GenerationService_1.generateJson)();
+}), {});
 app.use("/api", (0, cors_1.default)({
     origin: [
         "http://localhost:3000",
