@@ -14,7 +14,7 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 
-// Callback to get data on the first load.
+// Callback to get data on the first load
 fetchDiscordLevels();
 
 // Scheduler to get new data for every day
