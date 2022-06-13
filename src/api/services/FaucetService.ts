@@ -5,9 +5,7 @@ export const executeClaim = async (claimerAddress, data) => {
   console.log(process.env.CONTRACT_ADDRESS);
   const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
   const privateKey = process.env.PRIV_KEY;
-  let web3 = new Web3(
-    "https://rinkeby.infura.io/v3/8e4de63cfa6842e2811b357d94423d01"
-  );
+  let web3 = new Web3(process.env.FAUCETPROVIDER);
 
   let contract = new web3.eth.Contract(
     JSON.parse(ABI.result),
@@ -19,8 +17,6 @@ export const executeClaim = async (claimerAddress, data) => {
   if (data.success) {
     web3.eth.accounts.wallet.add(account);
     web3.eth.defaultAccount = account.address;
-
-    console.log("Checking address: " + claimerAddress);
 
     await contract.methods
       .claim(claimerAddress)

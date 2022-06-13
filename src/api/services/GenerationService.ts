@@ -1,5 +1,4 @@
 import fs from "fs";
-import { MinterModel } from "../interfaces/MinterModel";
 import { MerkleClaimModel } from "../interfaces/MerkleClaimModel";
 import { makeObjectArray } from "../util/MerkleClaimModelMaker";
 import axios from "axios";
@@ -11,7 +10,7 @@ export const generateJson = async () => {
     const addressList = JSON.parse(
       fs.readFileSync("src/api/json/addresses.json", "utf8")
     );
-    
+
     const mintersNew: MintersList = await getMinterList();
     const minterArray: MinterGraphModel[] = mintersNew.data.users;
 
