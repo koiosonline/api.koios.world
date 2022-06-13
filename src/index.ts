@@ -38,7 +38,7 @@ app.use(
       "https://app.koios.world",
       "https://koios.world",
       "http://dev-app.koios.world",
-      "https://titans.koios.world/",
+      "https://titans.koios.world",
     ],
     methods: ["GET", "POST"],
   }),
