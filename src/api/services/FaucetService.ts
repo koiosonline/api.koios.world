@@ -2,14 +2,14 @@ import ABI from "../json/ABI.json";
 import Web3 from "web3";
 
 export const executeClaim = async (claimerAddress, data) => {
-  console.log(process.env.CONTRACT_ADDRESS);
-  const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+  console.log(process.env.CONTRACT_ADDRESS_FAUCET);
+  const CONTRACT_ADDRESS_FAUCET = process.env.CONTRACT_ADDRESS_FAUCET;
   const privateKey = process.env.PRIV_KEY;
-  let web3 = new Web3(process.env.FAUCETPROVIDER);
+  let web3 = new Web3(process.env.FAUCET_PROVIDER);
 
   let contract = new web3.eth.Contract(
     JSON.parse(ABI.result),
-    CONTRACT_ADDRESS
+    CONTRACT_ADDRESS_FAUCET
   );
   let account = web3.eth.accounts.privateKeyToAccount("0x" + privateKey);
   let status = { status: 1, message: "Successfully claimed!" };

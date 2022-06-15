@@ -95,7 +95,7 @@ export const getSignature = async (claimAddress: string, tokenId: number) => {
       const salt = crypto.randomBytes(16).toString("base64");
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address", "uint256"],
-        [salt, process.env.CONTRACT_ADDRESS_NFT_NEW, claimAddress, tokenId]
+        [salt, process.env.CONTRACT_ADDRESS_NFT, claimAddress, tokenId]
       );
       let payloadHash = ethers.utils.keccak256(payload);
       const token: string = await wallet.signMessage(
