@@ -32,8 +32,7 @@ app.use(express_1.default.json());
 node_schedule_1.default.scheduleJob("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, DiscordService_1.fetchDiscordLevels)();
 }));
-node_cron_1.default.schedule("*/10 * * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Generating new list at every 10 seconds");
+node_cron_1.default.schedule("*/30 * * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, GenerationService_1.generateJson)();
 }), {});
 app.use("/api", (0, cors_1.default)({
@@ -42,6 +41,7 @@ app.use("/api", (0, cors_1.default)({
         "https://app.koios.world",
         "https://koios.world",
         "http://dev-app.koios.world",
+        "https://titans.koios.world",
     ],
     methods: ["GET", "POST"],
 }), index_js_1.services);

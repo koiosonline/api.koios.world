@@ -48,7 +48,7 @@ const getMinterList = () => __awaiter(void 0, void 0, void 0, function* () {
     }
   }
           `;
-    const URL = "https://api.thegraph.com/subgraphs/name/koiosonline/titan-token-rinkeby";
+    const URL = process.env.SUBGRAPH_URL;
     const body = JSON.stringify({ query: query });
     const test = yield axios_1.default.post(URL, body);
     return test.data;

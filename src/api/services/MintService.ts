@@ -67,7 +67,7 @@ export const getTokensForAccount = async (claimAddress: string) => {
     );
 
     const tokensList = addressList.claims.filter(
-      (e) => e.claimAddress == claimAddress
+      (e) => e.claimAddress.toLowerCase() == claimAddress.toLowerCase()
     );
     return {
       tokens: tokensList,

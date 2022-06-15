@@ -84,7 +84,7 @@ const getSignature = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0
         };
         if (containsObject(claimModel, newMerkleClaimArray)) {
             const salt = crypto_1.default.randomBytes(16).toString("base64");
-            const payload = ethers_1.ethers.utils.defaultAbiCoder.encode(["string", "address", "address", "uint256"], [salt, process.env.CONTRACT_ADDRESS_NFT_NEW, claimAddress, tokenId]);
+            const payload = ethers_1.ethers.utils.defaultAbiCoder.encode(["string", "address", "address", "uint256"], [salt, process.env.CONTRACT_ADDRESS_NFT, claimAddress, tokenId]);
             let payloadHash = ethers_1.ethers.utils.keccak256(payload);
             const token = yield wallet.signMessage(ethers_1.ethers.utils.arrayify(payloadHash));
             const proof = {

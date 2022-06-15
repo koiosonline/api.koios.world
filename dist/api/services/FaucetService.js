@@ -16,17 +16,16 @@ exports.executeClaim = void 0;
 const ABI_json_1 = __importDefault(require("../json/ABI.json"));
 const web3_1 = __importDefault(require("web3"));
 const executeClaim = (claimerAddress, data) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(process.env.CONTRACT_ADDRESS);
-    const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-    const privateKey = process.env.PRIV_KEY;
-    let web3 = new web3_1.default("https://rinkeby.infura.io/v3/8e4de63cfa6842e2811b357d94423d01");
-    let contract = new web3.eth.Contract(JSON.parse(ABI_json_1.default.result), CONTRACT_ADDRESS);
+    console.log(process.env.CONTRACT_ADDRESS_FAUCET);
+    const CONTRACT_ADDRESS_FAUCET = process.env.CONTRACT_ADDRESS_FAUCET;
+    const privateKey = process.env.FAUCET_SIGNER;
+    let web3 = new web3_1.default(process.env.FAUCET_PROVIDER);
+    let contract = new web3.eth.Contract(JSON.parse(ABI_json_1.default.result), CONTRACT_ADDRESS_FAUCET);
     let account = web3.eth.accounts.privateKeyToAccount("0x" + privateKey);
     let status = { status: 1, message: "Successfully claimed!" };
     if (data.success) {
         web3.eth.accounts.wallet.add(account);
         web3.eth.defaultAccount = account.address;
-        console.log("Checking address: " + claimerAddress);
         yield contract.methods
             .claim(claimerAddress)
             .estimateGas({
