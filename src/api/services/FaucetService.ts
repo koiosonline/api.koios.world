@@ -17,20 +17,36 @@ export const executeClaim = async (claimerAddress, data) => {
     web3.eth.accounts.wallet.add(account);
     web3.eth.defaultAccount = account.address;
 
+    // await contract.methods
+    //   .claim(claimerAddress)
+    //   .estimateGas({
+    //     from: account.address,
+    //   })
+    //   .then(async function (gasAmount) {
+    const nextNonce = await web3.eth.getTransactionCount(
+      web3.eth.defaultAccount,
+      "pending"
+    );
+    //const latestBlock = await web3.eth.getBlock();
+
     await contract.methods
       .claim(claimerAddress)
       .estimateGas({
         from: account.address,
       })
       .then(async function (gasAmount) {
-        const nextNonce = await web3.eth.getTransactionCount(
-          web3.eth.defaultAccount,
-          "pending"
-        );
-        contract.methods.claim(claimerAddress).send({
-          from: account.address,
-          gasLimit: gasAmount,
-          nonce: nextNonce,
+        await web3.eth.getGasPrice().then(async function (gasPriceAmount) {
+          contract.methods
+            .claim(claimerAddress)
+            .send({
+              from: account.address,
+              gasPrice: gasPriceAmount,
+              gas: gasAmount,
+              nonce: nextNonce,
+            })
+            .on("transactionHash", function (hash) {
+              console.log(hash);
+            });
         });
       })
       .catch((err) => {

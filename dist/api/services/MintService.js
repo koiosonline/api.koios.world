@@ -61,7 +61,7 @@ exports.getProof = getProof;
 const getTokensForAccount = (claimAddress) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
-        const tokensList = addressList.claims.filter((e) => e.claimAddress == claimAddress);
+        const tokensList = addressList.claims.filter((e) => e.claimAddress.toLowerCase() == claimAddress.toLowerCase());
         return {
             tokens: tokensList,
             success: true,

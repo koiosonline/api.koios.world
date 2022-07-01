@@ -16,7 +16,6 @@ exports.executeClaim = void 0;
 const ABI_json_1 = __importDefault(require("../json/ABI.json"));
 const web3_1 = __importDefault(require("web3"));
 const executeClaim = (claimerAddress, data) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(process.env.CONTRACT_ADDRESS_FAUCET);
     const CONTRACT_ADDRESS_FAUCET = process.env.CONTRACT_ADDRESS_FAUCET;
     const privateKey = process.env.FAUCET_SIGNER;
     let web3 = new web3_1.default(process.env.FAUCET_PROVIDER);
@@ -26,6 +25,14 @@ const executeClaim = (claimerAddress, data) => __awaiter(void 0, void 0, void 0,
     if (data.success) {
         web3.eth.accounts.wallet.add(account);
         web3.eth.defaultAccount = account.address;
+        // await contract.methods
+        //   .claim(claimerAddress)
+        //   .estimateGas({
+        //     from: account.address,
+        //   })
+        //   .then(async function (gasAmount) {
+        const nextNonce = yield web3.eth.getTransactionCount(web3.eth.defaultAccount, "pending");
+        //const latestBlock = await web3.eth.getBlock();
         yield contract.methods
             .claim(claimerAddress)
             .estimateGas({
@@ -33,11 +40,20 @@ const executeClaim = (claimerAddress, data) => __awaiter(void 0, void 0, void 0,
         })
             .then(function (gasAmount) {
             return __awaiter(this, void 0, void 0, function* () {
-                const nextNonce = yield web3.eth.getTransactionCount(web3.eth.defaultAccount, "pending");
-                contract.methods.claim(claimerAddress).send({
-                    from: account.address,
-                    gasLimit: gasAmount,
-                    nonce: nextNonce,
+                yield web3.eth.getGasPrice().then(function (gasPriceAmount) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        contract.methods
+                            .claim(claimerAddress)
+                            .send({
+                            from: account.address,
+                            gasPrice: gasPriceAmount,
+                            gas: gasAmount,
+                            nonce: nextNonce,
+                        })
+                            .on("transactionHash", function (hash) {
+                            console.log(hash);
+                        });
+                    });
                 });
             });
         })
