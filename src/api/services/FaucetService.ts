@@ -2,7 +2,6 @@ import ABI from "../json/ABI.json";
 import Web3 from "web3";
 
 export const executeClaim = async (claimerAddress, data) => {
-  console.log(process.env.CONTRACT_ADDRESS_FAUCET);
   const CONTRACT_ADDRESS_FAUCET = process.env.CONTRACT_ADDRESS_FAUCET;
   const privateKey = process.env.FAUCET_SIGNER;
   let web3 = new Web3(process.env.FAUCET_PROVIDER);
