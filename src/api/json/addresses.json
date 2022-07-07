@@ -229,6 +229,11 @@
       "tokenId": 943,
       "claimAddress": "0x72675b63cd855fb3a00d86fbf055b07a345bc602",
       "whiteList": true
+    },
+    {
+      "tokenId": 43,
+      "claimAddress": "0x30375748046A475eFE561E8DaaFf4Be3283dD2FC",
+      "whiteList": false
     }
   ]
 }
