@@ -7,6 +7,7 @@ export const makeObjectArray = (addressList) => {
     const newItem: MerkleClaimModel = {
       tokenId: item.tokenId,
       claimAddress: item.claimAddress,
+      whitelist: false,
     };
     newMerkleClaimArray.push(newItem);
   }

@@ -89,6 +89,7 @@ export const getSignature = async (claimAddress: string, tokenId: number) => {
     const claimModel: MerkleClaimModel = {
       tokenId: tokenId,
       claimAddress: claimAddress,
+      whitelist: false,
     };
 
     if (containsObject(claimModel, newMerkleClaimArray)) {
