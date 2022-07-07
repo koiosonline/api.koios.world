@@ -79,7 +79,7 @@ const generateNewMintList = (
     const mintable = Math.floor(item.transferedMint / 1000000000000000000 / 10);
 
     const amountInWhitelist = addressList.claims.filter(
-      (x) => x.claimAddress == item.address
+      (x) => x.claimAddress == item.address && x.whitelist === false
     );
     const amountInWhitelistForAddress = amountInWhitelist.length;
 
@@ -89,6 +89,7 @@ const generateNewMintList = (
       const minterModelAddition: MerkleClaimModel = {
         tokenId: tokenIds[(tokenIds.length * Math.random()) | 0],
         claimAddress: item.address,
+        whitelist: false,
       };
       for (var l = 0; l < tokenIds.length; l++) {
         if (tokenIds[l] === minterModelAddition.tokenId) {
