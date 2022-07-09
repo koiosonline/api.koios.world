@@ -30,8 +30,8 @@ exports.mintRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const mintController = __importStar(require("../controllers/MintController"));
 exports.mintRouter = express_1.default.Router();
-exports.mintRouter.route("/merkleClaim").post(mintController.post);
 exports.mintRouter.route("/getTokensForAccount/:claimAddress").get(mintController.get);
-exports.mintRouter.route("/getHexRoot").get(mintController.rootHash);
 exports.mintRouter.route("/signature").post(mintController.signature);
+//mintRouter.route("/create").post(mintController.create);
+exports.mintRouter.route("/getAll").get(mintController.getAll);
 //# sourceMappingURL=MintRouter.js.map

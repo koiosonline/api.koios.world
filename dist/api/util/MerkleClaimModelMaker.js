@@ -7,6 +7,7 @@ const makeObjectArray = (addressList) => {
         const newItem = {
             tokenId: item.tokenId,
             claimAddress: item.claimAddress,
+            whitelist: item.whitelist,
         };
         newMerkleClaimArray.push(newItem);
     }

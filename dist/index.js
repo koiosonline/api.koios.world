@@ -21,6 +21,7 @@ const node_schedule_1 = __importDefault(require("node-schedule"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const index_js_1 = require("./api/index.js");
 const node_cron_1 = __importDefault(require("node-cron"));
+const connectMongo_1 = require("./api/db/connectMongo");
 const PORT = process.env.PORT || 8000;
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -28,6 +29,8 @@ app.use((0, helmet_1.default)());
 app.use(express_1.default.json());
 // Callback to get data on the first load.
 (0, DiscordService_1.fetchDiscordLevels)();
+// Connect to database on the first load.
+(0, connectMongo_1.connectMongo)();
 // Scheduler to get new data for every day
 node_schedule_1.default.scheduleJob("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, DiscordService_1.fetchDiscordLevels)();

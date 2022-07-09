@@ -13,24 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkPassword = exports.generateJson = void 0;
-const fs_1 = __importDefault(require("fs"));
-const MerkleClaimModelMaker_1 = require("../util/MerkleClaimModelMaker");
 const axios_1 = __importDefault(require("axios"));
+const ClaimsRepo_1 = require("../repositories/ClaimsRepo");
 const generateJson = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const addressList = JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8"));
+        const addressList = yield (0, ClaimsRepo_1.getAllWhitelistedAccouns)();
         const mintersNew = yield getMinterList();
         const minterArray = mintersNew.data.users;
-        let newMerkleClaimArray = (0, MerkleClaimModelMaker_1.makeObjectArray)(addressList);
         let tokenIds = createTokenArray(addressList);
-        const newFile = generateNewMintList(addressList, newMerkleClaimArray, minterArray, tokenIds);
-        const newAddressesFile = {
-            claims: newFile,
-        };
-        fs_1.default.writeFileSync("src/api/json/addresses.json", JSON.stringify(newAddressesFile));
+        const newFile = generateNewMintList(addressList, minterArray, tokenIds);
         return {
             success: true,
-            data: JSON.parse(fs_1.default.readFileSync("src/api/json/addresses.json", "utf8")),
+            data: newFile,
         };
     }
     catch (e) {
@@ -55,7 +49,7 @@ const getMinterList = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 const createTokenArray = (addressList) => {
     let tokenIds = Array.from(Array(1000).keys()).map((x) => x + 1);
-    for (let item of addressList.claims) {
+    for (let item of addressList) {
         for (var i = 0; i < tokenIds.length; i++) {
             if (tokenIds[i] === item.tokenId) {
                 tokenIds.splice(i, 1);
@@ -64,27 +58,30 @@ const createTokenArray = (addressList) => {
     }
     return tokenIds;
 };
-const generateNewMintList = (addressList, newMerkleClaimArray, minterArray, tokenIds) => {
+const generateNewMintList = (newMerkleClaimArray, minterArray, tokenIds) => __awaiter(void 0, void 0, void 0, function* () {
     for (let item of minterArray) {
         const mintable = Math.floor(item.transferedMint / 1000000000000000000 / 10);
-        const amountInWhitelist = addressList.claims.filter((x) => x.claimAddress == item.address);
-        const amountInWhitelistForAddress = amountInWhitelist.length;
-        const amountToAdd = mintable - amountInWhitelistForAddress;
+        const amountInWhitelist = newMerkleClaimArray.filter((x) => x.claimAddress == item.address && x.whitelist === false).length;
+        const amountToAdd = mintable - amountInWhitelist;
         for (let i = 0; i < amountToAdd; i++) {
             const minterModelAddition = {
                 tokenId: tokenIds[(tokenIds.length * Math.random()) | 0],
                 claimAddress: item.address,
+                whitelist: false,
             };
             for (var l = 0; l < tokenIds.length; l++) {
                 if (tokenIds[l] === minterModelAddition.tokenId) {
                     tokenIds.splice(l, 1);
                 }
             }
+            const data = yield (0, ClaimsRepo_1.createTokenForAccount)(minterModelAddition);
+            console.log("New Token Added");
+            console.log(data);
             newMerkleClaimArray.push(minterModelAddition);
         }
     }
     return newMerkleClaimArray;
-};
+});
 const checkPassword = (password) => {
     if (password == process.env.GENERATION_PASSWORD) {
         return true;

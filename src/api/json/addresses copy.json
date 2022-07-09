@@ -1,24 +1,239 @@
 {
   "claims": [
     {
-      "tokenId": 1,
-      "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+      "tokenId": 682,
+      "claimAddress": "0x54D1C8AbEC7a8bf73499BD51Ae21B0Cea28aCDe0",
+      "whiteList": true
     },
     {
       "tokenId": 3,
-      "claimAddress": "0x7C011696470851A491b7FaD61f115efB60f731A5"
+      "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E",
+      "whiteList": true
     },
     {
-      "tokenId": 10,
-      "claimAddress": "0x2B246456B71a2C761F861b85E38E9d98547b8D32"
+      "tokenId": 703,
+      "claimAddress": "0x1123f59ABFaf9de6FB9c0c31DDd8253ed9233aD2",
+      "whiteList": true
     },
     {
-      "tokenId": 20,
-      "claimAddress": "0xe4098dce70079a44FB0F41523b70493958E4A19E"
+      "tokenId": 274,
+      "claimAddress": "0x1123f59ABFaf9de6FB9c0c31DDd8253ed9233aD2",
+      "whiteList": true
     },
     {
-      "tokenId": 100,
-      "claimAddress": "0x3fA6205530b137769DBb68Bb713C3786b8dAf229"
+      "tokenId": 746,
+      "claimAddress": "0x1123f59ABFaf9de6FB9c0c31DDd8253ed9233aD2",
+      "whiteList": true
+    },
+    {
+      "tokenId": 389,
+      "claimAddress": "0x1123f59ABFaf9de6FB9c0c31DDd8253ed9233aD2",
+      "whiteList": true
+    },
+    {
+      "tokenId": 501,
+      "claimAddress": "0x1123f59ABFaf9de6FB9c0c31DDd8253ed9233aD2",
+      "whiteList": true
+    },
+    {
+      "tokenId": 545,
+      "claimAddress": "0xba30996e62c032bf5de52df9acad713178b2ee03",
+      "whiteList": true
+    },
+    {
+      "tokenId": 195,
+      "claimAddress": "0xe57fcb68eE491c055B203F8B5b256A160EF61275",
+      "whiteList": true
+    },
+    {
+      "tokenId": 156,
+      "claimAddress": "0x893886A7F4932Db8A706c3F1f13294Bf62d78D6E",
+      "whiteList": true
+    },
+    {
+      "tokenId": 213,
+      "claimAddress": "0xE312b07e4F873E8fD7326bB26D22DC9061DbD74F",
+      "whiteList": true
+    },
+    {
+      "tokenId": 590,
+      "claimAddress": "0xe7b15FC98Bc65E94579E258C77bA97812cB54953",
+      "whiteList": true
+    },
+    {
+      "tokenId": 718,
+      "claimAddress": "0x189BDD3D4b467e9a1269D1c1f422947b79548C9e",
+      "whiteList": true
+    },
+    {
+      "tokenId": 90,
+      "claimAddress": "0x9d5bCEa62e8dc26d70Dc7734BA49bE8cA1Dd6ffB",
+      "whiteList": true
+    },
+    {
+      "tokenId": 61,
+      "claimAddress": "0xc521c6117e5Fe1AbaB3306A8B5e04321a443aeA5",
+      "whiteList": true
+    },
+    {
+      "tokenId": 585,
+      "claimAddress": "0x16Dce94AEEBBbe80E40dcC44b4eA1C6b91FE76A4",
+      "whiteList": true
+    },
+    {
+      "tokenId": 45,
+      "claimAddress": "0x32cb4d6093B854061c63C1D3f243347a45A17E0B",
+      "whiteList": true
+    },
+    {
+      "tokenId": 369,
+      "claimAddress": "0x4f70533A500F0d9dcc3BC92a2E74E5A998f4F3A3",
+      "whiteList": true
+    },
+    {
+      "tokenId": 250,
+      "claimAddress": "0xB1B7586656116D546033e3bAFF69BFcD6592225E",
+      "whiteList": true
+    },
+    {
+      "tokenId": 278,
+      "claimAddress": "0x5f3371793285920351344a1EaaAA48d45e600652",
+      "whiteList": true
+    },
+    {
+      "tokenId": 285,
+      "claimAddress": "0x617dcef3152DDf523eae69fc502b9aBFED763c39",
+      "whiteList": true
+    },
+    {
+      "tokenId": 21,
+      "claimAddress": "0x61F82FC6211682884c3681c3c8e12fccADE01fC7",
+      "whiteList": true
+    },
+    {
+      "tokenId": 908,
+      "claimAddress": "0xcF368dF404b716143256b17d07A8acA02aeB7296",
+      "whiteList": true
+    },
+    {
+      "tokenId": 738,
+      "claimAddress": "0x5Ee7EdDe5E986AD4C935E28DA55D6Ac8C9BC645F",
+      "whiteList": true
+    },
+    {
+      "tokenId": 99,
+      "claimAddress": "0x8e2a89ff2f45ed7f8c8506f846200d671e2f176f",
+      "whiteList": true
+    },
+    {
+      "tokenId": 345,
+      "claimAddress": "0x75cbed16e186a4be43e82d18853013633832d4cc",
+      "whiteList": true
+    },
+    {
+      "tokenId": 626,
+      "claimAddress": "0x7dcdacb85ec1150163c1d697f3e759648c04dd23",
+      "whiteList": true
+    },
+    {
+      "tokenId": 125,
+      "claimAddress": "0x1ff98e17e06c37ab43f73f80f9d70447ebae6fb0",
+      "whiteList": true
+    },
+    {
+      "tokenId": 927,
+      "claimAddress": "0x276389df9ae38bf526f2fea01f64b01dd310fad0",
+      "whiteList": true
+    },
+    {
+      "tokenId": 580,
+      "claimAddress": "0x491b4a99c0ad9da7342ffe48b6c332de52e7706d",
+      "whiteList": true
+    },
+    {
+      "tokenId": 606,
+      "claimAddress": "0x4d62c70facbdb63d55ad03b1b4d483fa0d1af3da",
+      "whiteList": true
+    },
+    {
+      "tokenId": 552,
+      "claimAddress": "0x7c3150dbbe60adafaeb9b4c998de0d24222c60e1",
+      "whiteList": true
+    },
+    {
+      "tokenId": 449,
+      "claimAddress": "0x1891af0c2c5dd596ad8cd65534c286d4136be588",
+      "whiteList": true
+    },
+    {
+      "tokenId": 925,
+      "claimAddress": "0x30375748046a475efe561e8daaff4be3283dd2fc",
+      "whiteList": true
+    },
+    {
+      "tokenId": 74,
+      "claimAddress": "0x622851ff414bfd2cc7a52ec5042da2d7d5c59d9a",
+      "whiteList": true
+    },
+    {
+      "tokenId": 33,
+      "claimAddress": "0x75493c51dab755c56987e583095707e72c74328c",
+      "whiteList": true
+    },
+    {
+      "tokenId": 476,
+      "claimAddress": "0x968dd00f82b4e3e522fb64025fb15d1df9e3ca00",
+      "whiteList": true
+    },
+    {
+      "tokenId": 141,
+      "claimAddress": "0xf4039e492374dd1008322dd7536fbe7f43cfd33e",
+      "whiteList": true
+    },
+    {
+      "tokenId": 425,
+      "claimAddress": "0x54680e0f7a3cfcbd6fe167c79680445cc8d8d4db",
+      "whiteList": true
+    },
+    {
+      "tokenId": 649,
+      "claimAddress": "0x8e21605c69906876f8964bb931f4dce2d4550b2e",
+      "whiteList": true
+    },
+    {
+      "tokenId": 244,
+      "claimAddress": "0x8e4e9de7eb20a9dcf2ae387df2ab59f79bb6ebfb",
+      "whiteList": true
+    },
+    {
+      "tokenId": 499,
+      "claimAddress": "0xe88cac4e10c4d316e0d52b82dd54f26ade3f0bb2",
+      "whiteList": true
+    },
+    {
+      "tokenId": 627,
+      "claimAddress": "0xfcbebecdf3dfcd0a1abee84026b4cee2927dd954",
+      "whiteList": true
+    },
+    {
+      "tokenId": 372,
+      "claimAddress": "0xa58c9d2afcb6bdf1c20221f2010feb23834cb64e",
+      "whiteList": true
+    },
+    {
+      "tokenId": 84,
+      "claimAddress": "0x5fcc5aaa4862d062feec070ae0124728ede12897",
+      "whiteList": true
+    },
+    {
+      "tokenId": 943,
+      "claimAddress": "0x72675b63cd855fb3a00d86fbf055b07a345bc602",
+      "whiteList": true
+    },
+    {
+      "tokenId": 43,
+      "claimAddress": "0x30375748046A475eFE561E8DaaFf4Be3283dD2FC",
+      "whiteList": false
     }
   ]
 }

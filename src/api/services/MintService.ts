@@ -1,13 +1,17 @@
-import { MerkleTree } from "merkletreejs";
-import keccak256 from "keccak256";
-import Web3 from "web3";
 import { ethers } from "ethers";
-import fs from "fs";
 import crypto from "crypto";
-import { MerkleClaimModel } from "../interfaces/MerkleClaimModel";
-import { makeObjectArray } from "../util/MerkleClaimModelMaker";
 import { ECDSAProof } from "../interfaces/ECDSAProof";
+import {
+  createTokenForAccount,
+  getSingleTokenForAccount,
+  newGetTokensForAccount,
+} from "../repositories/ClaimsRepo";
+import IClaimModel from "../interfaces/Schemas/IClaimModel";
 
+//TODO - old code - remove
+{
+  /*
+ TODO remove this old code
 export const getHexProofForList = async () => {
   try {
     const addressList = JSON.parse(
@@ -59,18 +63,14 @@ export const getProof = async (claimAddress: string, tokenId: number) => {
     return { proof: [], success: false };
   }
 };
+*/
+}
 
 export const getTokensForAccount = async (claimAddress: string) => {
   try {
-    const addressList = JSON.parse(
-      fs.readFileSync("src/api/json/addresses.json", "utf8")
-    );
-
-    const tokensList = addressList.claims.filter(
-      (e) => e.claimAddress.toLowerCase() == claimAddress.toLowerCase()
-    );
+    const tokenList = await newGetTokensForAccount(claimAddress);
     return {
-      tokens: tokensList,
+      tokens: tokenList,
       success: true,
     };
   } catch (e) {
@@ -79,20 +79,27 @@ export const getTokensForAccount = async (claimAddress: string) => {
   }
 };
 
+export const createClaim = async (claim: IClaimModel) => {
+  try {
+    const res = await createTokenForAccount(claim);
+    return {
+      success: true,
+      instance: res,
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      success: false,
+      instance: [],
+    };
+  }
+};
+
 export const getSignature = async (claimAddress: string, tokenId: number) => {
   try {
     const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
-    const addressList = JSON.parse(
-      fs.readFileSync("src/api/json/addresses.json", "utf8")
-    );
-    let newMerkleClaimArray: MerkleClaimModel[] = makeObjectArray(addressList);
-    const claimModel: MerkleClaimModel = {
-      tokenId: tokenId,
-      claimAddress: claimAddress,
-      whitelist: false,
-    };
-
-    if (containsObject(claimModel, newMerkleClaimArray)) {
+    const data = await getSingleTokenForAccount(claimAddress, tokenId);
+    if (data) {
       const salt = crypto.randomBytes(16).toString("base64");
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address", "uint256"],
@@ -122,18 +129,4 @@ export const getSignature = async (claimAddress: string, tokenId: number) => {
     console.log(e);
     return { proof: [], invalid: true, success: false };
   }
-};
-
-const containsObject = (obj: MerkleClaimModel, list: MerkleClaimModel[]) => {
-  var i;
-  for (i = 0; i < list.length; i++) {
-    if (
-      list[i].claimAddress === obj.claimAddress &&
-      list[i].tokenId === obj.tokenId
-    ) {
-      return true;
-    }
-  }
-
-  return false;
 };
