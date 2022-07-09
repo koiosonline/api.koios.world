@@ -9,27 +9,48 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signature = exports.rootHash = exports.get = exports.post = void 0;
+exports.getAll = exports.create = exports.signature = exports.get = void 0;
+const ClaimsRepo_1 = require("../repositories/ClaimsRepo");
 const MintService_1 = require("../services/MintService");
-const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+//TODO remove this
+{
+    /*
+  export const post = async (req: Request, res: Response) => {
     try {
-        const merkleClaim = req.body;
-        if (merkleClaim.claimAddress && merkleClaim.tokenId) {
-            const proof = yield (0, MintService_1.getProof)(merkleClaim.claimAddress, merkleClaim.tokenId);
-            if (proof.success) {
-                res.send(proof);
-                return;
-            }
+      const merkleClaim: IClaimModel = req.body;
+      if (merkleClaim.claimAddress && merkleClaim.tokenId) {
+        const proof = await getProof(
+          merkleClaim.claimAddress,
+          merkleClaim.tokenId
+        );
+        if (proof.success) {
+          res.send(proof);
+          return;
         }
-        res.status(400).send("Bad Request");
+      }
+      res.status(400).send("Bad Request");
+      return;
+    } catch (err) {
+      console.log(err);
+      res.status(400).send("Bad Request");
+    }
+  };
+  export const rootHash = async (req: Request, res: Response) => {
+    try {
+      const root = await getHexProofForList();
+      if (root.success) {
+        res.send(root);
         return;
+      }
+      res.status(500).send("Internal Server Error");
+      return;
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
     }
-    catch (err) {
-        console.log(err);
-        res.status(400).send("Bad Request");
-    }
-});
-exports.post = post;
+  };
+  */
+}
 const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(req.params);
@@ -50,22 +71,6 @@ const get = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.get = get;
-const rootHash = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const root = yield (0, MintService_1.getHexProofForList)();
-        if (root.success) {
-            res.send(root);
-            return;
-        }
-        res.status(500).send("Internal Server Error");
-        return;
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).send("Internal Server Error");
-    }
-});
-exports.rootHash = rootHash;
 const signature = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const merkleClaim = req.body;
@@ -89,4 +94,35 @@ const signature = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.signature = signature;
+const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = req.body;
+        if (data.claimAddress && data.tokenId && data.whitelist !== undefined) {
+            const token = yield (0, ClaimsRepo_1.createTokenForAccount)(data);
+            if (token) {
+                res.status(200).send(token);
+                return;
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send("Bad Request");
+    }
+});
+exports.create = create;
+const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const token = yield (0, ClaimsRepo_1.getAllWhitelistedAccouns)();
+        if (token) {
+            res.status(200).send(token);
+            return;
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(400).send("Bad Request");
+    }
+});
+exports.getAll = getAll;
 //# sourceMappingURL=MintController.js.map

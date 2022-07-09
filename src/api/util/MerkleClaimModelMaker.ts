@@ -1,10 +1,10 @@
-import { MerkleClaimModel } from "../interfaces/MerkleClaimModel";
+import IClaimModel from "../interfaces/Schemas/IClaimModel";
 
 export const makeObjectArray = (addressList) => {
-  let newMerkleClaimArray: MerkleClaimModel[] = [];
+  let newMerkleClaimArray: IClaimModel[] = [];
 
   for (let item of addressList.claims) {
-    const newItem: MerkleClaimModel = {
+    const newItem: IClaimModel = {
       tokenId: item.tokenId,
       claimAddress: item.claimAddress,
       whitelist: item.whitelist,
