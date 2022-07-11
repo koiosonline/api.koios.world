@@ -9,7 +9,7 @@ export const newGetTokensForAccount = async (
   claimAddress: string
 ): Promise<IClaimModel[]> => {
   return Claims.find({
-    claimAddress: claimAddress,
+    claimAddress: { $regex: claimAddress, $options: "i" },
   });
 };
 
@@ -24,7 +24,7 @@ export const getSingleTokenForAccount = async (
   tokenId: number
 ): Promise<IClaimModel> => {
   return Claims.findOne({
-    claimAddress: claimAddress,
+    claimAddress: { $regex: claimAddress, $options: "i" },
     tokenId: tokenId,
   });
 };
