@@ -20,7 +20,7 @@ const getAllWhitelistedAccouns = () => __awaiter(void 0, void 0, void 0, functio
 exports.getAllWhitelistedAccouns = getAllWhitelistedAccouns;
 const newGetTokensForAccount = (claimAddress) => __awaiter(void 0, void 0, void 0, function* () {
     return Claims_1.default.find({
-        claimAddress: claimAddress,
+        claimAddress: { $regex: claimAddress, $options: "i" },
     });
 });
 exports.newGetTokensForAccount = newGetTokensForAccount;
