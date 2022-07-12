@@ -23,11 +23,12 @@ const fetchDiscordLevels = () => __awaiter(void 0, void 0, void 0, function* () 
         const url = `https://mee6.xyz/api/plugins/levels/leaderboard/${guildId}?page=${i}`;
         yield axios_1.default.get(url).then((res) => {
             const data = res.data.players;
-            totalData.push(data);
-            if (i === 7) {
-                store_1.default.set("discordLevels", totalData);
+            if (data) {
+                totalData.push(data);
+                if (i === 7) {
+                    store_1.default.set("discordLevels", totalData);
+                }
             }
-            return;
         });
     }
 });

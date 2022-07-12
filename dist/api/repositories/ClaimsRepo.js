@@ -12,12 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSingleTokenForAccount = exports.createTokenForAccount = exports.newGetTokensForAccount = exports.getAllWhitelistedAccouns = void 0;
+exports.getSingleTokenForAccount = exports.createTokenForAccount = exports.newGetTokensForAccount = exports.getAllWhitelistedAccounts = void 0;
 const Claims_1 = __importDefault(require("../db/Claims"));
-const getAllWhitelistedAccouns = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAllWhitelistedAccounts = () => __awaiter(void 0, void 0, void 0, function* () {
     return Claims_1.default.find();
 });
-exports.getAllWhitelistedAccouns = getAllWhitelistedAccouns;
+exports.getAllWhitelistedAccounts = getAllWhitelistedAccounts;
 const newGetTokensForAccount = (claimAddress) => __awaiter(void 0, void 0, void 0, function* () {
     return Claims_1.default.find({
         claimAddress: { $regex: claimAddress, $options: "i" },
@@ -30,7 +30,7 @@ const createTokenForAccount = (claimModel) => __awaiter(void 0, void 0, void 0, 
 exports.createTokenForAccount = createTokenForAccount;
 const getSingleTokenForAccount = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0, function* () {
     return Claims_1.default.findOne({
-        claimAddress: claimAddress,
+        claimAddress: { $regex: claimAddress, $options: "i" },
         tokenId: tokenId,
     });
 });

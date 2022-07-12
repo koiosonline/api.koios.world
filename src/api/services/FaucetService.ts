@@ -16,18 +16,10 @@ export const executeClaim = async (claimerAddress, data) => {
   if (data.success) {
     web3.eth.accounts.wallet.add(account);
     web3.eth.defaultAccount = account.address;
-
-    // await contract.methods
-    //   .claim(claimerAddress)
-    //   .estimateGas({
-    //     from: account.address,
-    //   })
-    //   .then(async function (gasAmount) {
     const nextNonce = await web3.eth.getTransactionCount(
       web3.eth.defaultAccount,
       "pending"
     );
-    //const latestBlock = await web3.eth.getBlock();
 
     await contract.methods
       .claim(claimerAddress)

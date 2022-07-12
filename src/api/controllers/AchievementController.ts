@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IAchievementModel from "../interfaces/Schemas/IAchievementModel";
 import {
   checkExistingAchievementForAccount,
@@ -11,7 +12,7 @@ import {
 export const createSingle = async (req: Request, res: Response) => {
   try {
     const data: IAchievementModel = req.body;
-    const resData = await uploadSingle(data);
+    const resData: IResponseMessage = await uploadSingle(data);
     if (resData.success) {
       res.status(200).send(resData);
       return;
@@ -28,7 +29,7 @@ export const createMultiple = async (req: Request, res: Response) => {
   try {
     const data: IAchievementModel[] = req.body;
     if (data.length > 1) {
-      const resData = await uploadMultiple(data);
+      const resData: IResponseMessage = await uploadMultiple(data);
       if (resData.success) {
         res.status(200).send(resData);
         return;
@@ -44,7 +45,7 @@ export const createMultiple = async (req: Request, res: Response) => {
 
 export const getAllAchievements = async (req: Request, res: Response) => {
   try {
-    const resData = await getAllAchievementTypes();
+    const resData: IResponseMessage = await getAllAchievementTypes();
     if (resData.success) {
       res.status(200).send(resData);
       return;
@@ -60,7 +61,7 @@ export const getAllAchievements = async (req: Request, res: Response) => {
 export const checkWhitelistedAccount = async (req: Request, res: Response) => {
   try {
     const address: string = req.params.address;
-    const resData = await checkWhitelisted(address);
+    const resData: IResponseMessage = await checkWhitelisted(address);
     if (resData.success) {
       res.status(200).send(resData);
       return;
@@ -79,7 +80,7 @@ export const checkExistingAchievement = async (
 ) => {
   try {
     const { address, type, name, tokenId } = req.query;
-    const resData = await checkExistingAchievementForAccount(
+    const resData: IResponseMessage = await checkExistingAchievementForAccount(
       address,
       type,
       name,

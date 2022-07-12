@@ -113,7 +113,7 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.create = create;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = yield (0, ClaimsRepo_1.getAllWhitelistedAccouns)();
+        const token = yield (0, ClaimsRepo_1.getAllWhitelistedAccounts)();
         if (token) {
             res.status(200).send(token);
             return;

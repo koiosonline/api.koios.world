@@ -17,7 +17,7 @@ const axios_1 = __importDefault(require("axios"));
 const ClaimsRepo_1 = require("../repositories/ClaimsRepo");
 const generateJson = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const addressList = yield (0, ClaimsRepo_1.getAllWhitelistedAccouns)();
+        const addressList = yield (0, ClaimsRepo_1.getAllWhitelistedAccounts)();
         const mintersNew = yield getMinterList();
         const minterArray = mintersNew.data.users;
         let tokenIds = createTokenArray(addressList);
@@ -61,7 +61,8 @@ const createTokenArray = (addressList) => {
 const generateNewMintList = (newMerkleClaimArray, minterArray, tokenIds) => __awaiter(void 0, void 0, void 0, function* () {
     for (let item of minterArray) {
         const mintable = Math.floor(item.transferedMint / 1000000000000000000 / 10);
-        const amountInWhitelist = newMerkleClaimArray.filter((x) => x.claimAddress == item.address && x.whitelist === false).length;
+        const amountInWhitelist = newMerkleClaimArray.filter((x) => x.claimAddress.toLowerCase() == item.address.toLowerCase() &&
+            x.whitelist === false).length;
         const amountToAdd = mintable - amountInWhitelist;
         for (let i = 0; i < amountToAdd; i++) {
             const minterModelAddition = {
@@ -75,8 +76,6 @@ const generateNewMintList = (newMerkleClaimArray, minterArray, tokenIds) => __aw
                 }
             }
             const data = yield (0, ClaimsRepo_1.createTokenForAccount)(minterModelAddition);
-            console.log("New Token Added");
-            console.log(data);
             newMerkleClaimArray.push(minterModelAddition);
         }
     }

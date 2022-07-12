@@ -46,7 +46,20 @@ export const uploadMultiple = async (
   achievements: IAchievementModel[]
 ): Promise<IResponseMessage> => {
   try {
-    const res = await createManyAchievementsForAccounts(achievements);
+    let achievementsFiltered: IAchievementModel[] = [];
+    for (let achievement of achievements) {
+      const alreadyExists = await findOneAchievement(
+        achievement.address,
+        achievement.type,
+        achievement.name,
+        achievement.tokenId
+      );
+      if (!alreadyExists) {
+        achievementsFiltered.push(achievement);
+      }
+    }
+    const res = await createManyAchievementsForAccounts(achievementsFiltered);
+
     return {
       success: true,
       message: "Achievements created successfully",

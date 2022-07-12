@@ -15,7 +15,6 @@ export const fetchDiscordLevels = async () => {
         if (i === 7) {
           store.set("discordLevels", totalData);
         }
-        return;
       }
     });
   }

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import IClaimModel from "../interfaces/Schemas/IClaimModel";
 import {
   createTokenForAccount,
-  getAllWhitelistedAccouns,
+  getAllWhitelistedAccounts,
 } from "../repositories/ClaimsRepo";
 
 import { getSignature, getTokensForAccount } from "../services/MintService";
@@ -109,7 +109,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const getAll = async (req: Request, res: Response) => {
   try {
-    const token = await getAllWhitelistedAccouns();
+    const token = await getAllWhitelistedAccounts();
     if (token) {
       res.status(200).send(token);
       return;

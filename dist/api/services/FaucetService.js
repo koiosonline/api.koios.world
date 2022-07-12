@@ -25,14 +25,7 @@ const executeClaim = (claimerAddress, data) => __awaiter(void 0, void 0, void 0,
     if (data.success) {
         web3.eth.accounts.wallet.add(account);
         web3.eth.defaultAccount = account.address;
-        // await contract.methods
-        //   .claim(claimerAddress)
-        //   .estimateGas({
-        //     from: account.address,
-        //   })
-        //   .then(async function (gasAmount) {
         const nextNonce = yield web3.eth.getTransactionCount(web3.eth.defaultAccount, "pending");
-        //const latestBlock = await web3.eth.getBlock();
         yield contract.methods
             .claim(claimerAddress)
             .estimateGas({
