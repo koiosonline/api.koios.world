@@ -31,6 +31,27 @@ export const uploadSingle = async (
     return {
       success: false,
       error: true,
+      message: "Coupon creation/addition failed: \n " + e,
+    };
+  }
+};
+
+export const getCouponsForAddress = async (
+  address: string
+): Promise<IResponseMessage> => {
+  try {
+    const res: ICouponModel = await findExistingCoupon(address);
+
+    return {
+      success: true,
+      message: "Coupon found successfully",
+      data: res,
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      success: false,
+      error: true,
       message: "Achievement creation failed: \n " + e,
     };
   }

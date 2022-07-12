@@ -19,7 +19,9 @@ const connectMongo = () => __awaiter(void 0, void 0, void 0, function* () {
         mongoose_1.default.connections[0];
         return;
     }
-    mongoose_1.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`);
+    mongoose_1.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`, {
+        dbName: process.env.DB_NAME,
+    });
 });
 exports.connectMongo = connectMongo;
 //# sourceMappingURL=connectMongo.js.map
