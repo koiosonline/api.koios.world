@@ -6,6 +6,9 @@ export const connectMongo = async () => {
     return;
   }
   mongoose.connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`,
+    {
+      dbName: process.env.DB_NAME,
+    }
   );
 };
