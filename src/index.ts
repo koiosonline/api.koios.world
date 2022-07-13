@@ -5,13 +5,13 @@ import { fetchDiscordLevels } from "./api/services/DiscordService";
 import { generateJson } from "./api/services/GenerationService";
 import schedule from "node-schedule";
 import dotenv from "dotenv";
-import { services } from "./api/index.js";
+import { services } from "./api/index";
 import cron from "node-cron";
 import { connectMongo } from "./api/db/connectMongo";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();
-const app = express();
+export const app = express();
 app.use(helmet());
 app.use(express.json());
 

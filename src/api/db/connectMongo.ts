@@ -5,10 +5,5 @@ export const connectMongo = async () => {
     mongoose.connections[0];
     return;
   }
-  mongoose.connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`,
-    {
-      dbName: process.env.DB_NAME,
-    }
-  );
+  mongoose.connect(process.env.MONGO_URI);
 };

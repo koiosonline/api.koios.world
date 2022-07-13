@@ -19,6 +19,17 @@ export const findAndAddCoupon = async (
   });
 };
 
+export const findAndReplaceCoupon = async (
+  coupon: ICouponModel
+): Promise<ICouponModel> => {
+  return Coupons.findOneAndReplace(
+    {
+      address: coupon.address,
+    },
+    coupon
+  );
+};
+
 export const findExistingCoupon = async (
   address: string
 ): Promise<ICouponModel> => {
