@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node --experimental-json-modules dist/index.js",
     "delete": "rmdir dist /s /q",
+    "dev": "tsc && nodemon --experimental-json-modules dist/index.js",
     "test": "jest"
   },
   "repository": {
