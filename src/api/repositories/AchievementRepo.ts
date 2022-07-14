@@ -1,9 +1,7 @@
 import Achievements from "../db/Achievements";
 import AchievementTypes from "../db/AchievementTypes";
-import Whitelists from "../db/Whitelists";
 import IAchievementModel from "../interfaces/Schemas/IAchievementModel";
 import IAchievementType from "../interfaces/Schemas/IAchievementType";
-import IWhitelistModel from "../interfaces/Schemas/IWhitelistModel";
 
 export const createAchievementForAccount = async (
   achievement: IAchievementModel
@@ -21,14 +19,6 @@ export const findAllAchievementTypes = async (): Promise<
   IAchievementType[]
 > => {
   return AchievementTypes.find();
-};
-
-export const findWhitelistedAccount = async (
-  address: string
-): Promise<IWhitelistModel> => {
-  return Whitelists.findOne({
-    address: address,
-  });
 };
 
 export const findOneAchievement = async (

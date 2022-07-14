@@ -4,10 +4,11 @@
   "description": "nodejs koios faucet server",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node --experimental-json-modules dist/index.js",
-    "delete": "rmdir dist /s /q",
+    "build": "tsc",
     "dev": "tsc && nodemon --experimental-json-modules dist/index.js",
-    "test": "jest"
+    "start": "node --experimental-json-modules dist/index.js",
+    "test": "jest",
+    "delete": "rmdir dist /s /q"
   },
   "repository": {
     "type": "git",

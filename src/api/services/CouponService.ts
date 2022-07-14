@@ -1,4 +1,5 @@
 import { IResponseMessage } from "../interfaces/IResponseMessage";
+import IUploadModel from "../interfaces/IUploadModel";
 import ICouponModel from "../interfaces/Schemas/ICouponModel";
 import {
   createCoupon,
@@ -8,12 +9,12 @@ import {
 } from "../repositories/CouponRepo";
 
 export const uploadSingle = async (
-  coupon: ICouponModel
+  uploadModel: IUploadModel
 ): Promise<IResponseMessage> => {
   try {
-    const alreadyExists = await findExistingCoupon(coupon.address);
+    const alreadyExists = await findExistingCoupon(uploadModel.data.address);
     if (alreadyExists) {
-      const res = await findAndAddCoupon(coupon.address);
+      const res = await findAndAddCoupon(uploadModel.data.address);
 
       return {
         success: true,
@@ -21,7 +22,7 @@ export const uploadSingle = async (
         data: res,
       };
     }
-    const resCreate = await createCoupon(coupon);
+    const resCreate = await createCoupon(uploadModel.data);
     return {
       success: true,
       message: "Coupon created successfully",

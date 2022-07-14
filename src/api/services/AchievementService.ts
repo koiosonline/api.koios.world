@@ -6,8 +6,8 @@ import {
   createManyAchievementsForAccounts,
   findAllAchievementTypes,
   findOneAchievement,
-  findWhitelistedAccount,
 } from "../repositories/AchievementRepo";
+import { findWhitelistedAccount } from "../repositories/WhitelistRepo";
 
 export const uploadSingle = async (
   achievement: IAchievementModel

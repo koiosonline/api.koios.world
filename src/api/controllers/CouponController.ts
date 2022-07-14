@@ -8,23 +8,27 @@ import {
   uploadSingle,
 } from "../services/CouponService";
 import { checkWhitelisted } from "../services/AchievementService";
+import IUploadModel from "../interfaces/IUploadModel";
+import { verifyMessage } from "../services/util/SignatureVerificationService";
 
 export const createSingle = async (req: Request, res: Response) => {
   try {
-    const coupon: ICouponModel = req.body.coupon;
-    const saltHash = req.body.saltHash;
-    const signature = req.body.signature;
-    const address = ethers.utils.verifyMessage(saltHash, signature);
-    const whitelistData = await checkWhitelisted(address);
-    if (whitelistData.success) {
-      const resData: IResponseMessage = await uploadSingle(coupon);
-      if (resData.success) {
-        res.status(200).send(resData);
-        return;
-      }
-      res.status(500).send(resData);
+    const uploadModel: IUploadModel = req.body;
+    const isWhitelisted = await verifyMessage(
+      uploadModel.saltHash,
+      uploadModel.signature
+    );
+
+    if (isWhitelisted) {
+      const resData: IResponseMessage = await uploadSingle(uploadModel);
+      res.status(200).json(resData);
+      return;
     }
-    res.status(401).send(whitelistData);
+    return res.status(401).send({
+      success: false,
+      error: true,
+      message: "Account not whitelisted",
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send("Bad Request");
