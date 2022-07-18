@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node --experimental-json-modules dist/index.js",
-    "delete": "rmdir dist /s /q",
+    "delete": "rmdir dist /s /q"
   },
   "repository": {
     "type": "git",
