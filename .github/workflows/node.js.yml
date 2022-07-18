@@ -26,12 +26,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3.0
+        with:
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
-      - name: create env file
-        run: |
-          touch .env
-          echo MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }} >> .env
+    
       - run: npm ci
       - run: npm run build
       - run: npm run test
