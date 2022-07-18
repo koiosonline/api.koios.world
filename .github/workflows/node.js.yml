@@ -10,13 +10,8 @@ on:
     branches: ["master", "dev"]
 
 env:
-  # Prod Database
   MONGO_URI_PROD: ${{ secrets.MONGO_URI_PROD }}
-
-  # Dev Database
   MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
-
-  # Test Database
   MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
 
 jobs:
