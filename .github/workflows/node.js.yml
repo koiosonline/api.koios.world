@@ -29,7 +29,7 @@ jobs:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3.0
         with:
-          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          envkey_MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
           
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
