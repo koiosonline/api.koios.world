@@ -9,11 +9,6 @@ on:
   pull_request:
     branches: ["master", "dev"]
 
-env:
-  MONGO_URI_PROD: ${{ secrets.MONGO_URI_PROD }}
-  MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
-  MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,8 +29,6 @@ jobs:
         run: |
           touch .env
           echo MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }} >> .env
-          echo MONGO_URI_DEV=${{ secrets.MONGO_URI_DEV }} >> .env
-          echo MONGO_URI_PROD=${{ secrets.MONGO_URI_PROD }} >> .env
       - run: npm ci
       - run: npm run build
       - run: npm run test
