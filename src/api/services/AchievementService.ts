@@ -33,7 +33,6 @@ export const uploadSingle = async (
       data: res,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,
@@ -66,7 +65,6 @@ export const uploadMultiple = async (
       data: res,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,
@@ -84,33 +82,11 @@ export const getAllAchievementTypes = async (): Promise<IResponseMessage> => {
       data: res,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,
       message: "Achievement types fetch failed: \n " + e,
     };
-  }
-};
-
-export const checkWhitelisted = async (
-  address: string
-): Promise<IResponseMessage> => {
-  try {
-    const whitelistedModel: IWhitelistModel = await findWhitelistedAccount(
-      address
-    );
-    if (whitelistedModel) {
-      return {
-        success: true,
-        message: "Account is whitelisted",
-        data: whitelistedModel,
-      };
-    }
-    return { success: false, message: "Account is not whitelisted" };
-  } catch (e) {
-    console.log(e);
-    return e;
   }
 };
 
@@ -137,7 +113,6 @@ export const checkExistingAchievementForAccount = async (
     }
     return { success: true, message: "Achievement does not exist" };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,

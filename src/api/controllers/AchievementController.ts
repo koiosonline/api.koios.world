@@ -3,7 +3,6 @@ import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IAchievementModel from "../interfaces/Schemas/IAchievementModel";
 import {
   checkExistingAchievementForAccount,
-  checkWhitelisted,
   getAllAchievementTypes,
   uploadMultiple,
   uploadSingle,
@@ -19,7 +18,6 @@ export const createSingle = async (req: Request, res: Response) => {
     }
     res.status(500).send(resData);
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };
@@ -38,7 +36,6 @@ export const createMultiple = async (req: Request, res: Response) => {
     }
     res.status(400).send("You should send via single upload!");
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };
@@ -53,23 +50,6 @@ export const getAllAchievements = async (req: Request, res: Response) => {
     res.status(500).send(resData);
     return;
   } catch (err) {
-    console.log(err);
-    res.status(400).send("Bad Request");
-  }
-};
-
-export const checkWhitelistedAccount = async (req: Request, res: Response) => {
-  try {
-    const address: string = req.params.address;
-    const resData: IResponseMessage = await checkWhitelisted(address);
-    if (resData.success) {
-      res.status(200).send(resData);
-      return;
-    }
-    res.status(500).send(resData);
-    return;
-  } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };
@@ -89,7 +69,6 @@ export const checkExistingAchievement = async (
     res.status(200).send(resData);
     return;
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };

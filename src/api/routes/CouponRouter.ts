@@ -1,6 +1,6 @@
 import express from "express";
 import * as CouponController from "../controllers/CouponController";
-export const couponRouter = express.Router();
+export const couponRouter = express.Router({ caseSensitive: false });
 
 couponRouter.route("/uploadSingle").post(CouponController.createSingle);
 couponRouter.route("/uploadMultiple").post(CouponController.createMultiple);

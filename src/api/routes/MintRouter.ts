@@ -1,6 +1,6 @@
 import express from "express";
 import * as mintController from "../controllers/MintController";
-export const mintRouter = express.Router();
+export const mintRouter = express.Router({ caseSensitive: false });
 
 mintRouter.route("/getTokensForAccount/:claimAddress").get(mintController.get);
 mintRouter.route("/signature").post(mintController.signature);

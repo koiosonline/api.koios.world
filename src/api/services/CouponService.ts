@@ -9,12 +9,12 @@ import {
 } from "../repositories/CouponRepo";
 
 export const uploadSingle = async (
-  uploadModel: IUploadModel
+  coupon: ICouponModel
 ): Promise<IResponseMessage> => {
   try {
-    const alreadyExists = await findExistingCoupon(uploadModel.data.address);
+    const alreadyExists = await findExistingCoupon(coupon.address);
     if (alreadyExists) {
-      const res = await findAndAddCoupon(uploadModel.data.address);
+      const res = await findAndAddCoupon(coupon.address);
 
       return {
         success: true,
@@ -22,14 +22,13 @@ export const uploadSingle = async (
         data: res,
       };
     }
-    const resCreate = await createCoupon(uploadModel.data);
+    const resCreate = await createCoupon(coupon);
     return {
       success: true,
       message: "Coupon created successfully",
       data: resCreate,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,
@@ -43,7 +42,6 @@ export const uploadMultiple = async (
 ): Promise<IResponseMessage> => {
   try {
     let resData: ICouponModel[] = [];
-    console.log(coupons);
 
     for (const coupon of coupons) {
       const alreadyExists = await findExistingCoupon(coupon.address);
@@ -66,7 +64,6 @@ export const uploadMultiple = async (
       data: resData,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,
@@ -87,7 +84,6 @@ export const getCouponsForAddress = async (
       data: res,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       error: true,

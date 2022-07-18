@@ -49,7 +49,6 @@ export const rootHash = async (req: Request, res: Response) => {
 
 export const get = async (req: Request, res: Response) => {
   try {
-    console.log(req.params);
     const claimAddress: string = req.params.claimAddress;
     if (claimAddress) {
       const tokens = await getTokensForAccount(claimAddress);
@@ -61,7 +60,6 @@ export const get = async (req: Request, res: Response) => {
     res.status(404).send("Bad Request");
     return;
   } catch (err) {
-    console.log(err);
     res.status(404).send("Bad Request");
   }
 };
@@ -86,7 +84,6 @@ export const signature = async (req: Request, res: Response) => {
     res.status(400).send("Bad Request");
     return;
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };
@@ -102,7 +99,6 @@ export const create = async (req: Request, res: Response) => {
       }
     }
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };
@@ -115,7 +111,6 @@ export const getAll = async (req: Request, res: Response) => {
       return;
     }
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };

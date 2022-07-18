@@ -15,7 +15,6 @@ export const generate = async (req: Request, res: Response) => {
     res.status(404).send("Not Authorized");
     return;
   } catch (err) {
-    console.log(err);
     res.status(400).send("Bad Request");
   }
 };

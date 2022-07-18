@@ -42,7 +42,6 @@ export const executeClaim = async (claimerAddress, data) => {
         });
       })
       .catch((err) => {
-        console.log("[Gas Estimation]: " + err);
         status.status = 0;
         status.message = "Address already claimed!";
       });

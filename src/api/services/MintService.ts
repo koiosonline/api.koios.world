@@ -74,7 +74,6 @@ export const getTokensForAccount = async (claimAddress: string) => {
       success: true,
     };
   } catch (e) {
-    console.log(e);
     return { tokens: [], success: false };
   }
 };
@@ -87,7 +86,6 @@ export const createClaim = async (claim: IClaimModel) => {
       instance: res,
     };
   } catch (e) {
-    console.log(e);
     return {
       success: false,
       instance: [],
@@ -126,7 +124,6 @@ export const getSignature = async (claimAddress: string, tokenId: number) => {
       success: false,
     };
   } catch (e) {
-    console.log(e);
     return { proof: [], invalid: true, success: false };
   }
 };
