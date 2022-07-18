@@ -8,4 +8,7 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
+  collectCoverage: true,
+  collectCoverageFrom: ["./src/api/**/*.ts"],
+  coverageDirectory: "./coverage",
 };
