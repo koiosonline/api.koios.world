@@ -11,30 +11,30 @@ on:
 
 env:
   # Faucet
-  CONTRACT_ADDRESS_FAUCET: ${{ secrets.CONTRACT_ADDRESS_FAUCET }}
-  FAUCET_PROVIDER: ${{ secrets.FAUCET_PROVIDER }}
-  FAUCET_SIGNER: ${{ secrets.FAUCET_SIGNER }}
-  CAPTCHA_SECRET: ${{secrets.CAPTCHA_SECRET}}
+  CONTRACT_ADDRESS_FAUCET: ${{koios-api-main.CONTRACT_ADDRESS_FAUCET }}
+  FAUCET_PROVIDER: ${{koios-api-main.FAUCET_PROVIDER }}
+  FAUCET_SIGNER: ${{koios-api-main.FAUCET_SIGNER }}
+  CAPTCHA_SECRET: ${{koios-api-main.CAPTCHA_SECRET}}
 
   # Mint
-  SIGNER_KEY: ${{secrets.SIGNER_KEY}}
-  CONTRACT_ADDRESS_NFT: ${{secrets.CONTRACT_ADDRESS_NFT}}
+  SIGNER_KEY: ${{koios-api-main.SIGNER_KEY}}
+  CONTRACT_ADDRESS_NFT: ${{koios-api-main.CONTRACT_ADDRESS_NFT}}
 
   # Discord
-  GUILD_ID: ${{secrets.GUILD_ID}}
+  GUILD_ID: ${{koios-api-main.GUILD_ID}}
 
   # Generation
-  GENERATION_PASSWORD: ${{secrets.GENERATION_PASSWORD}}
-  SUBGRAPH_URL: ${{secrets.SUBGRAPH_URL}}
+  GENERATION_PASSWORD: ${{koios-api-main.GENERATION_PASSWORD}}
+  SUBGRAPH_URL: ${{koios-api-main.SUBGRAPH_URL}}
 
   # Prod Database
-  MONGO_URI_PROD: ${{secrets.MONGO_URI_PROD}}
+  MONGO_URI_PROD: ${{koios-api-main.MONGO_URI_PROD}}
 
   # Dev Database
-  MONGO_URI_DEV: ${{secrets.MONGO_URI_DEV}}
+  MONGO_URI_DEV: ${{koios-api-main.MONGO_URI_DEV}}
 
   # Test Database
-  MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
+  MONGO_URI_TEST: ${{koios-api-main.MONGO_URI_TEST}}
 
 jobs:
   build:
