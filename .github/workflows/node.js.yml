@@ -29,6 +29,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          
+      - name: create env file
+        run: |
+          touch .env
+          echo MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }} >> .env
+          echo MONGO_URI_DEV=${{ secrets.MONGO_URI_DEV }} >> .env
+          echo MONGO_URI_PROD=${{ secrets.MONGO_URI_PROD }} >> .env
       - run: npm ci
       - run: npm run build
       - run: npm run test
