@@ -10,31 +10,14 @@ on:
     branches: ["master", "dev"]
 
 env:
-  # Faucet
-  CONTRACT_ADDRESS_FAUCET: ${{ secrets.CONTRACT_ADDRESS_FAUCET }}
-  FAUCET_PROVIDER: ${{ secrets.FAUCET_PROVIDER }}
-  FAUCET_SIGNER: ${{ secrets.FAUCET_SIGNER }}
-  CAPTCHA_SECRET: ${{secrets.CAPTCHA_SECRET}}
-
-  # Mint
-  SIGNER_KEY: ${{secrets.SIGNER_KEY}}
-  CONTRACT_ADDRESS_NFT: ${{secrets.CONTRACT_ADDRESS_NFT}}
-
-  # Discord
-  GUILD_ID: ${{secrets.GUILD_ID}}
-
-  # Generation
-  GENERATION_PASSWORD: ${{secrets.GENERATION_PASSWORD}}
-  SUBGRAPH_URL: ${{secrets.SUBGRAPH_URL}}
-
   # Prod Database
-  MONGO_URI_PROD: ${{secrets.MONGO_URI_PROD}}
+  MONGO_URI_PROD: ${{ secrets.MONGO_URI_PROD }}
 
   # Dev Database
-  MONGO_URI_DEV: ${{secrets.MONGO_URI_DEV}}
+  MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
 
   # Test Database
-  MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
+  MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
 
 jobs:
   build:
