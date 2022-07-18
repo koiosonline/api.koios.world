@@ -1,0 +1,30 @@
+{
+  "achievementTypes": [
+    {
+      "name": "Main NFT",
+      "type": 1,
+      "tokenId": 0
+    },
+    {
+      "name": "Main NFT 2",
+      "type": 1,
+      "tokenId": 1
+    }
+  ],
+  "whitelists": [
+    {
+      "address": "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
+      "name": "Leslie"
+    }
+  ],
+  "coupons": [
+    {
+      "amount": 5,
+      "address": "0x981633bc9a25f1411e869e9E8729EedF68Db397f"
+    },
+    {
+      "amount": 1,
+      "address": "0x981633bc9a25f1411e869e9E8729EedF68Db397b"
+    }
+  ]
+}

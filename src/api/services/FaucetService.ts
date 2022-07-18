@@ -16,18 +16,10 @@ export const executeClaim = async (claimerAddress, data) => {
   if (data.success) {
     web3.eth.accounts.wallet.add(account);
     web3.eth.defaultAccount = account.address;
-
-    // await contract.methods
-    //   .claim(claimerAddress)
-    //   .estimateGas({
-    //     from: account.address,
-    //   })
-    //   .then(async function (gasAmount) {
     const nextNonce = await web3.eth.getTransactionCount(
       web3.eth.defaultAccount,
       "pending"
     );
-    //const latestBlock = await web3.eth.getBlock();
 
     await contract.methods
       .claim(claimerAddress)
@@ -50,7 +42,6 @@ export const executeClaim = async (claimerAddress, data) => {
         });
       })
       .catch((err) => {
-        console.log("[Gas Estimation]: " + err);
         status.status = 0;
         status.message = "Address already claimed!";
       });
