@@ -26,7 +26,7 @@ export const getWhitelistedAddress = async (req: Request, res: Response) => {
 export const whitelistSingle = async (req: Request, res: Response) => {
   try {
     const uploadModel: IUploadModel = req.body;
-    const model = uploadModel.data;
+    const model: IERC721ClaimModel = uploadModel.data;
     const isWhitelisted = await verifyMessage(
       uploadModel.saltHash,
       uploadModel.signature

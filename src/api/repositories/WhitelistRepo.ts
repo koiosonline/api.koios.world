@@ -24,6 +24,7 @@ export const createWhitelist = async (
 ): Promise<IERC721ClaimModel> => {
   return ERC721Claims.create({
     address: model.address,
+    type: model.type,
     dateAchieved: Date.now(),
   });
 };

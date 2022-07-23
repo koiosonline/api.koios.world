@@ -3,6 +3,7 @@ import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 
 const ERC721ClaimSchema = new Schema<IERC721ClaimModel>({
   address: { type: String, required: true },
+  type: { type: Number, required: true },
   dateAchieved: { type: Number, required: true },
 });
 
