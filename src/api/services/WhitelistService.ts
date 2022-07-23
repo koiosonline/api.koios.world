@@ -1,5 +1,10 @@
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-import { findWhitelistedAccount } from "../repositories/WhitelistRepo";
+import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
+import {
+  createWhitelist,
+  findExistingWhitelist,
+  findWhitelistedAccount,
+} from "../repositories/WhitelistRepo";
 
 export const findAddress = async (
   address: string
@@ -24,6 +29,61 @@ export const findAddress = async (
       success: false,
       error: true,
       message: "Achievement types fetch failed: \n " + e,
+    };
+  }
+};
+
+export const uploadSingle = async (
+  model: IERC721ClaimModel
+): Promise<IResponseMessage> => {
+  try {
+    const alreadyExists = await findExistingWhitelist(model.address);
+    if (alreadyExists) {
+      return {
+        success: false,
+        error: true,
+        message: "Address already whitelisted",
+        data: model,
+      };
+    }
+    const resCreate = await createWhitelist(model);
+    return {
+      success: true,
+      message: "Address whitelisted successfully",
+      data: resCreate,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "Whitelist creation/addition failed: \n " + e,
+    };
+  }
+};
+
+export const uploadMultiple = async (
+  models: IERC721ClaimModel[]
+): Promise<IResponseMessage> => {
+  try {
+    let resData: IERC721ClaimModel[] = [];
+
+    for (const model of models) {
+      const alreadyExists = await findExistingWhitelist(model.address);
+      if (!alreadyExists) {
+        const resCreate = await createWhitelist(model);
+        resData.push(resCreate);
+      }
+    }
+    return {
+      success: true,
+      message: "Addresses whitelisted successfully",
+      data: resData,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "Whitelists creation/addition failed: \n " + e,
     };
   }
 };
