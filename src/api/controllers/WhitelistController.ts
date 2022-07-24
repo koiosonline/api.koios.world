@@ -5,6 +5,8 @@ import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import { verifyMessage } from "../services/util/SignatureVerificationService";
 import {
   findAddress,
+  findWhitelistedAddress,
+  getSignatureForAddress,
   uploadMultiple,
   uploadSingle,
 } from "../services/WhitelistService";
@@ -70,6 +72,37 @@ export const whitelistMultiple = async (req: Request, res: Response) => {
       error: true,
       message: "Account not whitelisted",
     });
+  } catch (err) {
+    res.status(400).send("Bad Request");
+  }
+};
+
+export const getWhitelistedDynamicAddress = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const data: string = req.params.address;
+    const resData: IResponseMessage = await findWhitelistedAddress(data);
+    if (resData.success) {
+      res.status(200).send(resData);
+      return;
+    }
+    res.status(500).send(resData);
+  } catch (err) {
+    res.status(400).send("Bad Request");
+  }
+};
+
+export const getSignature = async (req: Request, res: Response) => {
+  try {
+    const data: string = req.params.address;
+    const resData: IResponseMessage = await getSignatureForAddress(data);
+    if (resData.success) {
+      res.status(200).send(resData);
+      return;
+    }
+    res.status(500).send(resData);
   } catch (err) {
     res.status(400).send("Bad Request");
   }

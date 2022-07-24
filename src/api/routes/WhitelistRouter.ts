@@ -11,3 +11,9 @@ whitelistRouter
 whitelistRouter
   .route("/uploadMultiple")
   .post(whitelistController.whitelistMultiple);
+whitelistRouter
+  .route("/getWhitelistedAddress/:address")
+  .get(whitelistController.getWhitelistedDynamicAddress);
+whitelistRouter
+  .route("/signature/:address")
+  .get(whitelistController.getSignature);

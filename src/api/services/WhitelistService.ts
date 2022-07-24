@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+import crypto from "crypto";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import {
@@ -84,6 +86,72 @@ export const uploadMultiple = async (
       success: false,
       error: true,
       message: "Whitelists creation/addition failed: \n " + e,
+    };
+  }
+};
+
+export const findWhitelistedAddress = async (
+  address: string
+): Promise<IResponseMessage> => {
+  try {
+    const res = await findExistingWhitelist(address);
+    if (res) {
+      return {
+        success: true,
+        message: "Address is whitelisted",
+        data: res,
+      };
+    }
+    return {
+      success: false,
+      error: true,
+      message: "Address not whitelisted",
+      data: res,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "Address lookup failed: \n " + e,
+    };
+  }
+};
+
+export const getSignatureForAddress = async (
+  address: string
+): Promise<IResponseMessage> => {
+  try {
+    const res = await findExistingWhitelist(address);
+    if (res) {
+      const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
+      const salt = crypto.randomBytes(16).toString("base64");
+      const payload = ethers.utils.defaultAbiCoder.encode(
+        ["string", "address", "address"],
+        [salt, process.env.MUMBAY_CONTRACT_ADDRESS, address]
+      );
+      let payloadHash = ethers.utils.keccak256(payload);
+      const token: string = await wallet.signMessage(
+        ethers.utils.arrayify(payloadHash)
+      );
+      console.log("saklt", salt);
+      console.log("token", token);
+      return {
+        success: true,
+        message: "Address is whitelisted",
+        data: res,
+      };
+    }
+    return {
+      success: false,
+      error: true,
+      message: "Address not whitelisted",
+      data: res,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "Address lookup failed: \n " + e,
     };
   }
 };
