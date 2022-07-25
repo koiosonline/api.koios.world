@@ -133,12 +133,13 @@ export const getSignatureForAddress = async (
       const token: string = await wallet.signMessage(
         ethers.utils.arrayify(payloadHash)
       );
-      console.log("saklt", salt);
-      console.log("token", token);
       return {
         success: true,
         message: "Address is whitelisted",
-        data: res,
+        data: {
+          salt,
+          token,
+        },
       };
     }
     return {
