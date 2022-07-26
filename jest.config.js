@@ -11,4 +11,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ["./src/api/**/*.ts"],
   coverageDirectory: "./src/__tests__/coverage",
+  testEnvironmentOptions: {
+    testEnvironment: "jsdom",
+  },
 };

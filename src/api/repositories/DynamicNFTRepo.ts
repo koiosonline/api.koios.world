@@ -18,16 +18,12 @@ export const findMetadata = async (
 ): Promise<IERC721MetadataModel> => {
   return ERC721Metadata.findOne({ tokenId: token }).select({
     _id: 0,
+    tokenId: 1,
     name: 1,
     image: 1,
     description: 1,
     external_url: 1,
-    attributes: [
-      {
-        _id: 0,
-        trait_type: 1,
-        value: 1,
-      },
-    ],
+    "attributes.trait_type": 1,
+    "attributes.value": 1,
   });
 };

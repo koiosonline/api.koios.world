@@ -11,7 +11,7 @@ export const retrieveMetadata = async (req: Request, res: Response) => {
       res.status(200).send(resData);
       return;
     } else {
-      res.status(500).send("Non-Existent Token");
+      res.status(500).send("Non-Existent Metadata");
     }
   } catch (err) {
     res.status(400).send("Bad Request");

@@ -45,7 +45,6 @@ export const whitelistSingle = async (req: Request, res: Response) => {
       message: "Account not whitelisted",
     });
   } catch (err) {
-    console.error(err);
     res.status(400).send("Bad Request");
   }
 };

@@ -55,6 +55,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Koios middleware");
 });
 
-app.listen(PORT, () => {
-  console.log("server is listening on port " + PORT);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log("server is listening on port " + PORT);
+  });
+}
