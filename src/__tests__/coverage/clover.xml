@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1658862188117" clover="3.2.0">
-  <project timestamp="1658862188117" name="All files">
-    <metrics statements="665" coveredstatements="245" conditionals="82" coveredconditionals="20" methods="142" coveredmethods="14" elements="889" coveredelements="279" complexity="0" loc="665" ncloc="665" packages="8" files="42" classes="42"/>
+<coverage generated="1658876910740" clover="3.2.0">
+  <project timestamp="1658876910740" name="All files">
+    <metrics statements="665" coveredstatements="291" conditionals="82" coveredconditionals="28" methods="142" coveredmethods="27" elements="889" coveredelements="346" complexity="0" loc="665" ncloc="665" packages="8" files="42" classes="42"/>
     <package name="api">
       <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\index.ts">
         <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
       </file>
     </package>
     <package name="api.controllers">
-      <metrics statements="216" coveredstatements="60" conditionals="33" coveredconditionals="3" methods="44" coveredmethods="6"/>
+      <metrics statements="216" coveredstatements="94" conditionals="33" coveredconditionals="9" methods="44" coveredmethods="14"/>
       <file name="AchievementController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\AchievementController.ts">
         <metrics statements="38" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
@@ -42,7 +42,7 @@
         <line num="17" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -53,7 +53,7 @@
         <line num="35" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="46" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -62,7 +62,7 @@
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="57" count="5" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
@@ -72,60 +72,60 @@
         <line num="72" count="0" type="stmt"/>
       </file>
       <file name="CouponController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\CouponController.ts">
-        <metrics statements="35" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="22" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="46" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
+        <metrics statements="35" coveredstatements="31" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="22" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="60" count="0" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="64" count="5" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
       </file>
       <file name="DiscordController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\DiscordController.ts">
         <metrics statements="10" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="15" count="0" type="stmt"/>
       </file>
       <file name="DynamicNFTController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\DynamicNFTController.ts">
         <metrics statements="7" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -134,17 +134,17 @@
       </file>
       <file name="FaucetController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\FaucetController.ts">
         <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
       <file name="GenerationController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\GenerationController.ts">
         <metrics statements="13" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="7" count="0" type="stmt"/>
@@ -158,23 +158,23 @@
         <line num="18" count="0" type="stmt"/>
       </file>
       <file name="MetadataController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\MetadataController.ts">
-        <metrics statements="10" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
       </file>
       <file name="MintController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\MintController.ts">
         <metrics statements="43" coveredstatements="6" conditionals="13" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="50" count="1" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="53" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -185,7 +185,7 @@
         <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="cond" truecount="0" falsecount="3"/>
@@ -199,7 +199,7 @@
         <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
-        <line num="91" count="1" type="stmt"/>
+        <line num="91" count="5" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
         <line num="93" count="0" type="stmt"/>
         <line num="94" count="0" type="cond" truecount="0" falsecount="4"/>
@@ -208,7 +208,7 @@
         <line num="97" count="0" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
-        <line num="106" count="1" type="stmt"/>
+        <line num="106" count="5" type="stmt"/>
         <line num="107" count="0" type="stmt"/>
         <line num="108" count="0" type="stmt"/>
         <line num="109" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -218,9 +218,9 @@
       </file>
       <file name="WhitelistController.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\controllers\WhitelistController.ts">
         <metrics statements="54" coveredstatements="31" conditionals="6" coveredconditionals="3" methods="10" coveredmethods="6"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
@@ -229,7 +229,7 @@
         <line num="20" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
         <line num="29" count="4" type="stmt"/>
         <line num="30" count="4" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
@@ -240,7 +240,7 @@
         <line num="40" count="2" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
+        <line num="52" count="5" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
@@ -253,7 +253,7 @@
         <line num="67" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
-        <line num="79" count="1" type="stmt"/>
+        <line num="79" count="5" type="stmt"/>
         <line num="82" count="1" type="stmt"/>
         <line num="83" count="1" type="stmt"/>
         <line num="84" count="1" type="stmt"/>
@@ -263,7 +263,7 @@
         <line num="88" count="1" type="stmt"/>
         <line num="90" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="99" count="0" type="stmt"/>
@@ -278,140 +278,140 @@
       <metrics statements="36" coveredstatements="33" conditionals="18" coveredconditionals="16" methods="2" coveredmethods="2"/>
       <file name="AchievementTypes.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\AchievementTypes.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="5" type="stmt"/>
       </file>
       <file name="Achievements.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\Achievements.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="13" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="13" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="5" type="stmt"/>
       </file>
       <file name="Claims.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\Claims.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="10" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="10" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="5" type="stmt"/>
       </file>
       <file name="Coupons.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\Coupons.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="9" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="9" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="5" type="stmt"/>
       </file>
       <file name="ERC721Claims.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\ERC721Claims.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="11" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="5" type="stmt"/>
       </file>
       <file name="ERC721Metadata.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\ERC721Metadata.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="14" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="14" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="5" type="stmt"/>
       </file>
       <file name="Whitelists.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\Whitelists.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="9" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="9" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="5" type="stmt"/>
       </file>
       <file name="connectMongo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\connectMongo.ts">
         <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="cond" truecount="1" falsecount="1"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
-        <line num="8" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="5" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
     </package>
     <package name="api.repositories">
-      <metrics statements="61" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="36" coveredmethods="0"/>
+      <metrics statements="61" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="36" coveredmethods="4"/>
       <file name="AchievementRepo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\repositories\AchievementRepo.ts">
         <metrics statements="14" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
       </file>
       <file name="ClaimsRepo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\repositories\ClaimsRepo.ts">
         <metrics statements="12" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
       </file>
       <file name="CouponRepo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\repositories\CouponRepo.ts">
         <metrics statements="14" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
       </file>
       <file name="DynamicNFTRepo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\repositories\DynamicNFTRepo.ts">
-        <metrics statements="10" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <metrics statements="10" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
       </file>
       <file name="WhitelistRepo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\repositories\WhitelistRepo.ts">
-        <metrics statements="11" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="11" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
       </file>
@@ -420,86 +420,86 @@
       <metrics statements="48" coveredstatements="48" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="AchievementRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\AchievementRouter.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
       </file>
       <file name="CouponRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\CouponRouter.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
       </file>
       <file name="DiscordRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\DiscordRouter.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
       </file>
       <file name="DynamicNFTRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\DynamicNFTRouter.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
       </file>
       <file name="FaucetRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\FaucetRouter.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
       </file>
       <file name="GenerationRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\GenerationRouter.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
       </file>
       <file name="MetadataRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\MetadataRouter.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
       </file>
       <file name="MintRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\MintRouter.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
       </file>
       <file name="WhitelistRouter.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\routes\WhitelistRouter.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
       </file>
     </package>
     <package name="api.services">
-      <metrics statements="269" coveredstatements="54" conditionals="30" coveredconditionals="1" methods="57" coveredmethods="4"/>
+      <metrics statements="269" coveredstatements="58" conditionals="30" coveredconditionals="2" methods="57" coveredmethods="5"/>
       <file name="AchievementService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\AchievementService.ts">
         <metrics statements="34" coveredstatements="5" conditionals="3" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
@@ -508,7 +508,7 @@
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
@@ -519,12 +519,12 @@
         <line num="60" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
-        <line num="76" count="1" type="stmt"/>
+        <line num="76" count="5" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
+        <line num="93" count="5" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="99" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
@@ -535,8 +535,8 @@
       </file>
       <file name="CouponService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\CouponService.ts">
         <metrics statements="32" coveredstatements="4" conditionals="3" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -546,7 +546,7 @@
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
@@ -561,7 +561,7 @@
         <line num="58" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="75" count="1" type="stmt"/>
+        <line num="75" count="5" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
@@ -569,22 +569,22 @@
         <line num="87" count="0" type="stmt"/>
       </file>
       <file name="DiscordService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\DiscordService.ts">
-        <metrics statements="23" coveredstatements="10" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="1"/>
+        <metrics statements="23" coveredstatements="14" conditionals="4" coveredconditionals="1" methods="7" coveredmethods="3"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="0" falsecount="1"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="27" count="0" type="stmt"/>
@@ -596,11 +596,11 @@
       </file>
       <file name="DynamicNFTService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\DynamicNFTService.ts">
         <metrics statements="36" coveredstatements="6" conditionals="7" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
@@ -625,7 +625,7 @@
         <line num="48" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
         <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="64" count="0" type="stmt"/>
@@ -635,9 +635,9 @@
       </file>
       <file name="FaucetService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\FaucetService.ts">
         <metrics statements="22" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -660,9 +660,9 @@
       </file>
       <file name="GenerationService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\GenerationService.ts">
         <metrics statements="44" coveredstatements="7" conditionals="5" coveredconditionals="0" methods="10" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
@@ -672,20 +672,20 @@
         <line num="19" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="50" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="57" count="5" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
@@ -700,27 +700,27 @@
         <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="88" count="0" type="stmt"/>
-        <line num="91" count="1" type="stmt"/>
+        <line num="91" count="5" type="stmt"/>
         <line num="92" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="93" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
       </file>
       <file name="MintService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\MintService.ts">
         <metrics statements="26" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="69" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="69" count="5" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
-        <line num="81" count="1" type="stmt"/>
+        <line num="81" count="5" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
         <line num="84" count="0" type="stmt"/>
         <line num="89" count="0" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="99" count="0" type="stmt"/>
@@ -736,10 +736,10 @@
       </file>
       <file name="WhitelistService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\WhitelistService.ts">
         <metrics statements="52" coveredstatements="13" conditionals="5" coveredconditionals="1" methods="10" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -747,7 +747,7 @@
         <line num="17" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
@@ -756,7 +756,7 @@
         <line num="51" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="66" count="5" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
@@ -767,7 +767,7 @@
         <line num="76" count="0" type="stmt"/>
         <line num="79" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
+        <line num="93" count="5" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
         <line num="96" count="0" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
@@ -775,7 +775,7 @@
         <line num="99" count="0" type="stmt"/>
         <line num="105" count="0" type="stmt"/>
         <line num="112" count="0" type="stmt"/>
-        <line num="120" count="1" type="stmt"/>
+        <line num="120" count="5" type="stmt"/>
         <line num="122" count="0" type="stmt"/>
         <line num="123" count="0" type="stmt"/>
         <line num="124" count="0" type="stmt"/>
@@ -791,18 +791,18 @@
       </file>
     </package>
     <package name="api.services.util">
-      <metrics statements="9" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="SignatureVerificationService.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\services\util\SignatureVerificationService.ts">
-        <metrics statements="9" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
       </file>
     </package>
     <package name="api.util">

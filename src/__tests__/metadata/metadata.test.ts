@@ -1,7 +1,7 @@
 import supertest from "supertest";
-import { app } from "../index";
-import * as MetadataController from "../api/controllers/MetadataController";
-import IERC721MetadataModel from "../api/interfaces/Schemas/IERC721MetadataModel";
+import { app } from "../../index";
+import * as MetadataController from "../../api/controllers/MetadataController";
+import IERC721MetadataModel from "../../api/interfaces/Schemas/IERC721MetadataModel";
 
 const expectedResponseGet: IERC721MetadataModel = {
   tokenId: 1,
