@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { services } from "./api/index";
 import cron from "node-cron";
 import { connectMongo } from "./api/db/connectMongo";
+import { watchDynamicNFT } from "./api/services/DynamicNFTService";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();
@@ -30,6 +31,7 @@ cron.schedule(
   "*/30 * * * * *",
   async () => {
     await generateJson();
+    await watchDynamicNFT();
   },
   {}
 );
