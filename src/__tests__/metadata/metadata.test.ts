@@ -34,7 +34,7 @@ describe("metadata", () => {
     describe("given the metadata does not exist", () => {
       it("should return with an internal server error", async () => {
         const { statusCode, text } = await supertest(app).get(
-          `/api/metadata/2.json`
+          `/api/metadata/42069.json`
         );
 
         expect(statusCode).toBe(500);

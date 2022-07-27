@@ -10,21 +10,3 @@ export const findWhitelistedAccount = async (
     address: address,
   });
 };
-
-export const findExistingWhitelist = async (
-  address: string
-): Promise<IERC721ClaimModel> => {
-  return ERC721Claims.findOne({
-    address: address,
-  });
-};
-
-export const createWhitelist = async (
-  model: IERC721ClaimModel
-): Promise<IERC721ClaimModel> => {
-  return ERC721Claims.create({
-    address: model.address,
-    type: model.type,
-    dateAchieved: Date.now(),
-  });
-};

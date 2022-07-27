@@ -1,21 +1,11 @@
 import supertest from "supertest";
 import { app } from "../../index";
-import * as WhitelistService from "../../api/services/whiteListService";
+import * as DynamicNFTService from "../../api/services/DynamicNFTService";
 import * as SignatureVerificationService from "../../api/services/util/SignatureVerificationService";
-import * as WhitelistRepo from "../../api/repositories/WhitelistRepo";
+import * as DynamicNFTRepo from "../../api/repositories/DynamicNFTRepo";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import IERC721ClaimModel from "../../api/interfaces/Schemas/IERC721ClaimModel";
 import IUploadModel from "../../api/interfaces/IUploadModel";
-
-// const expectedSingleWhitelistUpload: IResponseMessage = {
-//   success: true,
-//   message: "Address whitelisted successfully",
-//   data: {
-//     address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-//     type: 0,
-//     dateAchieved: 1234,
-//   },
-// };
 
 const expectedMultipleWhitelistUpload: IResponseMessage = {
   success: true,
@@ -74,13 +64,13 @@ const uploadModel: IERC721ClaimModel[] = [
   },
 ];
 
-describe("whitelist", () => {
+describe("dynamicNFT", () => {
   describe("[---upload multiple addresses---]", () => {
     describe("[--given signature is valid and caller is whitelisted--]", () => {
       describe("given all addresses are not in dynamic nft whitelist", () => {
         it("should return successfully whitelisted accounts response", async () => {
-          const createWhitelistServiceMock = jest
-            .spyOn(WhitelistService, "uploadMultiple")
+          const createDynamicNFTServiceMock = jest
+            .spyOn(DynamicNFTService, "uploadMultiple")
             // @ts-ignore
             .mockReturnValueOnce(expectedMultipleWhitelistUpload);
 
@@ -96,20 +86,20 @@ describe("whitelist", () => {
           };
 
           const { statusCode, body } = await supertest(app)
-            .post(`/api/whitelist/uploadMultiple`)
+            .post(`/api/dynamicNFT/uploadMultiple`)
             .send(modelToUpload);
 
           expect(statusCode).toBe(200);
           expect(body).toEqual(expectedMultipleWhitelistUpload);
           expect(verificationServiceMock).toBeCalledTimes(1);
-          expect(createWhitelistServiceMock).toBeCalledTimes(1);
+          expect(createDynamicNFTServiceMock).toBeCalledTimes(1);
         });
       });
 
       describe("given some addresses are in dynamic nft whitelist", () => {
         it("should return only added addresses in data response", async () => {
-          const createWhitelistServiceMock = jest
-            .spyOn(WhitelistService, "uploadMultiple")
+          const createDynamicNFTServiceMock = jest
+            .spyOn(DynamicNFTService, "uploadMultiple")
             // @ts-ignore
             .mockReturnValue(expectedMultipleWhitelistUploadExistingAddress);
 
@@ -124,8 +114,8 @@ describe("whitelist", () => {
             dateAchieved: 1234,
           };
 
-          const whitelistRepoMock = jest
-            .spyOn(WhitelistRepo, "findExistingWhitelist")
+          const DynamicNFTRepoMock = jest
+            .spyOn(DynamicNFTRepo, "findExistingWhitelist")
             // @ts-ignore
             .mockReturnValueOnce(addressModel);
 
@@ -136,13 +126,13 @@ describe("whitelist", () => {
           };
 
           const { statusCode, body } = await supertest(app)
-            .post(`/api/whitelist/uploadMultiple`)
+            .post(`/api/dynamicNFT/uploadMultiple`)
             .send(modelToUpload);
 
           expect(statusCode).toBe(200);
           expect(body).toEqual(expectedMultipleWhitelistUploadExistingAddress);
           expect(verificationServiceMock).toBeCalledTimes(1);
-          expect(createWhitelistServiceMock).toBeCalledTimes(1);
+          expect(createDynamicNFTServiceMock).toBeCalledTimes(1);
         });
       });
     });
@@ -150,8 +140,8 @@ describe("whitelist", () => {
 
   describe("[--given signature address is not whitelisted--]", () => {
     it("should return with 401 error", async () => {
-      const createWhitelistServiceMock = jest
-        .spyOn(WhitelistService, "uploadMultiple")
+      const createDynamicNFTServiceMock = jest
+        .spyOn(DynamicNFTService, "uploadMultiple")
         // @ts-ignore
         .mockReturnValueOnce(null);
 
@@ -167,7 +157,7 @@ describe("whitelist", () => {
       };
 
       const { statusCode, body } = await supertest(app)
-        .post(`/api/whitelist/uploadMultiple`)
+        .post(`/api/dynamicNFT/uploadMultiple`)
         .send(modelToUpload);
 
       expect(statusCode).toBe(401);
@@ -177,14 +167,14 @@ describe("whitelist", () => {
         message: "Account not whitelisted",
       });
       expect(verificationServiceMock).toBeCalledTimes(1);
-      expect(createWhitelistServiceMock).toHaveBeenCalledTimes(0);
+      expect(createDynamicNFTServiceMock).toHaveBeenCalledTimes(0);
     });
   });
 
   describe("[-given no signature is given-]", () => {
     it("should return with 400 error", async () => {
-      const createWhitelistServiceMock = jest
-        .spyOn(WhitelistService, "uploadSingle")
+      const createDynamicNFTServiceMock = jest
+        .spyOn(DynamicNFTService, "uploadSingle")
         // @ts-ignore
         .mockReturnValueOnce(null);
 
@@ -193,12 +183,72 @@ describe("whitelist", () => {
       };
 
       const { statusCode, text } = await supertest(app)
-        .post(`/api/whitelist/uploadMultiple`)
+        .post(`/api/dynamicNFT/uploadMultiple`)
         .send(modelToUpload);
 
       expect(statusCode).toBe(400);
       expect(text).toEqual("Bad Request");
-      expect(createWhitelistServiceMock).toHaveBeenCalledTimes(0);
+      expect(createDynamicNFTServiceMock).toHaveBeenCalledTimes(0);
+    });
+  });
+});
+
+describe("dynamicNFT.uploadMultiple", () => {
+  describe("given all addresses have not been whitelisted yet", () => {
+    it("should create the models and return them in the data field", async () => {
+      const findExistingDynamicNFTRepoMock = jest
+        .spyOn(DynamicNFTRepo, "findExistingWhitelist")
+        // @ts-ignore
+        .mockReturnValue(null);
+
+      const createDynamicNFTRepoMock = jest
+        .spyOn(DynamicNFTRepo, "createWhitelist")
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[0])
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[1])
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[2]);
+
+      const expectedResponse: IResponseMessage =
+        expectedMultipleWhitelistUpload;
+
+      const actualResponse = await DynamicNFTService.uploadMultiple(
+        uploadModel
+      );
+
+      expect(actualResponse).toEqual(expectedResponse);
+      expect(findExistingDynamicNFTRepoMock).toBeCalledTimes(3);
+      expect(createDynamicNFTRepoMock).toBeCalledTimes(3);
+    });
+  });
+
+  describe("given some addresses have been whitelisted", () => {
+    it("should create the models and return them in the data field", async () => {
+      const findExistingWhitelistMock = jest
+        .spyOn(DynamicNFTRepo, "findExistingWhitelist")
+        // @ts-ignore
+        .mockReturnValue(null)
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[0]);
+
+      const createDynamicNFTRepoMock = jest
+        .spyOn(DynamicNFTRepo, "createWhitelist")
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[1])
+        // @ts-ignore
+        .mockReturnValueOnce(uploadModel[2]);
+
+      const expectedResponse: IResponseMessage =
+        expectedMultipleWhitelistUploadExistingAddress;
+
+      const actualResponse = await DynamicNFTService.uploadMultiple(
+        uploadModel
+      );
+
+      expect(actualResponse).toEqual(expectedResponse);
+      expect(findExistingWhitelistMock).toBeCalledTimes(3);
+      expect(createDynamicNFTRepoMock).toBeCalledTimes(2);
     });
   });
 });
