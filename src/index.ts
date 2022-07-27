@@ -40,7 +40,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://app.koios.world",
-      "https://koios.worldS",
+      "https://koios.world",
       "https://dev-app.koios.world",
       "https://titans.koios.world",
     ],
