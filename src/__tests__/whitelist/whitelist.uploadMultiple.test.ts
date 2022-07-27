@@ -7,46 +7,87 @@ import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import IERC721ClaimModel from "../../api/interfaces/Schemas/IERC721ClaimModel";
 import IUploadModel from "../../api/interfaces/IUploadModel";
 
-const expectedSingleWhitelistUpload: IResponseMessage = {
+// const expectedSingleWhitelistUpload: IResponseMessage = {
+//   success: true,
+//   message: "Address whitelisted successfully",
+//   data: {
+//     address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
+//     type: 0,
+//     dateAchieved: 1234,
+//   },
+// };
+
+const expectedMultipleWhitelistUpload: IResponseMessage = {
   success: true,
-  message: "Address whitelisted successfully",
-  data: {
-    address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-    type: 0,
-    dateAchieved: 1234,
-  },
+  message: "Addresses whitelisted successfully",
+  data: [
+    {
+      address: "a",
+      type: 0,
+      dateAchieved: 1234,
+    },
+    {
+      address: "b",
+      type: 1,
+      dateAchieved: 1234,
+    },
+    {
+      address: "c",
+      type: 0,
+      dateAchieved: 1234,
+    },
+  ],
 };
 
-const expectedSingleWhitelistUploadExists: IResponseMessage = {
-  success: false,
-  error: true,
-  message: "Address already whitelisted",
-  data: {
-    address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
+const expectedMultipleWhitelistUploadExistingAddress: IResponseMessage = {
+  success: true,
+  message: "Addresses whitelisted successfully",
+  data: [
+    {
+      address: "b",
+      type: 1,
+      dateAchieved: 1234,
+    },
+    {
+      address: "c",
+      type: 0,
+      dateAchieved: 1234,
+    },
+  ],
+};
+
+const uploadModel: IERC721ClaimModel[] = [
+  {
+    address: "a",
     type: 0,
     dateAchieved: 1234,
   },
-};
+  {
+    address: "b",
+    type: 1,
+    dateAchieved: 1234,
+  },
+  {
+    address: "c",
+    type: 0,
+    dateAchieved: 1234,
+  },
+];
 
 describe("whitelist", () => {
-  describe("[---upload single address---]", () => {
+  describe("[---upload multiple addresses---]", () => {
     describe("[--given signature is valid and caller is whitelisted--]", () => {
-      describe("given address is not in dynamic nft whitelist", () => {
-        it("should return successfully whitelisted account response", async () => {
+      describe("given all addresses are not in dynamic nft whitelist", () => {
+        it("should return successfully whitelisted accounts response", async () => {
           const createWhitelistServiceMock = jest
-            .spyOn(WhitelistService, "uploadSingle")
+            .spyOn(WhitelistService, "uploadMultiple")
             // @ts-ignore
-            .mockReturnValueOnce(expectedSingleWhitelistUpload);
+            .mockReturnValueOnce(expectedMultipleWhitelistUpload);
+
           const verificationServiceMock = jest
             .spyOn(SignatureVerificationService, "verifyMessage")
             // @ts-ignore
             .mockReturnValueOnce(true);
-
-          const uploadModel: IERC721ClaimModel = {
-            address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-            type: 0,
-            dateAchieved: 1234,
-          };
 
           const modelToUpload: IUploadModel = {
             saltHash: "lol",
@@ -55,33 +96,38 @@ describe("whitelist", () => {
           };
 
           const { statusCode, body } = await supertest(app)
-            .post(`/api/whitelist/uploadSingle`)
+            .post(`/api/whitelist/uploadMultiple`)
             .send(modelToUpload);
 
           expect(statusCode).toBe(200);
-          expect(body).toEqual(expectedSingleWhitelistUpload);
+          expect(body).toEqual(expectedMultipleWhitelistUpload);
           expect(verificationServiceMock).toBeCalledTimes(1);
           expect(createWhitelistServiceMock).toBeCalledTimes(1);
         });
       });
 
-      describe("given address is in dynamic nft whitelist", () => {
-        it("should return with already whitelisted response", async () => {
+      describe("given some addresses are in dynamic nft whitelist", () => {
+        it("should return only added addresses in data response", async () => {
+          const createWhitelistServiceMock = jest
+            .spyOn(WhitelistService, "uploadMultiple")
+            // @ts-ignore
+            .mockReturnValue(expectedMultipleWhitelistUploadExistingAddress);
+
           const verificationServiceMock = jest
             .spyOn(SignatureVerificationService, "verifyMessage")
             // @ts-ignore
             .mockReturnValueOnce(true);
 
-          const whitelistRepoMock = jest
-            .spyOn(WhitelistRepo, "findExistingWhitelist")
-            // @ts-ignore
-            .mockReturnValue(expectedSingleWhitelistUpload);
-
-          const uploadModel: IERC721ClaimModel = {
-            address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
+          const addressModel: IERC721ClaimModel = {
+            address: "a",
             type: 0,
             dateAchieved: 1234,
           };
+
+          const whitelistRepoMock = jest
+            .spyOn(WhitelistRepo, "findExistingWhitelist")
+            // @ts-ignore
+            .mockReturnValueOnce(addressModel);
 
           const modelToUpload: IUploadModel = {
             saltHash: "lol",
@@ -90,12 +136,13 @@ describe("whitelist", () => {
           };
 
           const { statusCode, body } = await supertest(app)
-            .post(`/api/whitelist/uploadSingle`)
+            .post(`/api/whitelist/uploadMultiple`)
             .send(modelToUpload);
 
           expect(statusCode).toBe(200);
-          expect(body).toEqual(expectedSingleWhitelistUploadExists);
+          expect(body).toEqual(expectedMultipleWhitelistUploadExistingAddress);
           expect(verificationServiceMock).toBeCalledTimes(1);
+          expect(createWhitelistServiceMock).toBeCalledTimes(1);
         });
       });
     });
@@ -104,20 +151,14 @@ describe("whitelist", () => {
   describe("[--given signature address is not whitelisted--]", () => {
     it("should return with 401 error", async () => {
       const createWhitelistServiceMock = jest
-        .spyOn(WhitelistService, "uploadSingle")
+        .spyOn(WhitelistService, "uploadMultiple")
         // @ts-ignore
-        .mockReturnValueOnce(expectedSingleWhitelistUpload);
+        .mockReturnValueOnce(null);
 
       const verificationServiceMock = jest
         .spyOn(SignatureVerificationService, "verifyMessage")
         // @ts-ignore
         .mockReturnValueOnce(false);
-
-      const uploadModel: IERC721ClaimModel = {
-        address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-        type: 0,
-        dateAchieved: 1234,
-      };
 
       const modelToUpload: IUploadModel = {
         saltHash: "invalid",
@@ -126,7 +167,7 @@ describe("whitelist", () => {
       };
 
       const { statusCode, body } = await supertest(app)
-        .post(`/api/whitelist/uploadSingle`)
+        .post(`/api/whitelist/uploadMultiple`)
         .send(modelToUpload);
 
       expect(statusCode).toBe(401);
@@ -145,20 +186,14 @@ describe("whitelist", () => {
       const createWhitelistServiceMock = jest
         .spyOn(WhitelistService, "uploadSingle")
         // @ts-ignore
-        .mockReturnValueOnce(expectedSingleWhitelistUpload);
-
-      const uploadModel: IERC721ClaimModel = {
-        address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-        type: 0,
-        dateAchieved: 1234,
-      };
+        .mockReturnValueOnce(null);
 
       const modelToUpload = {
         data: uploadModel,
       };
 
       const { statusCode, text } = await supertest(app)
-        .post(`/api/whitelist/uploadSingle`)
+        .post(`/api/whitelist/uploadMultiple`)
         .send(modelToUpload);
 
       expect(statusCode).toBe(400);

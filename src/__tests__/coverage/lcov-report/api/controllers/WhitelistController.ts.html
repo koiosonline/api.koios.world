@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.31% </span>
+                <span class="strong">92.06% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/63</span>
+                <span class='fraction'>58/63</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.4% </span>
+                <span class="strong">90.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/54</span>
+                <span class='fraction'>49/54</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -223,29 +223,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,14 +267,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -330,30 +330,30 @@ export const whitelistSingle = async (req: Request, res: Response) =&gt; {
   }
 };
 &nbsp;
-export const whitelistMultiple = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const uploadModel: IUploadModel = <span class="cstat-no" title="statement not covered" >req.body;</span>
-    const models: IERC721ClaimModel[] = <span class="cstat-no" title="statement not covered" >uploadModel.data;</span>
-    const isWhitelisted = <span class="cstat-no" title="statement not covered" >await verifyMessage(</span>
+export const whitelistMultiple = async (req: Request, res: Response) =&gt; {
+  try {
+    const uploadModel: IUploadModel = req.body;
+    const models: IERC721ClaimModel[] = uploadModel.data;
+    const isWhitelisted = await verifyMessage(
       uploadModel.saltHash,
       uploadModel.signature
     );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (isWhitelisted) {</span>
-      const resData: IResponseMessage = <span class="cstat-no" title="statement not covered" >await uploadMultiple(models);</span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (resData.success) {</span>
-<span class="cstat-no" title="statement not covered" >        res.status(200).send(resData);</span>
-<span class="cstat-no" title="statement not covered" >        return;</span>
+    if (isWhitelisted) {
+      const resData: IResponseMessage = await uploadMultiple(models);
+      if (resData.success) {
+        res.status(200).send(resData);
+        return;
       }
 <span class="cstat-no" title="statement not covered" >      res.status(500).send(resData);</span>
     }
-<span class="cstat-no" title="statement not covered" >    res.status(401).send({</span>
+    res.status(401).send({
       success: false,
       error: true,
       message: "Account not whitelisted",
     });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    res.status(400).send("Bad Request");</span>
+    res.status(400).send("Bad Request");
   }
 };
 &nbsp;
@@ -374,15 +374,15 @@ export const getWhitelistedDynamicAddress = async (
   }
 };
 &nbsp;
-export const getSignature = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const data: string = <span class="cstat-no" title="statement not covered" >req.params.address;</span>
-    const resData: IResponseMessage = <span class="cstat-no" title="statement not covered" >await getSignatureForAddress(data);</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (resData.success) {</span>
-<span class="cstat-no" title="statement not covered" >      res.status(200).send(resData);</span>
-<span class="cstat-no" title="statement not covered" >      return;</span>
+export const getSignature = async (req: Request, res: Response) =&gt; {
+  try {
+    const data: string = req.params.address;
+    const resData: IResponseMessage = await getSignatureForAddress(data);
+    if (resData.success) {
+      res.status(200).send(resData);
+      return;
     }
-<span class="cstat-no" title="statement not covered" >    res.status(500).send(resData);</span>
+    res.status(500).send(resData);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(400).send("Bad Request");</span>
   }
@@ -394,7 +394,7 @@ export const getSignature = <span class="fstat-no" title="function not covered" 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-26T23:08:30.675Z
+                at 2022-07-27T13:27:12.896Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

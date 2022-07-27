@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>3/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>2/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -87,37 +87,37 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from "express";
 import IERC721MetadataModel from "../interfaces/Schemas/IERC721MetadataModel";
 import { findMetadata } from "../repositories/DynamicNFTRepo";
 &nbsp;
-export const retrieveMetadata = async (req: Request, res: Response) =&gt; {
-  try {
-    const token: string = req.params.token;
-    const resData: IERC721MetadataModel = await findMetadata(parseInt(token));
+export const retrieveMetadata = <span class="fstat-no" title="function not covered" >async (r</span>eq: Request, res: Response) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const token: string = <span class="cstat-no" title="statement not covered" >req.params.token;</span>
+    const resData: IERC721MetadataModel = <span class="cstat-no" title="statement not covered" >await findMetadata(parseInt(token));</span>
 &nbsp;
-    if (resData) {
-      res.status(200).send(resData);
-      return;
+<span class="cstat-no" title="statement not covered" >    if (resData) {</span>
+<span class="cstat-no" title="statement not covered" >      res.status(200).send(resData);</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
     } else {
-      res.status(500).send("Non-Existent Metadata");
+<span class="cstat-no" title="statement not covered" >      res.status(500).send("Non-Existent Metadata");</span>
     }
   } catch (err) {
-    res.status(400).send("Bad Request");
+<span class="cstat-no" title="statement not covered" >    res.status(400).send("Bad Request");</span>
   }
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -127,7 +127,7 @@ export const retrieveMetadata = async (req: Request, res: Response) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-26T23:08:30.675Z
+                at 2022-07-27T13:27:12.896Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
