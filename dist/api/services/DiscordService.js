@@ -16,19 +16,26 @@ exports.fetchUserInfo = exports.fetchDiscordLevels = void 0;
 const axios_1 = __importDefault(require("axios"));
 const store_1 = __importDefault(require("store"));
 const fetchDiscordLevels = () => __awaiter(void 0, void 0, void 0, function* () {
-    const guildId = process.env.GUILD_ID;
-    const pages = 7;
-    const totalData = [];
-    for (let i = 0; i <= pages; i++) {
-        const url = `https://mee6.xyz/api/plugins/levels/leaderboard/${guildId}?page=${i}`;
-        yield axios_1.default.get(url).then((res) => {
-            const data = res.data.players;
-            totalData.push(data);
-            if (i === 7) {
-                store_1.default.set("discordLevels", totalData);
-            }
-            return;
-        });
+    try {
+        const guildId = process.env.GUILD_ID;
+        const pages = 7;
+        const totalData = [];
+        for (let i = 0; i <= pages; i++) {
+            const url = `https://mee6.xyz/api/plugins/levels/leaderboard/${guildId}?page=${i}`;
+            yield axios_1.default.get(url).then((res) => {
+                const data = res.data.players;
+                if (data) {
+                    totalData.push(data);
+                    if (i === 7) {
+                        store_1.default.set("discordLevels", totalData);
+                    }
+                }
+            });
+        }
+    }
+    catch (e) {
+        console.log(e);
+        return;
     }
 });
 exports.fetchDiscordLevels = fetchDiscordLevels;

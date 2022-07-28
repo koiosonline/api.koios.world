@@ -15,11 +15,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectMongo = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectMongo = () => __awaiter(void 0, void 0, void 0, function* () {
+    mongoose_1.default.disconnect();
     if (mongoose_1.default.connection.readyState === 1) {
         mongoose_1.default.connections[0];
         return;
     }
-    mongoose_1.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}/?retryWrites=true&w=majority`);
+    else {
+        if (process.env.NODE_ENV === "test") {
+            mongoose_1.default.connect(process.env.MONGO_URI_TEST);
+        }
+        else {
+            mongoose_1.default.connect(process.env.MONGO_URI_DEV);
+        }
+    }
 });
 exports.connectMongo = connectMongo;
 //# sourceMappingURL=connectMongo.js.map
