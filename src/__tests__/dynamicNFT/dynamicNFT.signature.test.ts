@@ -7,18 +7,18 @@ import IERC721ClaimModel from "../../api/interfaces/Schemas/IERC721ClaimModel";
 
 const expectedSignatureObject: IResponseMessage = {
   success: true,
-  message: "Address is DynamicNFTed",
+  message: "Address is DynamicNFT Whitelisted",
   data: [],
 };
 
-const expectedNotDynamicNFTed: IResponseMessage = {
+const expectedNotDynamicNFTWhitelisted: IResponseMessage = {
   success: false,
   error: true,
-  message: "Address not DynamicNFTed",
+  message: "Address not DynamicNFT Whitelisted",
   data: [],
 };
 
-const DynamicNFTedAccModel: IERC721ClaimModel = {
+const DynamicNFTWhitelistedAccModel: IERC721ClaimModel = {
   address: "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
   type: 0,
   dateAchieved: 1234,
@@ -26,8 +26,8 @@ const DynamicNFTedAccModel: IERC721ClaimModel = {
 
 describe("dynamicNFT", () => {
   describe("[---get signature for address route---]", () => {
-    describe("given address is DynamicNFTed", () => {
-      it("should return the DynamicNFTed account", async () => {
+    describe("given address is DynamicNFT Whitelisted", () => {
+      it("should return the DynamicNFT Whitelisted account", async () => {
         const DynamicNFTServiceMock = jest
           .spyOn(DynamicNFTService, "getSignatureForAddress")
           // @ts-ignore
@@ -45,12 +45,12 @@ describe("dynamicNFT", () => {
       });
     });
 
-    describe("given address is not DynamicNFTed", () => {
-      it("should return the DynamicNFTed account", async () => {
+    describe("given address is not DynamicNFT Whitelisted", () => {
+      it("should return the DynamicNFT Whitelisted account", async () => {
         const DynamicNFTServiceMock = jest
           .spyOn(DynamicNFTService, "getSignatureForAddress")
           // @ts-ignore
-          .mockReturnValue(expectedNotDynamicNFTed);
+          .mockReturnValue(expectedNotDynamicNFTWhitelisted);
 
         const address = "notDynamicNFTeAccAddress";
 
@@ -59,7 +59,7 @@ describe("dynamicNFT", () => {
         );
 
         expect(statusCode).toBe(500);
-        expect(body).toEqual(expectedNotDynamicNFTed);
+        expect(body).toEqual(expectedNotDynamicNFTWhitelisted);
         expect(DynamicNFTServiceMock).toBeCalledTimes(1);
       });
     });
@@ -72,14 +72,12 @@ describe("dynamicNFT.getSignatureForAddress", () => {
       const DynamicNFTRepoMock = jest
         .spyOn(DynamicNFTRepo, "findExistingWhitelist")
         // @ts-ignore
-        .mockReturnValue(DynamicNFTedAccModel);
+        .mockReturnValue(DynamicNFTWhitelistedAccModel);
 
       const returnMessage: IResponseMessage =
         await DynamicNFTService.getSignatureForAddress(
           "0x981633bc9a25f1411e869e9E8729EedF68Db397f"
         );
-
-      console.log(returnMessage);
 
       expect(returnMessage.success).toEqual(true);
       expect(returnMessage.message).toEqual("Address is whitelisted");

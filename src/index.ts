@@ -17,15 +17,17 @@ app.use(helmet());
 app.use(express.json());
 
 // Callback to get data on the first load.
-fetchDiscordLevels();
+if (process.env.NODE_ENV === "production") {
+  fetchDiscordLevels();
+
+  // Scheduler to get new data for every day
+  schedule.scheduleJob("0 0 * * *", async () => {
+    await fetchDiscordLevels();
+  });
+}
 
 // Connect to database on the first load.
 connectMongo();
-
-// Scheduler to get new data for every day
-schedule.scheduleJob("0 0 * * *", async () => {
-  await fetchDiscordLevels();
-});
 
 cron.schedule(
   "*/30 * * * * *",

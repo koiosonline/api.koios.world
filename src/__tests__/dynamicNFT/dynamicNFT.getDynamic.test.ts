@@ -15,6 +15,13 @@ const expectedDyamicWhitelistExists: IResponseMessage = {
   },
 };
 
+const expectedDyamicWhitelistNotExists: IResponseMessage = {
+  success: false,
+  error: true,
+  message: "Address is not whitelisted",
+  data: [],
+};
+
 const dynamicNFTWhitelistedAccModel: IERC721ClaimModel = {
   address: "0x981633bc9a25f1411e869e9E8729EedF68Db397b",
   type: 0,
@@ -37,6 +44,24 @@ describe("dynamicNFT", () => {
         );
         expect(statusCode).toBe(200);
         expect(body).toEqual(expectedDyamicWhitelistExists);
+        expect(DynamicNFTServiceMock).toBeCalledTimes(1);
+      });
+    });
+
+    describe("given address is not whitelisted", () => {
+      it("should return success false and error code 500", async () => {
+        const DynamicNFTServiceMock = jest
+          .spyOn(DynamicNFTService, "findWhitelistedAddress")
+          // @ts-ignore
+          .mockReturnValue(expectedDyamicWhitelistNotExists);
+
+        const address = "0x981633bc9a25f1411e869e9E8729EedF68Db397b";
+
+        const { statusCode, body } = await supertest(app).get(
+          `/api/dynamicNFT/getWhitelistedAddress/${address}`
+        );
+        expect(statusCode).toBe(500);
+        expect(body).toEqual(expectedDyamicWhitelistNotExists);
         expect(DynamicNFTServiceMock).toBeCalledTimes(1);
       });
     });

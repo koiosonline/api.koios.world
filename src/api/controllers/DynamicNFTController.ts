@@ -12,20 +12,21 @@ import {
 import IUploadModel from "../interfaces/IUploadModel";
 import { verifyMessage } from "../services/util/SignatureVerificationService";
 
-export const createNewMetadata = async (req: Request, res: Response) => {
-  try {
-    const data: IERC721MetadataModel = req.body;
-    const resData: IERC721MetadataModel = await createNewMetaDoc(data);
+// TODO - add authorization via signature. This is a future feature.
+// export const createNewMetadata = async (req: Request, res: Response) => {
+//   try {
+//     const data: IERC721MetadataModel = req.body;
+//     const resData: IERC721MetadataModel = await createNewMetaDoc(data);
 
-    // if (resData.success) {
-    //   res.status(200).send(resData);
-    //   return;
-    // }
-    res.status(200).send(resData);
-  } catch (err) {
-    res.status(400).send("Bad Request");
-  }
-};
+//     // if (resData.success) {
+//     //   res.status(200).send(resData);
+//     //   return;
+//     // }
+//     res.status(200).send(resData);
+//   } catch (err) {
+//     res.status(400).send("Bad Request");
+//   }
+// };
 
 export const whitelistSingle = async (req: Request, res: Response) => {
   try {
