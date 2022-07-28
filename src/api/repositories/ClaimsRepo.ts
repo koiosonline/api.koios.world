@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import Claims from "../db/Claims";
 import IClaimModel from "../interfaces/Schemas/IClaimModel";
 
@@ -8,9 +9,16 @@ export const getAllWhitelistedAccounts = async (): Promise<IClaimModel[]> => {
 export const newGetTokensForAccount = async (
   claimAddress: string
 ): Promise<IClaimModel[]> => {
-  return Claims.find({
-    claimAddress: { $regex: claimAddress, $options: "i" },
+  const model = await Claims.find({
+    claimAddress: ethers.utils.getAddress(claimAddress),
   });
+  if (model.length > 0) {
+    return model;
+  } else {
+    return Claims.find({
+      claimAddress: claimAddress.toLowerCase(),
+    });
+  }
 };
 
 export const createTokenForAccount = async (
@@ -23,8 +31,17 @@ export const getSingleTokenForAccount = async (
   claimAddress: string,
   tokenId: number
 ): Promise<IClaimModel> => {
-  return Claims.findOne({
-    claimAddress: { $regex: claimAddress, $options: "i" },
+  const model = await Claims.findOne({
+    claimAddress: ethers.utils.getAddress(claimAddress),
     tokenId: tokenId,
   });
+
+  if (model) {
+    return model;
+  } else {
+    return Claims.findOne({
+      claimAddress: claimAddress.toLowerCase(),
+      tokenId: tokenId,
+    });
+  }
 };
