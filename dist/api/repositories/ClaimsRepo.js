@@ -13,15 +13,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSingleTokenForAccount = exports.createTokenForAccount = exports.newGetTokensForAccount = exports.getAllWhitelistedAccouns = void 0;
+const ethers_1 = require("ethers");
 const Claims_1 = __importDefault(require("../db/Claims"));
 const getAllWhitelistedAccouns = () => __awaiter(void 0, void 0, void 0, function* () {
     return Claims_1.default.find();
 });
 exports.getAllWhitelistedAccouns = getAllWhitelistedAccouns;
 const newGetTokensForAccount = (claimAddress) => __awaiter(void 0, void 0, void 0, function* () {
-    return Claims_1.default.find({
-        claimAddress: { $regex: claimAddress, $options: "i" },
+    const model = yield Claims_1.default.find({
+        claimAddress: ethers_1.ethers.utils.getAddress(claimAddress),
     });
+    if (model.length > 0) {
+        return model;
+    }
+    else {
+        return Claims_1.default.find({
+            claimAddress: claimAddress.toLowerCase(),
+        });
+    }
 });
 exports.newGetTokensForAccount = newGetTokensForAccount;
 const createTokenForAccount = (claimModel) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,10 +38,20 @@ const createTokenForAccount = (claimModel) => __awaiter(void 0, void 0, void 0, 
 });
 exports.createTokenForAccount = createTokenForAccount;
 const getSingleTokenForAccount = (claimAddress, tokenId) => __awaiter(void 0, void 0, void 0, function* () {
-    return Claims_1.default.findOne({
-        claimAddress: claimAddress,
+    const model = yield Claims_1.default.findOne({
+        claimAddress: ethers_1.ethers.utils.getAddress(claimAddress),
         tokenId: tokenId,
     });
+    if (model) {
+        console.log(model);
+        return model;
+    }
+    else {
+        return Claims_1.default.findOne({
+            claimAddress: claimAddress.toLowerCase(),
+            tokenId: tokenId,
+        });
+    }
 });
 exports.getSingleTokenForAccount = getSingleTokenForAccount;
 //# sourceMappingURL=ClaimsRepo.js.map
