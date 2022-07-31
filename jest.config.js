@@ -13,6 +13,5 @@ module.exports = {
   coverageDirectory: "./src/__tests__/coverage",
   testEnvironmentOptions: {
     testEnvironment: "jsdom",
-    fakeTimers: true,
   },
 };

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1659296578490" clover="3.2.0">
-  <project timestamp="1659296578491" name="All files">
-    <metrics statements="671" coveredstatements="390" conditionals="84" coveredconditionals="42" methods="148" coveredmethods="50" elements="903" coveredelements="482" complexity="0" loc="671" ncloc="671" packages="8" files="42" classes="42"/>
+<coverage generated="1659304088440" clover="3.2.0">
+  <project timestamp="1659304088440" name="All files">
+    <metrics statements="670" coveredstatements="391" conditionals="83" coveredconditionals="42" methods="148" coveredmethods="50" elements="901" coveredelements="483" complexity="0" loc="670" ncloc="670" packages="8" files="42" classes="42"/>
     <package name="api">
       <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\index.ts">
@@ -269,7 +269,7 @@
       </file>
     </package>
     <package name="api.db">
-      <metrics statements="37" coveredstatements="34" conditionals="18" coveredconditionals="16" methods="2" coveredmethods="2"/>
+      <metrics statements="36" coveredstatements="35" conditionals="17" coveredconditionals="16" methods="2" coveredmethods="2"/>
       <file name="AchievementTypes.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\AchievementTypes.ts">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
         <line num="1" count="10" type="stmt"/>
@@ -320,16 +320,15 @@
         <line num="11" count="10" type="stmt"/>
       </file>
       <file name="connectMongo.ts" path="D:\2 Programming\koios-faucet\koios-faucet\src\api\db\connectMongo.ts">
-        <metrics statements="9" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <metrics statements="8" coveredstatements="7" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="10" type="stmt"/>
         <line num="3" count="10" type="stmt"/>
-        <line num="4" count="10" type="stmt"/>
-        <line num="5" count="10" type="cond" truecount="1" falsecount="1"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="9" count="10" type="cond" truecount="1" falsecount="1"/>
-        <line num="10" count="10" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
+        <line num="4" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="10" type="stmt"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
       </file>
     </package>
     <package name="api.repositories">

@@ -57,7 +57,7 @@ export const watchDynamicNFT = async () => {
       return;
     }
   } catch (e) {
-    throw new Error(e);
+    return;
   }
 };
 

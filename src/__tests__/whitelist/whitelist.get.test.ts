@@ -4,6 +4,7 @@ import * as WhitelistService from "../../api/services/WhitelistService";
 import * as WhitelistRepo from "../../api/repositories/WhitelistRepo";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import IWhitelistModel from "../../api/interfaces/Schemas/IWhitelistModel";
+import mongoose from "mongoose";
 
 const expectedWhitelistCheck: IResponseMessage = {
   success: true,
@@ -43,6 +44,11 @@ const expectedResponseDataNotWhitelisted: IResponseMessage = {
 };
 
 describe("whitelist", () => {
+  afterAll(() => {
+    if (mongoose.connections[0].readyState === 1) {
+      mongoose.connection.close();
+    }
+  });
   describe("[---get whitelisted address---]", () => {
     describe("given address is whitelisted", () => {
       it("should return the whitelisted account", async () => {

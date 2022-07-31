@@ -17,7 +17,7 @@ app.use(helmet());
 app.use(express.json());
 
 // Callback to get data on the first load.
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "test") {
   fetchDiscordLevels();
 
   // Scheduler to get new data for every day
@@ -29,14 +29,16 @@ if (process.env.NODE_ENV === "production") {
 // Connect to database on the first load.
 connectMongo();
 
-cron.schedule(
-  "*/30 * * * * *",
-  async () => {
-    await generateJson();
-    await watchDynamicNFT();
-  },
-  {}
-);
+if (process.env.NODE_ENV !== "test") {
+  cron.schedule(
+    "*/30 * * * * *",
+    async () => {
+      await generateJson();
+      await watchDynamicNFT();
+    },
+    {}
+  );
+}
 
 app.use(
   "/api",

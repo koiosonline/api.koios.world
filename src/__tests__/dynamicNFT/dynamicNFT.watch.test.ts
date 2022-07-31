@@ -19,7 +19,6 @@ describe("dynamicNFT", () => {
     // Clear database documents
     await DynamicNFTRepo.deleteAll();
   });
-
   describe("given there is no token in the database", () => {
     it("should create one new metadata doc", async () => {
       const DynamicNFTRepoMock = jest
