@@ -51,16 +51,12 @@ export const watchDynamicNFT = async () => {
         if (!metadata) {
           const ownerOf = await getOwnerOfTokenId(i);
           const owner: IERC721ClaimModel = await findExistingWhitelist(ownerOf);
-          const returnedModel = await createMetadataModel(i, owner.type);
-          console.log(
-            "Created new Titan: " + returnedModel.tokenId + " " + owner.address
-          );
+          await createMetadataModel(i, owner.type);
         }
       }
       return;
     }
   } catch (e) {
-    console.log("tried to duplicate a key, just ignore it and continue");
     throw new Error(e);
   }
 };
