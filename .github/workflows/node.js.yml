@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          
+
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3.0
         with:
@@ -41,10 +41,13 @@ jobs:
           envkey_MONGO_URI_PRODL: ${{ secrets.MONGO_URI_PROD }}
           envkey_MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
           envkey_MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
-          
+          envkey_CONTRACT_DYNAMIC_NFT_ADDRESS: ${{ secrets.CONTRACT_DYNAMIC_NFT_ADDRESS }}
+          envkey_DYNAMIC_NFT_PROVIDER: ${{ secrets.DYNAMIC_NFT_PROVIDER }}
+          envkey_MUMBAY_CONTRACT_ADDRESS: ${{ secrets.MUMBAY_CONTRACT_ADDRESS }}
+
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
-    
+
       - run: npm ci
       - run: npm run build
       - run: npm run test

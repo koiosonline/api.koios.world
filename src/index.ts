@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { services } from "./api/index";
 import cron from "node-cron";
 import { connectMongo } from "./api/db/connectMongo";
+import { watchDynamicNFT } from "./api/services/DynamicNFTService";
 
 const PORT = process.env.PORT || 8000;
 dotenv.config();
@@ -16,23 +17,28 @@ app.use(helmet());
 app.use(express.json());
 
 // Callback to get data on the first load.
-fetchDiscordLevels();
+if (process.env.NODE_ENV !== "test") {
+  fetchDiscordLevels();
+
+  // Scheduler to get new data for every day
+  schedule.scheduleJob("0 0 * * *", async () => {
+    await fetchDiscordLevels();
+  });
+}
 
 // Connect to database on the first load.
 connectMongo();
 
-// Scheduler to get new data for every day
-schedule.scheduleJob("0 0 * * *", async () => {
-  await fetchDiscordLevels();
-});
-
-cron.schedule(
-  "*/30 * * * * *",
-  async () => {
-    await generateJson();
-  },
-  {}
-);
+if (process.env.NODE_ENV !== "test") {
+  cron.schedule(
+    "*/30 * * * * *",
+    async () => {
+      await generateJson();
+      await watchDynamicNFT();
+    },
+    {}
+  );
+}
 
 app.use(
   "/api",
@@ -53,6 +59,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Koios middleware");
 });
 
-app.listen(PORT, () => {
-  console.log("server is listening on port " + PORT);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log("server is listening on port " + PORT);
+  });
+}

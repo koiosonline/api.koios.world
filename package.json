@@ -8,6 +8,7 @@
     "dev": "tsc && nodemon --experimental-json-modules dist/index.js",
     "start": "node --experimental-json-modules dist/index.js",
     "test": "jest",
+    "test --detectOpenHandles": "jest --detectOpenHandles",
     "delete": "rmdir dist /s /q"
   },
   "repository": {
