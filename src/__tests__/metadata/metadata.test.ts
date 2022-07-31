@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { app } from "../../index";
-import * as MetadataController from "../../api/controllers/MetadataController";
+import * as DynamicNFTRepo from "../../api/repositories/DynamicNFTRepo";
 import IERC721MetadataModel from "../../api/interfaces/Schemas/IERC721MetadataModel";
 
 const expectedResponseGet: IERC721MetadataModel = {
@@ -17,8 +17,8 @@ describe("metadata", () => {
   describe("[---get metadata route---]", () => {
     describe("given the metadata does exist", () => {
       it("should return the metadata", async () => {
-        const createMetadataControllerMock = jest
-          .spyOn(MetadataController, "retrieveMetadata")
+        const dynamicNFTRepoMock = jest
+          .spyOn(DynamicNFTRepo, "findMetadata")
           // @ts-ignore
           .mockReturnValueOnce(expectedResponseGet);
 
