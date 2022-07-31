@@ -177,6 +177,7 @@ export const getSignatureForAddress = async (
 ): Promise<IResponseMessage> => {
   try {
     const res = await findExistingWhitelist(address);
+    console.log(res);
     if (res) {
       const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
       const salt = crypto.randomBytes(16).toString("base64");
