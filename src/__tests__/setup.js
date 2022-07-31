@@ -1,6 +1,0 @@
-// process.env.MUMBAY_CONTRACT_ADDRESS =
-//   "0x76355707EE63A1923246490A0E1ecc540EA33654";
-// process.env.DYNAMIC_NFT_PROVIDER =
-//   "https://polygon-mumbai.g.alchemy.com/v2/9Gz1B_cSyJc9e7-tmqJTz_uoPW91jj81";
-// process.env.CONTRACT_DYNAMIC_NFT_ADDRESS =
-//   "0x76355707EE63A1923246490A0E1ecc540EA33654";
