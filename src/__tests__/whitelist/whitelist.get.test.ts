@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { app } from "../../index";
-import * as WhitelistService from "../../api/services/whiteListService";
+import * as WhitelistService from "../../api/services/WhitelistService";
 import * as WhitelistRepo from "../../api/repositories/WhitelistRepo";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import IWhitelistModel from "../../api/interfaces/Schemas/IWhitelistModel";
