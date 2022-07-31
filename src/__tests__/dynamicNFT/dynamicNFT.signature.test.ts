@@ -79,8 +79,6 @@ describe("dynamicNFT.getSignatureForAddress", () => {
           "0x981633bc9a25f1411e869e9E8729EedF68Db397f"
         );
 
-      console.log(returnMessage);
-
       expect(returnMessage.success).toEqual(true);
       expect(returnMessage.message).toEqual("Address is whitelisted");
       expect(returnMessage.data).not.toBeNull();

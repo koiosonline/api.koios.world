@@ -177,13 +177,12 @@ export const getSignatureForAddress = async (
 ): Promise<IResponseMessage> => {
   try {
     const res = await findExistingWhitelist(address);
-    console.log(res);
     if (res) {
       const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
       const salt = crypto.randomBytes(16).toString("base64");
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address"],
-        [salt, process.env.MUMBAY_CONTRACT_ADDRESS, address]
+        [salt, process.env.MUMBAY_CONTRACT_ADDRESS, res.address]
       );
       let payloadHash = ethers.utils.keccak256(payload);
       const token: string = await wallet.signMessage(
