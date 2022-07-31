@@ -180,14 +180,20 @@ export const getSignatureForAddress = async (
     if (res) {
       const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
       const salt = crypto.randomBytes(16).toString("base64");
+      console.log("contract: " + process.env.MUMBAY_CONTRACT_ADDRESS);
+      console.log("res: " + res.address);
+      console.log(res);
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address"],
         [salt, process.env.MUMBAY_CONTRACT_ADDRESS, res.address]
       );
+      console.log("Payload: " + payload);
       let payloadHash = ethers.utils.keccak256(payload);
+      console.log("PayloadHash: " + payloadHash);
       const token: string = await wallet.signMessage(
         ethers.utils.arrayify(payloadHash)
       );
+      console.log("token: " + token);
       return {
         success: true,
         message: "Address is whitelisted",
