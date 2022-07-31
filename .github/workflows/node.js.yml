@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          
+
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3.0
         with:
@@ -41,10 +41,10 @@ jobs:
           envkey_MONGO_URI_PRODL: ${{ secrets.MONGO_URI_PROD }}
           envkey_MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
           envkey_MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
-          
+
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
-    
+
       - run: npm ci
       - run: npm run build
       - run: npm run test
