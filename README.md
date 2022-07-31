@@ -4,7 +4,7 @@
 Koios-faucet is a back-end service for the Koios platform. It is primarily used as a middleware for handling certain functions that should be done off-chain. 
 
 ## Architecture
-The architecture currently follows a layered pattern, keep in mind this may be upgraded to a microservices architecture if we need more scaling. Modules can talk down but not up. For example, a service should not be able to call a controller and a controller should not be able to call a router. 
+The architecture currently follows a Service-Based Software Architecture. Modules can talk down but not up. For example, a service should not be able to call a controller and a controller should not be able to call a router. But within a Service-Based Architecture we do allow services to call each other, only if needed. This is because each service has its own domain. Think of Service-Based as Domain Driven Design. 
 
 ### Folder structure
 
