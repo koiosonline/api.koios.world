@@ -72,7 +72,7 @@ describe("dynamicNFT.getSignatureForAddress", () => {
       const DynamicNFTRepoMock = jest
         .spyOn(DynamicNFTRepo, "findExistingWhitelist")
         // @ts-ignore
-        .mockReturnValue(DynamicNFTWhitelistedAccModel);
+        .mockReturnValueOnce(DynamicNFTWhitelistedAccModel);
 
       const returnMessage: IResponseMessage =
         await DynamicNFTService.getSignatureForAddress(
