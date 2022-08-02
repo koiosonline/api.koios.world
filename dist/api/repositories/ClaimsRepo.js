@@ -43,7 +43,6 @@ const getSingleTokenForAccount = (claimAddress, tokenId) => __awaiter(void 0, vo
         tokenId: tokenId,
     });
     if (model) {
-        console.log(model);
         return model;
     }
     else {
