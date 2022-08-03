@@ -44,8 +44,6 @@ export const retrieveAllTokens = async (req: Request, res: Response) => {
     if (resData) {
       res.status(200).send(resData);
       return;
-    } else {
-      res.status(500).send("Non-Existent Metadata");
     }
   } catch (err) {
     console.log(err);

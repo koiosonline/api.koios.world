@@ -58,7 +58,7 @@ describe("dynamicNFT", () => {
       await DynamicNFTService.watchDynamicNFT();
 
       const { statusCode, body } = await supertest(app).get(
-        `/api/metadata/1.json`
+        `/api/metadata/erc721/1.json`
       );
 
       expect(statusCode).toEqual(200);
@@ -120,7 +120,7 @@ describe("dynamicNFT", () => {
       await DynamicNFTService.watchDynamicNFT();
 
       const { statusCode, body } = await supertest(app).get(
-        `/api/metadata/2.json`
+        `/api/metadata/erc721/2.json`
       );
 
       expect(statusCode).toEqual(200);
