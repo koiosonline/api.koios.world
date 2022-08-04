@@ -44,6 +44,7 @@ jobs:
           envkey_CONTRACT_DYNAMIC_NFT_ADDRESS: ${{ secrets.CONTRACT_DYNAMIC_NFT_ADDRESS }}
           envkey_DYNAMIC_NFT_PROVIDER: ${{ secrets.DYNAMIC_NFT_PROVIDER }}
           envkey_MUMBAY_CONTRACT_ADDRESS: ${{ secrets.MUMBAY_CONTRACT_ADDRESS }}
+          envkey_CONTRACT_LAYER_NFT_ADDRESS: ${{secrets.CONTRACT_LAYER_NFT_ADDRESS}}
 
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
