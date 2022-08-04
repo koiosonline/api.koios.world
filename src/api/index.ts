@@ -9,6 +9,7 @@ import { couponRouter } from "./routes/CouponRouter";
 import { whitelistRouter } from "./routes/WhitelistRouter";
 import { dynamicNFTRouter } from "./routes/DynamicNFTRouter";
 import { metadataRouter } from "./routes/MetadataRouter";
+import { layerRouter } from "./routes/LayerRouter";
 
 export const services = express.Router();
 
@@ -21,3 +22,4 @@ services.use("/coupon", couponRouter);
 services.use("/whitelist", whitelistRouter);
 services.use("/dynamicNFT", dynamicNFTRouter);
 services.use("/metadata", metadataRouter);
+services.use("/layer", layerRouter);

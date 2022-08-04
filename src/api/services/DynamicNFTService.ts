@@ -61,7 +61,7 @@ export const watchDynamicNFT = async () => {
   }
 };
 
-const createMetadataModel = async (
+export const createMetadataModel = async (
   tokenId: number,
   type: number
 ): Promise<IERC721MetadataModel> => {

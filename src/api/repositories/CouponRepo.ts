@@ -19,6 +19,18 @@ export const findAndAddCoupon = async (
   });
 };
 
+export const findAndRemoveCoupon = async (
+  address: string
+): Promise<ICouponModel> => {
+  await Coupons.findOneAndUpdate({
+    address: address,
+    $inc: { amount: -1 },
+  });
+  return Coupons.findOne({
+    address: address,
+  });
+};
+
 export const findAndReplaceCoupon = async (
   coupon: ICouponModel
 ): Promise<ICouponModel> => {
