@@ -1,22 +1,8 @@
-import { Contract, providers, ethers } from "ethers";
+import { ethers } from "ethers";
 import crypto from "crypto";
 import ILayerClaimModel from "../interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-import ICouponModel from "../interfaces/Schemas/ICouponModel";
-import titanAchievementsContract from "../json/TitanAchievements.json";
 import { findAndRemoveCoupon } from "../repositories/CouponRepo";
-
-export const getContract = async (): Promise<Contract> => {
-  const provider = new providers.JsonRpcProvider(
-    process.env.DYNAMIC_NFT_PROVIDER
-  );
-
-  return new Contract(
-    process.env.CONTRACT_LAYER_NFT_ADDRESS,
-    titanAchievementsContract.abi,
-    provider
-  );
-};
 
 export const getSignature = async (
   address: string,

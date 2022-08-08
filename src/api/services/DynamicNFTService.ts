@@ -6,31 +6,19 @@ import {
   createWhitelist,
   findExistingWhitelist,
 } from "../repositories/DynamicNFTRepo";
-import { Contract, providers, ethers } from "ethers";
-import dynamicNFTContract from "../json/EvolvingTitan.json";
+import { ethers } from "ethers";
 import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import crypto from "crypto";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-
-export const getContract = async (): Promise<Contract> => {
-  const provider = new providers.JsonRpcProvider(
-    process.env.DYNAMIC_NFT_PROVIDER
-  );
-
-  return new Contract(
-    process.env.CONTRACT_DYNAMIC_NFT_ADDRESS,
-    dynamicNFTContract.abi,
-    provider
-  );
-};
+import { getContractERC721 } from "./util/ContractService";
 
 export const getOwnerOfTokenId = async (tokenId: number): Promise<string> => {
-  const contract = await getContract();
+  const contract = await getContractERC721();
   return contract.ownerOf(tokenId);
 };
 
 export const getTotalSupply = async (): Promise<number> => {
-  const contract = await getContract();
+  const contract = await getContractERC721();
   return contract.totalSupply();
 };
 
