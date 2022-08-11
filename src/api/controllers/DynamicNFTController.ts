@@ -10,6 +10,7 @@ import {
 } from "../services/DynamicNFTService";
 import IUploadModel from "../interfaces/IUploadModel";
 import {
+  verifyDynamicNFTOwnership,
   verifyMessage,
   verifyMessageForOwnedLayers,
 } from "../services/util/SignatureVerificationService";
@@ -117,19 +118,28 @@ export const createImage = async (req: Request, res: Response) => {
   try {
     const model: IEvolveModel = req.body;
 
+    const ownsNFT = await verifyDynamicNFTOwnership(
+      model.saltHash,
+      model.signature,
+      model.model.tokenId
+    );
+
     const isVerified = await verifyMessageForOwnedLayers(
       model.saltHash,
       model.signature,
       model.tokens
     );
 
-    if (isVerified) {
+    if (isVerified && ownsNFT) {
       const resData = await evolveNFT(model, model.saltHash, model.signature);
       if (resData.success) {
         res.status(200).send(resData);
         return;
       }
       res.status(500).send(resData);
+      return;
+    } else {
+      res.status(401).send("You do not own the NFT or all of the layers!");
       return;
     }
   } catch (err) {

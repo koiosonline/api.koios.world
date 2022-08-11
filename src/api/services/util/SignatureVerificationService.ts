@@ -53,6 +53,25 @@ export const verifyMessageForOwnedLayers = async (
   return true;
 };
 
+export const verifyDynamicNFTOwnership = async (
+  saltHash: string,
+  signature: string,
+  tokenId: number
+): Promise<boolean> => {
+  const address = ethers.utils.verifyMessage(saltHash, signature);
+  const ownedNFT: any = await getNftsForOwner(alchemyAPI(), address, {
+    contractAddresses: [`${process.env.CONTRACT_DYNAMIC_NFT_ADDRESS}`],
+  });
+
+  if (
+    ownedNFT.ownedNfts.length > 0 &&
+    parseInt(ownedNFT.ownedNfts[0].tokenId) === tokenId
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export const getAddressFromSignature = async (
   saltHash: string,
   signature: string
