@@ -9,8 +9,10 @@ const ctxMain = canvas.getContext("2d");
 
 export const generateImage = async (
   tokens: number[],
-  tokenId: number
+  tokenId: number,
+  ownerType: number
 ): Promise<boolean> => {
+  await drawBackground(ownerType);
   const imagesMetadata = await loadImages(tokens);
 
   for (const imageMetadata of imagesMetadata) {
@@ -33,6 +35,15 @@ export const generateImage = async (
     await unlinkImage(tokenId);
     return false;
   }
+};
+
+const drawBackground = async (ownerType: number) => {
+  const background = await loadImage(
+    ownerType === 0
+      ? "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png"
+      : "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png"
+  );
+  ctxMain.drawImage(background, 0, 0, 1000, 1000);
 };
 
 const drawElement = async (image: any, mainCanvas: any) => {

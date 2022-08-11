@@ -15,6 +15,7 @@ import { getContractERC721 } from "./util/ContractService";
 import { generateImage } from "./util/GenerateImage";
 import IEvolveModel from "../interfaces/IEvolveModel";
 import { findMetadataERC1155 } from "../repositories/LayerRepo";
+import { getAddressFromSignature } from "./util/SignatureVerificationService";
 
 export const getOwnerOfTokenId = async (tokenId: number): Promise<string> => {
   const contract = await getContractERC721();
@@ -205,15 +206,26 @@ export const getSignatureForAddress = async (
 };
 
 export const evolveNFT = async (
-  model: IEvolveModel
+  model: IEvolveModel,
+  saltHash: string,
+  signature: string
 ): Promise<IResponseMessage> => {
   try {
+    const address: string = await getAddressFromSignature(saltHash, signature);
+    const ownerType = await findExistingWhitelist(address);
     const metadataResponse = await generateImage(
       model.tokens,
-      model.model.tokenId
+      model.model.tokenId,
+      ownerType.type
     );
+
     if (metadataResponse) {
-      let newAttributes = [];
+      let newAttributes = [
+        ownerType.type === 0
+          ? { trait_type: "Background", value: "Blockchain" }
+          : { trait_type: "Background", value: "TDFA" },
+      ];
+
       for (const token of model.tokens) {
         const metadataForLayer = await findMetadataERC1155(token);
         if (metadataForLayer) {
@@ -223,11 +235,16 @@ export const evolveNFT = async (
       model.model.attributes = newAttributes;
       model.model.image = `https://koios-titans.ams3.digitaloceanspaces.com/titans/images/${model.model.tokenId}.png`;
       const updateResponse = await updateMetadata(model.model);
-      console.log(updateResponse);
       return {
         success: true,
         message: "Successfully evolved!",
         data: updateResponse,
+      };
+    } else {
+      return {
+        success: false,
+        error: true,
+        message: "Failed to evolve",
       };
     }
   } catch (e) {

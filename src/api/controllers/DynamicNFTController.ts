@@ -124,16 +124,14 @@ export const createImage = async (req: Request, res: Response) => {
     );
 
     if (isVerified) {
-      const resData = await evolveNFT(model);
+      const resData = await evolveNFT(model, model.saltHash, model.signature);
       if (resData.success) {
         res.status(200).send(resData);
         return;
       }
-      res.status(500).send("Something went wrong!");
+      res.status(500).send(resData);
+      return;
     }
-
-    res.status(500).send("User does not own all layers");
-    return;
   } catch (err) {
     console.log(err);
     res.status(400).send(err);

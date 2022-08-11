@@ -52,3 +52,10 @@ export const verifyMessageForOwnedLayers = async (
   }
   return true;
 };
+
+export const getAddressFromSignature = async (
+  saltHash: string,
+  signature: string
+) => {
+  return ethers.utils.verifyMessage(saltHash, signature);
+};
