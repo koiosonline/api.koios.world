@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc && nodemon --experimental-json-modules dist/index.js",
+    "dev": "tsc && nodemon --experimental-json-modules dist/index.js --watch",
     "start": "node --experimental-json-modules dist/index.js",
     "test": "jest",
     "test --detectOpenHandles": "jest --detectOpenHandles",
@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/LALauw/koios-faucet#readme",
   "dependencies": {
+    "@alch/alchemy-sdk": "^1.2.0",
+    "@aws-sdk/client-s3": "^3.145.0",
+    "aws-sdk": "^2.1192.0",
     "axios": "^0.26.1",
+    "canvas": "^2.9.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "ethers": "^5.6.8",

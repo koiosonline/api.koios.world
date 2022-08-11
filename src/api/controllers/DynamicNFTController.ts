@@ -1,16 +1,19 @@
 import { Request, Response } from "express";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
-import IERC721MetadataModel from "../interfaces/Schemas/IERC721MetadataModel";
-import { createNewMetaDoc } from "../repositories/DynamicNFTRepo";
 import {
+  evolveNFT,
   findWhitelistedAddress,
   getSignatureForAddress,
   uploadMultiple,
   uploadSingle,
 } from "../services/DynamicNFTService";
 import IUploadModel from "../interfaces/IUploadModel";
-import { verifyMessage } from "../services/util/SignatureVerificationService";
+import {
+  verifyMessage,
+  verifyMessageForOwnedLayers,
+} from "../services/util/SignatureVerificationService";
+import IEvolveModel from "../interfaces/IEvolveModel";
 
 // TODO - add authorization via signature. This is a future feature.
 // export const createNewMetadata = async (req: Request, res: Response) => {
@@ -107,5 +110,32 @@ export const getSignature = async (req: Request, res: Response) => {
     res.status(500).send(resData);
   } catch (err) {
     res.status(400).send("Bad Request");
+  }
+};
+
+export const createImage = async (req: Request, res: Response) => {
+  try {
+    const model: IEvolveModel = req.body;
+
+    const isVerified = await verifyMessageForOwnedLayers(
+      model.saltHash,
+      model.signature,
+      model.tokens
+    );
+
+    if (isVerified) {
+      const resData = await evolveNFT(model);
+      if (resData.success) {
+        res.status(200).send(resData);
+        return;
+      }
+      res.status(500).send("Something went wrong!");
+    }
+
+    res.status(500).send("User does not own all layers");
+    return;
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
   }
 };

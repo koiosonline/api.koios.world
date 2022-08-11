@@ -5,12 +5,16 @@ import {
   getAllMetadataDocsSorted,
   createWhitelist,
   findExistingWhitelist,
+  updateMetadata,
 } from "../repositories/DynamicNFTRepo";
 import { ethers } from "ethers";
 import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import crypto from "crypto";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import { getContractERC721 } from "./util/ContractService";
+import { generateImage } from "./util/GenerateImage";
+import IEvolveModel from "../interfaces/IEvolveModel";
+import { findMetadataERC1155 } from "../repositories/LayerRepo";
 
 export const getOwnerOfTokenId = async (tokenId: number): Promise<string> => {
   const contract = await getContractERC721();
@@ -196,6 +200,41 @@ export const getSignatureForAddress = async (
       success: false,
       error: true,
       message: "Address lookup failed: \n " + e,
+    };
+  }
+};
+
+export const evolveNFT = async (
+  model: IEvolveModel
+): Promise<IResponseMessage> => {
+  try {
+    const metadataResponse = await generateImage(
+      model.tokens,
+      model.model.tokenId
+    );
+    if (metadataResponse) {
+      let newAttributes = [];
+      for (const token of model.tokens) {
+        const metadataForLayer = await findMetadataERC1155(token);
+        if (metadataForLayer) {
+          newAttributes.push(metadataForLayer.attributes[0]);
+        }
+      }
+      model.model.attributes = newAttributes;
+      model.model.image = `https://koios-titans.ams3.digitaloceanspaces.com/titans/images/${model.model.tokenId}.png`;
+      const updateResponse = await updateMetadata(model.model);
+      console.log(updateResponse);
+      return {
+        success: true,
+        message: "Successfully evolved!",
+        data: updateResponse,
+      };
+    }
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "NFT evolution failed: \n " + e,
     };
   }
 };

@@ -51,3 +51,11 @@ export const createWhitelist = async (
 export const deleteAll = async () => {
   return ERC721Metadata.deleteMany();
 };
+
+export const updateMetadata = async (
+  _data: IERC721MetadataModel
+): Promise<IERC721MetadataModel> => {
+  await ERC721Metadata.findOneAndUpdate({ tokenId: _data.tokenId }, _data);
+
+  return ERC721Metadata.findOne({ tokenId: _data.tokenId });
+};
