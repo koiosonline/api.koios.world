@@ -39,7 +39,8 @@ export const verifyMessageForOwnedLayers = async (
   );
   const ownedArray: boolean[] = [];
 
-  for (let item of tokens) {
+  const filteredTokens = tokens.filter((x) => x !== 0);
+  for (let item of filteredTokens) {
     if (tokenIds.includes(item)) {
       ownedArray.push(true);
     } else {

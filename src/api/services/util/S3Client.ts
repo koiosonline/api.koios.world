@@ -1,7 +1,7 @@
 import { S3 } from "@aws-sdk/client-s3";
 
 export const retrieveClient = async () => {
-  return new S3({
+  const client = await new S3({
     endpoint: process.env.SPACES_URL,
     region: "eu-west-1",
     credentials: {
@@ -9,4 +9,5 @@ export const retrieveClient = async () => {
       secretAccessKey: process.env.SPACES_SECRET,
     },
   });
+  return client;
 };

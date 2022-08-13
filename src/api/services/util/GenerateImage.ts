@@ -12,28 +12,31 @@ export const generateImage = async (
   tokenId: number,
   ownerType: number
 ): Promise<boolean> => {
-  await drawBackground(ownerType);
-  const imagesMetadata = await loadImages(tokens);
+  const background = await drawBackground(ownerType);
 
-  for (const imageMetadata of imagesMetadata) {
-    const image = await loadImage(imageMetadata.image);
-    if (image) {
-      ctxMain.drawImage(await drawElement(image, ctxMain), 0, 0, 1000, 1000);
-    } else {
-      console.log("Image not found");
-      console.log(imageMetadata.image);
+  if (background) {
+    const imagesMetadata = await loadImages(tokens);
+
+    for (const imageMetadata of imagesMetadata) {
+      const image = await loadImage(imageMetadata.image);
+      if (image) {
+        ctxMain.drawImage(await drawElement(image, ctxMain), 0, 0, 1000, 1000);
+      } else {
+        console.log("Image not found");
+        console.log(imageMetadata.image);
+      }
     }
-  }
 
-  const saveResponse = await saveObject(tokenId);
-  if (saveResponse.httpStatusCode === 200) {
-    ctxMain.clearRect(0, 0, 1000, 1000);
-    await unlinkImage(tokenId);
-    return true;
-  } else {
-    ctxMain.clearRect(0, 0, 1000, 1000);
-    await unlinkImage(tokenId);
-    return false;
+    const saveResponse = await saveObject(tokenId);
+    if (saveResponse.httpStatusCode === 200) {
+      ctxMain.clearRect(0, 0, 1000, 1000);
+      await unlinkImage(tokenId);
+      return true;
+    } else {
+      ctxMain.clearRect(0, 0, 1000, 1000);
+      await unlinkImage(tokenId);
+      return false;
+    }
   }
 };
 
@@ -44,16 +47,22 @@ const drawBackground = async (ownerType: number) => {
       : "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png"
   );
   ctxMain.drawImage(background, 0, 0, 1000, 1000);
+  return true;
 };
 
 const drawElement = async (image: any, mainCanvas: any) => {
-  const layerCanvas = createCanvas(1000, 1000);
-  const layerctx = layerCanvas.getContext("2d");
+  try {
+    const layerCanvas = createCanvas(1000, 1000);
+    const layerctx = layerCanvas.getContext("2d");
 
-  layerctx.drawImage(image, 0, 0, 1000, 1000);
+    layerctx.drawImage(image, 0, 0, 1000, 1000);
 
-  mainCanvas.drawImage(layerCanvas, 0, 0, 1000, 1000);
-  return layerCanvas;
+    mainCanvas.drawImage(layerCanvas, 0, 0, 1000, 1000);
+    return layerCanvas;
+  } catch (e) {
+    console.log(e);
+    return;
+  }
 };
 
 const loadImages = async (tokens: number[]) => {
@@ -92,6 +101,7 @@ const saveObject = async (tokenId: number) => {
 
 const saveImage = (tokenId: number) => {
   fs.writeFileSync(`tmp/${tokenId}.png`, canvas.toBuffer("image/png"));
+  console.log("image saved locally");
 };
 
 const unlinkImage = async (tokenId: number) => {
