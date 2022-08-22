@@ -30,11 +30,9 @@ export const generateImage = async (
     const saveResponse = await saveObject(tokenId);
     if (saveResponse.httpStatusCode === 200) {
       ctxMain.clearRect(0, 0, 1000, 1000);
-      await unlinkImage(tokenId);
       return true;
     } else {
       ctxMain.clearRect(0, 0, 1000, 1000);
-      await unlinkImage(tokenId);
       return false;
     }
   }
@@ -81,12 +79,12 @@ const loadImages = async (tokens: number[]) => {
 const saveObject = async (tokenId: number) => {
   try {
     const s3Client = await retrieveClient();
-    saveImage(tokenId);
+    const image = canvas.toBuffer("image/png");
 
     const bucketParams = {
       Bucket: "koios-titans",
       Key: `titans/images/${tokenId}.png`,
-      Body: fs.createReadStream(`tmp/${tokenId}.png`),
+      Body: image,
       ContentType: "image/png",
       ACL: "public-read",
     };
@@ -97,19 +95,4 @@ const saveObject = async (tokenId: number) => {
     console.log("Error", err);
     return { httpStatusCode: 500 };
   }
-};
-
-const saveImage = (tokenId: number) => {
-  fs.writeFileSync(`tmp/${tokenId}.png`, canvas.toBuffer("image/png"));
-  console.log("image saved locally");
-};
-
-const unlinkImage = async (tokenId: number) => {
-  fs.unlink(`tmp/${tokenId}.png`, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Image deleted locally");
-    }
-  });
 };
