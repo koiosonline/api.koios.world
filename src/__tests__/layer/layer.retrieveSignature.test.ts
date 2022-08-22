@@ -4,6 +4,7 @@ import { app } from "../../index";
 import ILayerClaimModel from "../../api/interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import * as CouponRepo from "../../api/repositories/CouponRepo";
+import * as CouponService from "../../api/services/CouponService";
 import * as SignatureVerificationService from "../../api/services/util/SignatureVerificationService";
 
 const expectedReturnGetSignature: IResponseMessage = {
@@ -113,28 +114,6 @@ describe("layer.getSignature", () => {
       const CouponRepoMock = jest
         .spyOn(CouponRepo, "findAndRemoveCoupon")
         // @ts-ignore
-        .mockReturnValue(false);
-
-      const actualResponse: IResponseMessage = await LayerService.getSignature(
-        "0x981633bc9a25f1411e869e9E8729EedF68Db397f",
-        1
-      );
-
-      expect(actualResponse.success).toEqual(false);
-      expect(actualResponse.error).toEqual(true);
-      expect(actualResponse.message).toEqual(
-        "Something went wrong: \n " + "false"
-      );
-      expect(actualResponse.data).toBeUndefined();
-      expect(CouponRepoMock).toBeCalledTimes(1);
-    });
-  });
-
-  describe("given repo rejects request", () => {
-    it("should return with error true", async () => {
-      const CouponRepoMock = jest
-        .spyOn(CouponRepo, "findAndRemoveCoupon")
-        // @ts-ignore
         .mockRejectedValue(false);
 
       const actualResponse: IResponseMessage = await LayerService.getSignature(
@@ -145,7 +124,7 @@ describe("layer.getSignature", () => {
       expect(actualResponse.success).toEqual(false);
       expect(actualResponse.error).toEqual(true);
       expect(actualResponse.message).toEqual(
-        "Signature fetch failed: \n " + "false"
+        "Something went wrong: \n " + "Coupon removal failed: \n " + "false"
       );
       expect(actualResponse.data).toBeUndefined();
       expect(CouponRepoMock).toBeCalledTimes(1);

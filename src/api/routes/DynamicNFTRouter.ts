@@ -17,3 +17,4 @@ dynamicNFTRouter
 dynamicNFTRouter
   .route("/signature/:address")
   .get(dynamicNFTController.getSignature);
+dynamicNFTRouter.route("/evolve").post(dynamicNFTController.createImage);

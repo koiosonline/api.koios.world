@@ -6,6 +6,6 @@ const couponSchema = new Schema<ICouponModel>({
   amount: { type: Number, required: true },
 });
 
-const Coupons = models.Coupons || model("coupons", couponSchema);
+const Coupons = model("coupons", couponSchema);
 
 export default Coupons;

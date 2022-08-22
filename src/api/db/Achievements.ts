@@ -9,7 +9,6 @@ const achievementSchema = new Schema<IAchievementModel>({
   tokenId: { type: Number, required: true },
 });
 
-const Achievements =
-  models.Achievements || model("achievements", achievementSchema);
+const Achievements = model("achievements", achievementSchema);
 
 export default Achievements;

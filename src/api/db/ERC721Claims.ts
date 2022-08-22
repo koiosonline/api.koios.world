@@ -7,7 +7,6 @@ const ERC721ClaimSchema = new Schema<IERC721ClaimModel>({
   dateAchieved: { type: Number, required: true },
 });
 
-const ERC721Claims =
-  models.ERC721Claims || model("erc721claims", ERC721ClaimSchema);
+const ERC721Claims = model("erc721claims", ERC721ClaimSchema);
 
 export default ERC721Claims;

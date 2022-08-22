@@ -1,47 +1,26 @@
-import { Contract, providers, ethers } from "ethers";
+import { ethers } from "ethers";
 import crypto from "crypto";
 import ILayerClaimModel from "../interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-import ICouponModel from "../interfaces/Schemas/ICouponModel";
-import titanAchievementsContract from "../json/TitanAchievements.json";
-import { findAndRemoveCoupon } from "../repositories/CouponRepo";
-
-export const getContract = async (): Promise<Contract> => {
-  const provider = new providers.JsonRpcProvider(
-    process.env.DYNAMIC_NFT_PROVIDER
-  );
-
-  return new Contract(
-    process.env.CONTRACT_LAYER_NFT_ADDRESS,
-    titanAchievementsContract.abi,
-    provider
-  );
-};
+import { removeCouponForAddress } from "./CouponService";
 
 export const getSignature = async (
   address: string,
   tokenId: number
 ): Promise<IResponseMessage> => {
-  try {
-    const removeCoupon = await findAndRemoveCoupon(address);
-    if (removeCoupon) {
-      const signatureData = await generateSignature(address, tokenId);
-      return {
-        success: true,
-        message: "Successfully retrieved signature",
-        data: signatureData,
-      };
-    }
+  const removeCoupon: IResponseMessage = await removeCouponForAddress(address);
+  if (removeCoupon.success) {
+    const signatureData = await generateSignature(address, tokenId);
     return {
-      success: false,
-      error: true,
-      message: "Something went wrong: \n " + removeCoupon,
+      success: true,
+      message: "Successfully retrieved signature",
+      data: signatureData,
     };
-  } catch (e) {
+  } else {
     return {
       success: false,
       error: true,
-      message: "Signature fetch failed: \n " + e,
+      message: "Something went wrong: \n " + removeCoupon.message,
     };
   }
 };

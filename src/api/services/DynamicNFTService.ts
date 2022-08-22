@@ -5,32 +5,25 @@ import {
   getAllMetadataDocsSorted,
   createWhitelist,
   findExistingWhitelist,
+  updateMetadata,
 } from "../repositories/DynamicNFTRepo";
-import { Contract, providers, ethers } from "ethers";
-import dynamicNFTContract from "../json/EvolvingTitan.json";
+import { ethers } from "ethers";
 import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import crypto from "crypto";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-
-export const getContract = async (): Promise<Contract> => {
-  const provider = new providers.JsonRpcProvider(
-    process.env.DYNAMIC_NFT_PROVIDER
-  );
-
-  return new Contract(
-    process.env.CONTRACT_DYNAMIC_NFT_ADDRESS,
-    dynamicNFTContract.abi,
-    provider
-  );
-};
+import { getContractERC721 } from "./util/ContractService";
+import { generateImage } from "./util/GenerateImage";
+import IEvolveModel from "../interfaces/IEvolveModel";
+import { findMetadataERC1155 } from "../repositories/LayerRepo";
+import { getAddressFromSignature } from "./util/SignatureVerificationService";
 
 export const getOwnerOfTokenId = async (tokenId: number): Promise<string> => {
-  const contract = await getContract();
+  const contract = await getContractERC721();
   return contract.ownerOf(tokenId);
 };
 
 export const getTotalSupply = async (): Promise<number> => {
-  const contract = await getContract();
+  const contract = await getContractERC721();
   return contract.totalSupply();
 };
 
@@ -208,6 +201,57 @@ export const getSignatureForAddress = async (
       success: false,
       error: true,
       message: "Address lookup failed: \n " + e,
+    };
+  }
+};
+
+export const evolveNFT = async (
+  model: IEvolveModel,
+  saltHash: string,
+  signature: string
+): Promise<IResponseMessage> => {
+  try {
+    const address: string = await getAddressFromSignature(saltHash, signature);
+    const ownerType = await findExistingWhitelist(address);
+    const metadataResponse = await generateImage(
+      model.tokens,
+      model.model.tokenId,
+      ownerType.type
+    );
+
+    if (metadataResponse) {
+      let newAttributes = [
+        ownerType.type === 0
+          ? { trait_type: "Background", value: "Blockchain" }
+          : { trait_type: "Background", value: "TDFA" },
+      ];
+
+      for (const token of model.tokens) {
+        const metadataForLayer = await findMetadataERC1155(token);
+        if (metadataForLayer) {
+          newAttributes.push(metadataForLayer.attributes[0]);
+        }
+      }
+      model.model.attributes = newAttributes;
+      model.model.image = `https://koios-titans.ams3.digitaloceanspaces.com/titans/images/${model.model.tokenId}.png`;
+      const updateResponse = await updateMetadata(model.model);
+      return {
+        success: true,
+        message: "Successfully evolved!",
+        data: updateResponse,
+      };
+    } else {
+      return {
+        success: false,
+        error: true,
+        message: "Failed to evolve",
+      };
+    }
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "NFT evolution failed: \n " + e,
     };
   }
 };
