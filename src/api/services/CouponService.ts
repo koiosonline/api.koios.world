@@ -1,9 +1,9 @@
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-import IUploadModel from "../interfaces/IUploadModel";
 import ICouponModel from "../interfaces/Schemas/ICouponModel";
 import {
   createCoupon,
   findAndAddCoupon,
+  findAndRemoveCoupon,
   findAndReplaceCoupon,
   findExistingCoupon,
 } from "../repositories/CouponRepo";
@@ -88,6 +88,26 @@ export const getCouponsForAddress = async (
       success: false,
       error: true,
       message: "Achievement creation failed: \n " + e,
+    };
+  }
+};
+
+export const removeCouponForAddress = async (
+  address: string
+): Promise<IResponseMessage> => {
+  try {
+    const res = await findAndRemoveCoupon(address);
+
+    return {
+      success: true,
+      message: "Coupon removed successfully",
+      data: res,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      error: true,
+      message: "Coupon removal failed: \n " + e,
     };
   }
 };

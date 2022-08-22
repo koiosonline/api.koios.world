@@ -2,15 +2,17 @@ import { ethers } from "ethers";
 import crypto from "crypto";
 import ILayerClaimModel from "../interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
-import { findAndRemoveCoupon } from "../repositories/CouponRepo";
+import { removeCouponForAddress } from "./CouponService";
 
 export const getSignature = async (
   address: string,
   tokenId: number
 ): Promise<IResponseMessage> => {
   try {
-    const removeCoupon = await findAndRemoveCoupon(address);
-    if (removeCoupon) {
+    const removeCoupon: IResponseMessage = await removeCouponForAddress(
+      address
+    );
+    if (removeCoupon.success) {
       const signatureData = await generateSignature(address, tokenId);
       return {
         success: true,
