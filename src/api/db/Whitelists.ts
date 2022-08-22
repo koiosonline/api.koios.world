@@ -6,6 +6,6 @@ const whitelistSchema = new Schema<IWhitelistModel>({
   name: { type: String, required: true },
 });
 
-const Whitelists = models.Whitelists || model("whitelists", whitelistSchema);
+const Whitelists = model("whitelists", whitelistSchema);
 
 export default Whitelists;

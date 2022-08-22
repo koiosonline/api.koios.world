@@ -7,6 +7,6 @@ const claimModelSchema = new Schema<IClaimModel>({
   whitelist: { type: Boolean, required: true },
 });
 
-const Claims = models.Claims || model("claims", claimModelSchema);
+const Claims = model("claims", claimModelSchema);
 
 export default Claims;

@@ -8,28 +8,19 @@ export const getSignature = async (
   address: string,
   tokenId: number
 ): Promise<IResponseMessage> => {
-  try {
-    const removeCoupon: IResponseMessage = await removeCouponForAddress(
-      address
-    );
-    if (removeCoupon.success) {
-      const signatureData = await generateSignature(address, tokenId);
-      return {
-        success: true,
-        message: "Successfully retrieved signature",
-        data: signatureData,
-      };
-    }
+  const removeCoupon: IResponseMessage = await removeCouponForAddress(address);
+  if (removeCoupon.success) {
+    const signatureData = await generateSignature(address, tokenId);
     return {
-      success: false,
-      error: true,
-      message: "Something went wrong: \n " + removeCoupon,
+      success: true,
+      message: "Successfully retrieved signature",
+      data: signatureData,
     };
-  } catch (e) {
+  } else {
     return {
       success: false,
       error: true,
-      message: "Signature fetch failed: \n " + e,
+      message: "Something went wrong: \n " + removeCoupon.message,
     };
   }
 };

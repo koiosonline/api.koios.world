@@ -10,7 +10,6 @@ const ERC721MetadataSchema = new Schema<IERC721MetadataModel>({
   attributes: [{ trait_type: String, value: String }],
 });
 
-const ERC721Metadata =
-  models.ERC721Metadata || model("erc721metadata", ERC721MetadataSchema);
+const ERC721Metadata = model("erc721metadata", ERC721MetadataSchema);
 
 export default ERC721Metadata;

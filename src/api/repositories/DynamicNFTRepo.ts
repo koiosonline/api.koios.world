@@ -33,6 +33,9 @@ export const findMetadata = async (
 export const findExistingWhitelist = async (
   address: string
 ): Promise<IERC721ClaimModel> => {
+  if (ERC721Claims) {
+    return ERC721Claims.findOne({ address: address });
+  }
   return ERC721Claims.findOne({
     address: address,
   });
