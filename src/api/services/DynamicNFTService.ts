@@ -12,7 +12,7 @@ import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import crypto from "crypto";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import { getContractERC721 } from "./util/ContractService";
-import { generateImage } from "./util/GenerateImage";
+import { generateImage } from "./util/ImageService";
 import IEvolveModel from "../interfaces/IEvolveModel";
 import { findMetadataERC1155 } from "../repositories/LayerRepo";
 import { getAddressFromSignature } from "./util/SignatureVerificationService";

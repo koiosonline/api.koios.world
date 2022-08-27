@@ -2,7 +2,6 @@ import { createCanvas, loadImage } from "canvas";
 import { retrieveClient } from "./S3Client";
 import { findMetadataERC1155 } from "../../repositories/LayerRepo";
 import IERC1155MetadataModel from "../../interfaces/Schemas/IERC1155MetadataModel";
-import fs from "fs";
 
 const canvas = createCanvas(1000, 1000);
 const ctxMain = canvas.getContext("2d");

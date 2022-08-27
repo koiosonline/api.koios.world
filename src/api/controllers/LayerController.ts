@@ -13,7 +13,7 @@ export const retrieveSignature = async (req: Request, res: Response) => {
       signatureData.signature
     );
 
-    if (couponModel.amount > 0) {
+    if (couponModel && couponModel.amount > 0) {
       const resData: IResponseMessage = await getSignature(
         couponModel.address,
         signatureData.tokenId
