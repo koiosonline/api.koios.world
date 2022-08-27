@@ -3,7 +3,7 @@ import { app } from "../../index";
 import * as DynamicNFTService from "../../api/services/DynamicNFTService";
 import * as DynamicNFTRepo from "../../api/repositories/DynamicNFTRepo";
 import * as SignatureVerificationService from "../../api/services/util/SignatureVerificationService";
-import * as GenerationImageService from "../../api/services/util/GenerateImage";
+import * as GenerationImageService from "../../api/services/util/ImageService";
 import * as LayerRepo from "../../api/repositories/LayerRepo";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import IEvolveModel from "../../api/interfaces/IEvolveModel";
