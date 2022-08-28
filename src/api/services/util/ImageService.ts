@@ -1,64 +1,66 @@
-import { createCanvas, loadImage } from "canvas";
 import { retrieveClient } from "./S3Client";
 import { findMetadataERC1155 } from "../../repositories/LayerRepo";
 import IERC1155MetadataModel from "../../interfaces/Schemas/IERC1155MetadataModel";
+import sharp from "sharp";
+import axios from "axios";
 
-const canvas = createCanvas(1000, 1000);
-const ctxMain = canvas.getContext("2d");
+const addImagesToArray = async (
+  ownerType: number,
+  imagesMetadata: IERC1155MetadataModel[]
+) => {
+  let images: any[] = [];
+
+  const bgresponse = await axios.get(
+    ownerType === 0
+      ? "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png"
+      : "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png",
+    {
+      responseType: "arraybuffer",
+    }
+  );
+  const bgbuffer = Buffer.from(bgresponse.data, "base64");
+
+  images.push({ input: bgbuffer });
+  for (const imageMetadata of imagesMetadata) {
+    const image = await axios.get(imageMetadata.image, {
+      responseType: "arraybuffer",
+    });
+    const buffer = Buffer.from(image.data, "base64");
+    images.push({ input: buffer });
+  }
+  return images;
+};
 
 export const generateImage = async (
   tokens: number[],
   tokenId: number,
   ownerType: number
 ): Promise<boolean> => {
-  const background = await drawBackground(ownerType);
-
-  if (background) {
+  try {
     const imagesMetadata = await loadImages(tokens);
+    const images = await addImagesToArray(ownerType, imagesMetadata);
 
-    for (const imageMetadata of imagesMetadata) {
-      const image = await loadImage(imageMetadata.image);
-      if (image) {
-        ctxMain.drawImage(await drawElement(image, ctxMain), 0, 0, 1000, 1000);
-      } else {
-        console.log("Image not found");
-        console.log(imageMetadata.image);
-      }
-    }
+    const sharpDing = await sharp({
+      create: {
+        width: 2000,
+        height: 2000,
+        channels: 4,
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      },
+    })
+      .composite(images)
+      .png()
+      .toBuffer();
 
-    const saveResponse = await saveObject(tokenId);
-    if (saveResponse.httpStatusCode === 200) {
-      ctxMain.clearRect(0, 0, 1000, 1000);
+    const saveObjectResult = await saveObject(tokenId, sharpDing);
+    if (saveObjectResult.httpStatusCode === 200) {
       return true;
     } else {
-      ctxMain.clearRect(0, 0, 1000, 1000);
       return false;
     }
-  }
-};
-
-const drawBackground = async (ownerType: number) => {
-  const background = await loadImage(
-    ownerType === 0
-      ? "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png"
-      : "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png"
-  );
-  ctxMain.drawImage(background, 0, 0, 1000, 1000);
-  return true;
-};
-
-const drawElement = async (image: any, mainCanvas: any) => {
-  try {
-    const layerCanvas = createCanvas(1000, 1000);
-    const layerctx = layerCanvas.getContext("2d");
-
-    layerctx.drawImage(image, 0, 0, 1000, 1000);
-
-    mainCanvas.drawImage(layerCanvas, 0, 0, 1000, 1000);
-    return layerCanvas;
   } catch (e) {
     console.log(e);
-    return;
+    return false;
   }
 };
 
@@ -75,15 +77,14 @@ const loadImages = async (tokens: number[]) => {
   return imagesMetadata;
 };
 
-const saveObject = async (tokenId: number) => {
+const saveObject = async (tokenId: number, generatedImage: Buffer) => {
   try {
     const s3Client = await retrieveClient();
-    const image = canvas.toBuffer("image/png");
 
     const bucketParams = {
       Bucket: "koios-titans",
       Key: `titans/images/${tokenId}.png`,
-      Body: image,
+      Body: generatedImage,
       ContentType: "image/png",
       ACL: "public-read",
     };
