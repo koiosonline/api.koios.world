@@ -15,6 +15,7 @@ import {
   verifyMessageForOwnedLayers,
 } from "../services/util/SignatureVerificationService";
 import IEvolveModel from "../interfaces/IEvolveModel";
+import { generateImage } from "../services/util/ImageService";
 
 // TODO - add authorization via signature. This is a future feature.
 // export const createNewMetadata = async (req: Request, res: Response) => {
@@ -141,6 +142,21 @@ export const createImage = async (req: Request, res: Response) => {
     } else {
       res.status(401).send("You do not own the NFT or all of the layers!");
       return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+};
+
+export const generate = async (req: Request, res: Response) => {
+  try {
+    const data = req.body;
+    const resp = await generateImage(data.tokens, data.tokenId, data.ownerType);
+    if (resp) {
+      res.status(200).send(res);
+    } else {
+      res.status(500).send(resp);
     }
   } catch (err) {
     console.log(err);
