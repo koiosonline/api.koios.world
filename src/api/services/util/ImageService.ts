@@ -18,7 +18,7 @@ const addImagesToArray = async (
       responseType: "arraybuffer",
     }
   );
-  const bgbuffer = Buffer.from(bgresponse.data, "utf-8");
+  const bgbuffer = Buffer.from(bgresponse.data, "base64");
 
   images.push({ input: bgbuffer });
   for (const imageMetadata of imagesMetadata) {
