@@ -7,28 +7,43 @@ export const createCoupon = async (
   return Coupons.create(couponModel);
 };
 
-export const findAndAddCoupon = async (
+export const createOrAddCoupon = async (
   address: string
 ): Promise<ICouponModel> => {
-  await Coupons.findOneAndUpdate({
-    address: address,
-    $inc: { amount: 1 },
-  });
-  return Coupons.findOne({
-    address: address,
-  });
+  const existingCoupon = await findExistingCoupon(address);
+  if (!existingCoupon) {
+    const newCoupon: ICouponModel = {
+      address: address,
+      amount: 1,
+    };
+    return createCoupon(newCoupon);
+  } else {
+    const newCouponAmount = existingCoupon.amount + 1;
+    const newCoupon: ICouponModel = {
+      address: address,
+      amount: newCouponAmount,
+    };
+    return findAndReplaceCoupon(newCoupon);
+  }
 };
 
 export const findAndRemoveCoupon = async (
   address: string
 ): Promise<ICouponModel> => {
-  await Coupons.findOneAndUpdate({
-    address: address,
-    $inc: { amount: -1 },
-  });
-  return Coupons.findOne({
-    address: address,
-  });
+  const existingCoupon = await findExistingCoupon(address);
+  if (existingCoupon && existingCoupon.amount > 0) {
+    const newCouponAmount = existingCoupon.amount - 1;
+    const newCoupon: ICouponModel = {
+      address: address,
+      amount: newCouponAmount,
+    };
+
+    return findAndReplaceCoupon(newCoupon);
+  }
+
+  if (existingCoupon && existingCoupon.amount === 0) {
+    return Coupons.findOneAndDelete(existingCoupon);
+  }
 };
 
 export const findAndReplaceCoupon = async (

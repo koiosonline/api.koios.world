@@ -134,13 +134,13 @@ describe("coupon.createSingle", () => {
         .mockReturnValueOnce(true);
 
       const couponRepoMockAdd = jest
-        .spyOn(CouponRepo, "findAndAddCoupon")
+        .spyOn(CouponRepo, "findAndReplaceCoupon")
         // @ts-ignore
         .mockReturnValue(expectedCouponModelAdd);
 
       const expectedResponse: IResponseMessage = {
         success: true,
-        message: "Coupon added successfully",
+        message: "Coupon created successfully",
         data: expectedCouponModelAdd,
       };
 
@@ -179,31 +179,34 @@ describe("coupon.createSingle", () => {
   });
 
   describe("given non-coupon model given ", () => {
-    it("should create a coupon and return with success", async () => {
+    it("should return with fail error", async () => {
       const couponRepoMock = jest
-        .spyOn(CouponRepo, "findExistingCoupon")
+        .spyOn(CouponRepo, "createOrAddCoupon")
         // @ts-ignore
         .mockRejectedValue("Error");
 
       const couponRepoMockCreate = jest
         .spyOn(CouponRepo, "createCoupon")
         // @ts-ignore
-        .mockReturnValueOnce("Should not have been called");
+        .mockRejectedValue("Should not have been called");
 
       const couponRepoMockAdd = jest
-        .spyOn(CouponRepo, "findAndAddCoupon")
+        .spyOn(CouponRepo, "findAndReplaceCoupon")
         // @ts-ignore
-        .mockReturnValueOnce("Should not have been called");
+        .mockRejectedValue("Should not have been called");
 
-      const expectedResponse: IResponseMessage = {
+      const expectedResponseNon: IResponseMessage = {
         success: false,
         error: true,
         message: "Coupon creation/addition failed: \n " + "Error",
       };
 
-      const actualResponse = await CouponService.uploadSingle(coupon);
+      const actualResponseNon = await CouponService.uploadSingle(coupon);
 
-      expect(expectedResponse).toEqual(actualResponse);
+      console.log(expectedResponseNon);
+      console.log(actualResponseNon);
+
+      expect(expectedResponseNon).toEqual(actualResponseNon);
       expect(couponRepoMock).toHaveBeenCalledTimes(1);
       expect(couponRepoMockAdd).toHaveBeenCalledTimes(0);
       expect(couponRepoMockCreate).toHaveBeenCalledTimes(0);

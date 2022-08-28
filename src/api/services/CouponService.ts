@@ -2,7 +2,7 @@ import { IResponseMessage } from "../interfaces/IResponseMessage";
 import ICouponModel from "../interfaces/Schemas/ICouponModel";
 import {
   createCoupon,
-  findAndAddCoupon,
+  createOrAddCoupon,
   findAndRemoveCoupon,
   findAndReplaceCoupon,
   findExistingCoupon,
@@ -12,21 +12,11 @@ export const uploadSingle = async (
   coupon: ICouponModel
 ): Promise<IResponseMessage> => {
   try {
-    const alreadyExists = await findExistingCoupon(coupon.address);
-    if (alreadyExists) {
-      const res = await findAndAddCoupon(coupon.address);
-
-      return {
-        success: true,
-        message: "Coupon added successfully",
-        data: res,
-      };
-    }
-    const resCreate = await createCoupon(coupon);
+    const response = await createOrAddCoupon(coupon.address);
     return {
       success: true,
       message: "Coupon created successfully",
-      data: resCreate,
+      data: response,
     };
   } catch (e) {
     return {
