@@ -72,8 +72,7 @@ export const createMetadataModel = async (
     const createdDoc: IERC721MetadataModel = await createNewMetaDoc({
       tokenId: tokenId,
       name: "Unknown Titan",
-      image:
-        "https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png",
+      image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png`,
       description: "This is a fresh Titan with no back story.",
       external_url: "https://nfts.koios.world",
       attributes: [{ trait_type: "Background", value: "TDFA" }],
