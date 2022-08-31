@@ -12,8 +12,8 @@ const addImagesToArray = async (
 
   const bgresponse = await axios.get(
     ownerType === 0
-      ? "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png"
-      : "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png",
+      ? `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Cryp.png`
+      : `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png`,
     {
       responseType: "arraybuffer",
     }
@@ -83,7 +83,7 @@ const saveObject = async (tokenId: number, generatedImage: Buffer) => {
 
     const bucketParams = {
       Bucket: "koios-titans",
-      Key: `titans/images/${tokenId}.png`,
+      Key: `${process.env.SPACES_ENV}/titans/${tokenId}.png`,
       Body: generatedImage,
       ContentType: "image/png",
       ACL: "public-read",

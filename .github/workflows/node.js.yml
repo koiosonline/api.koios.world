@@ -49,6 +49,7 @@ jobs:
           envkey_SPACES_SECRET: ${{secrets.SPACES_SECRET}}
           envkey_SPACES_URL: ${{secrets.SPACES_URL}}
           envkey_RPC_API_KEY: ${{secrets.RPC_API_KEY}}
+          envkey_SPACES_ENV: ${{secrets.SPACES_ENV}}
 
       - name: test action
         run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}

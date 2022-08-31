@@ -7,8 +7,7 @@ import IERC721MetadataModel from "../../api/interfaces/Schemas/IERC721MetadataMo
 const expectedReturnedMetadata2: IERC721MetadataModel = {
   tokenId: 2,
   name: "Unknown Titan",
-  image:
-    "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png",
+  image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png`,
   description: "This is a fresh Titan with no back story.",
   external_url: "https://nfts.koios.world",
   attributes: [{ trait_type: "Background", value: "TDFA" }],
@@ -65,8 +64,7 @@ describe("dynamicNFT", () => {
       expect(body).toEqual({
         tokenId: 1,
         name: "Unknown Titan",
-        image:
-          "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png",
+        image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Cryp.png`,
         description: "This is a fresh Titan with no back story.",
         external_url: "https://nfts.koios.world",
         attributes: [{ trait_type: "Background", value: "Blockchain" }],
@@ -84,8 +82,7 @@ describe("dynamicNFT", () => {
             // @ts-ignore
             tokenId: 1,
             name: "Unknown Titan",
-            image:
-              "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png",
+            image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Cryp.png`,
             description: "This is a fresh Titan with no back story.",
             external_url: "https://nfts.koios.world",
             attributes: [{ trait_type: "Background", value: "Blockchain" }],
@@ -127,8 +124,7 @@ describe("dynamicNFT", () => {
       expect(body).toEqual({
         tokenId: 2,
         name: "Unknown Titan",
-        image:
-          "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png",
+        image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png`,
         description: "This is a fresh Titan with no back story.",
         external_url: "https://nfts.koios.world",
         attributes: [{ trait_type: "Background", value: "TDFA" }],
