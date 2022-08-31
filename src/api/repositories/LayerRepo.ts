@@ -17,7 +17,7 @@ export const findMetadataERC1155 = async (
 };
 
 export const findAll = async (): Promise<IERC1155MetadataModel[]> => {
-  return await ERC1155Metadata.find().select({
+  return ERC1155Metadata.find().select({
     _id: 0,
     tokenId: 1,
     name: 1,

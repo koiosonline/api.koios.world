@@ -62,8 +62,7 @@ export const createMetadataModel = async (
     const createdDoc: IERC721MetadataModel = await createNewMetaDoc({
       tokenId: tokenId,
       name: "Unknown Titan",
-      image:
-        "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Cryp.png",
+      image: `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Cryp.png`,
       description: "This is a fresh Titan with no back story.",
       external_url: "https://nfts.koios.world",
       attributes: [{ trait_type: "Background", value: "Blockchain" }],
@@ -74,7 +73,7 @@ export const createMetadataModel = async (
       tokenId: tokenId,
       name: "Unknown Titan",
       image:
-        "https://koios-titans.ams3.digitaloceanspaces.com/titans/images/baseModel_Trade.png",
+        "https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/layers/baseModel_Trade.png",
       description: "This is a fresh Titan with no back story.",
       external_url: "https://nfts.koios.world",
       attributes: [{ trait_type: "Background", value: "TDFA" }],
@@ -233,7 +232,7 @@ export const evolveNFT = async (
         }
       }
       model.model.attributes = newAttributes;
-      model.model.image = `https://koios-titans.ams3.digitaloceanspaces.com/titans/images/${model.model.tokenId}.png`;
+      model.model.image = `https://koios-titans.ams3.digitaloceanspaces.com/${process.env.SPACES_ENV}/titans/${model.model.tokenId}.png`;
       const updateResponse = await updateMetadata(model.model);
       return {
         success: true,
