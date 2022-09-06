@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/LALauw/koios-faucet#readme",
   "dependencies": {
-    "@alch/alchemy-sdk": "^1.2.0",
     "@aws-sdk/client-s3": "^3.145.0",
+    "alchemy-sdk": "^2.0.3",
     "aws-sdk": "^2.1192.0",
     "axios": "^0.26.1",
     "canvas": "^2.9.3",
@@ -48,7 +48,7 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
     "@types/express": "^4.17.13",
-    "@types/jest": "^28.1.5",
+    "@types/jest": "^28.1.8",
     "@types/node": "^17.0.31",
     "@types/node-schedule": "^2.1.0",
     "@types/store": "^2.0.2",
