@@ -2,7 +2,7 @@ import { utils } from "ethers";
 import * as SignatureVerificationService from "../../api/services/util/SignatureVerificationService";
 import * as WhitelistRepo from "../../../src/api/repositories/WhitelistRepo";
 import * as CouponRepo from "../../../src/api/repositories/CouponRepo";
-import * as Alchemy from "@alch/alchemy-sdk";
+import { alchemyAPI } from "../../../src/api/services/util/AlchemyService";
 
 const getNftsResponse = {
   ownedNfts: [
@@ -106,7 +106,7 @@ describe("signatureVerificationService", () => {
           .mockReturnValue("0x123");
 
         const nftsOwner = jest
-          .spyOn(Alchemy, "getNftsForOwner")
+          .spyOn(alchemyAPI.nft, "getNftsForOwner")
           //@ts-ignore
           .mockReturnValue(getNftsResponse);
 
@@ -130,7 +130,7 @@ describe("signatureVerificationService", () => {
           .mockReturnValue("0x123");
 
         const nftsOwner = jest
-          .spyOn(Alchemy, "getNftsForOwner")
+          .spyOn(alchemyAPI.nft, "getNftsForOwner")
           //@ts-ignore
           .mockReturnValue(getNftsResponse);
 
@@ -156,7 +156,7 @@ describe("signatureVerificationService", () => {
           .mockReturnValue("0x123");
 
         const nftsOwner = jest
-          .spyOn(Alchemy, "getNftsForOwner")
+          .spyOn(alchemyAPI.nft, "getNftsForOwner")
           //@ts-ignore
           .mockReturnValue(getNftsResponseDynamic);
 
@@ -180,7 +180,7 @@ describe("signatureVerificationService", () => {
           .mockReturnValue("0x123");
 
         const nftsOwner = jest
-          .spyOn(Alchemy, "getNftsForOwner")
+          .spyOn(alchemyAPI.nft, "getNftsForOwner")
           //@ts-ignore
           .mockReturnValue(getNftsResponseDynamic);
 
