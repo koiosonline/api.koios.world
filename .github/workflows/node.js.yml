@@ -43,7 +43,6 @@ jobs:
           envkey_MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
           envkey_CONTRACT_DYNAMIC_NFT_ADDRESS: ${{ secrets.CONTRACT_DYNAMIC_NFT_ADDRESS }}
           envkey_DYNAMIC_NFT_PROVIDER: ${{ secrets.DYNAMIC_NFT_PROVIDER }}
-          envkey_MUMBAY_CONTRACT_ADDRESS: ${{ secrets.MUMBAY_CONTRACT_ADDRESS }}
           envkey_CONTRACT_LAYER_NFT_ADDRESS: ${{secrets.CONTRACT_LAYER_NFT_ADDRESS}}
           envkey_SPACES_KEY: ${{secrets.SPACES_KEY}}
           envkey_SPACES_SECRET: ${{secrets.SPACES_SECRET}}

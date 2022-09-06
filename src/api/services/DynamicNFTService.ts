@@ -173,7 +173,7 @@ export const getSignatureForAddress = async (
       const salt = crypto.randomBytes(16).toString("base64");
       const payload = ethers.utils.defaultAbiCoder.encode(
         ["string", "address", "address"],
-        [salt, process.env.MUMBAY_CONTRACT_ADDRESS, res.address]
+        [salt, process.env.CONTRACT_DYNAMIC_NFT_ADDRESS, res.address]
       );
       let payloadHash = ethers.utils.keccak256(payload);
       const token: string = await wallet.signMessage(
