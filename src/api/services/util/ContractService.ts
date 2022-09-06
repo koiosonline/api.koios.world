@@ -1,6 +1,6 @@
 import { Contract, providers } from "ethers";
 import dynamicNFTContract from "../../json/EvolvingTitan.json";
-import titanAchievementsContract from "../../json/TitanAchievements.json";
+import titanAchievementsContract from "../../json/TitanLayers.json";
 
 export const getContractERC721 = async (): Promise<Contract> => {
   const provider = new providers.JsonRpcProvider(
