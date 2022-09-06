@@ -5,26 +5,54 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master", "dev" ]
+    branches: ["master", "dev"]
   pull_request:
-    branches: [ "master", "dev" ]
+    branches: ["master", "dev"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.3.0
+        with:
+          envkey_CONTRACT_ADDRESS_FAUCET: ${{ secrets.CONTRACT_ADDRESS_FAUCET }}
+          envkey_FAUCET_PROVIDER: ${{ secrets.FAUCET_PROVIDER }}
+          envkey_FAUCET_SIGNER: ${{ secrets.FAUCET_SIGNER }}
+          envkey_CAPTCHA_SECRET: ${{ secrets.CAPTCHA_SECRET }}
+          envkey_SIGNER_KEY: ${{ secrets.SIGNER_KEY }}
+          envkey_CONTRACT_ADDRESS_NFT: ${{ secrets.CONTRACT_ADDRESS_NFT }}
+          envkey_GUILD_ID: ${{ secrets.GUILD_ID }}
+          envkey_GENERATION_PASSWORD: ${{ secrets.GENERATION_PASSWORD }}
+          envkey_SUBGRAPH_URL: ${{ secrets.SUBGRAPH_URL }}
+          envkey_MONGO_URI_PRODL: ${{ secrets.MONGO_URI_PROD }}
+          envkey_MONGO_URI_DEV: ${{ secrets.MONGO_URI_DEV }}
+          envkey_MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          envkey_CONTRACT_DYNAMIC_NFT_ADDRESS: ${{ secrets.CONTRACT_DYNAMIC_NFT_ADDRESS }}
+          envkey_DYNAMIC_NFT_PROVIDER: ${{ secrets.DYNAMIC_NFT_PROVIDER }}
+          envkey_CONTRACT_LAYER_NFT_ADDRESS: ${{secrets.CONTRACT_LAYER_NFT_ADDRESS}}
+          envkey_SPACES_KEY: ${{secrets.SPACES_KEY}}
+          envkey_SPACES_SECRET: ${{secrets.SPACES_SECRET}}
+          envkey_SPACES_URL: ${{secrets.SPACES_URL}}
+          envkey_RPC_API_KEY: ${{secrets.RPC_API_KEY}}
+          envkey_SPACES_ENV: ${{secrets.SPACES_ENV}}
+
+      - name: test action
+        run: echo test mongo env ${{ secrets.MONGO_URI_TEST }}
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test

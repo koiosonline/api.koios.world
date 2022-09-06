@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import Claims from "../db/Claims";
 import IClaimModel from "../interfaces/Schemas/IClaimModel";
 
-export const getAllWhitelistedAccouns = async (): Promise<IClaimModel[]> => {
+export const getAllWhitelistedAccounts = async (): Promise<IClaimModel[]> => {
   return Claims.find();
 };
 

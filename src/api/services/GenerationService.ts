@@ -4,12 +4,12 @@ import { MinterGraphModel } from "../interfaces/MinterGraphModel";
 import IClaimModel from "../interfaces/Schemas/IClaimModel";
 import {
   createTokenForAccount,
-  getAllWhitelistedAccouns,
+  getAllWhitelistedAccounts,
 } from "../repositories/ClaimsRepo";
 
 export const generateJson = async () => {
   try {
-    const addressList: IClaimModel[] = await getAllWhitelistedAccouns();
+    const addressList: IClaimModel[] = await getAllWhitelistedAccounts();
     const mintersNew: MintersList = await getMinterList();
     const minterArray: MinterGraphModel[] = mintersNew.data.users;
 
@@ -63,7 +63,9 @@ const generateNewMintList = async (
     const mintable = Math.floor(item.transferedMint / 1000000000000000000 / 10);
 
     const amountInWhitelist = newMerkleClaimArray.filter(
-      (x) => x.claimAddress == item.address && x.whitelist === false
+      (x) =>
+        x.claimAddress.toLowerCase() == item.address.toLowerCase() &&
+        x.whitelist === false
     ).length;
 
     const amountToAdd = mintable - amountInWhitelist;
@@ -80,8 +82,6 @@ const generateNewMintList = async (
         }
       }
       const data = await createTokenForAccount(minterModelAddition);
-      console.log("New Token Added");
-      console.log(data);
       newMerkleClaimArray.push(minterModelAddition);
     }
   }
