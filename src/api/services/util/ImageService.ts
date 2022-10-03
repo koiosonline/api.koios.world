@@ -40,7 +40,7 @@ export const generateImage = async (
     const imagesMetadata = await loadImages(tokens);
     const images = await addImagesToArray(ownerType, imagesMetadata);
 
-    const sharpDing = await sharp({
+    const sharpOutput = await sharp({
       create: {
         width: 2000,
         height: 2000,
@@ -52,7 +52,7 @@ export const generateImage = async (
       .png()
       .toBuffer();
 
-    const saveObjectResult = await saveObject(tokenId, sharpDing);
+    const saveObjectResult = await saveObject(tokenId, sharpOutput);
     if (saveObjectResult.httpStatusCode === 200) {
       return true;
     } else {

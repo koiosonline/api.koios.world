@@ -87,7 +87,7 @@ describe("dynamicNFT.getSignatureForAddress", () => {
   });
 
   describe("given address is not in DynamicNFT", () => {
-    it("should create a valid signature and return it", async () => {
+    it("should not create a signature and return with error", async () => {
       const DynamicNFTRepoMock = jest
         .spyOn(DynamicNFTRepo, "findExistingWhitelist")
         // @ts-ignore

@@ -4,7 +4,6 @@ import { app } from "../../index";
 import ILayerClaimModel from "../../api/interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../../api/interfaces/IResponseMessage";
 import * as CouponRepo from "../../api/repositories/CouponRepo";
-import * as CouponService from "../../api/services/CouponService";
 import * as SignatureVerificationService from "../../api/services/util/SignatureVerificationService";
 
 const expectedReturnGetSignature: IResponseMessage = {

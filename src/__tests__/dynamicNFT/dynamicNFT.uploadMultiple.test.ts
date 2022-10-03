@@ -224,7 +224,7 @@ describe("dynamicNFT.uploadMultiple", () => {
   });
 
   describe("given some addresses have been whitelisted", () => {
-    it("should create the models and return them in the data field", async () => {
+    it(" should onlycreate models that have not been whitelisted and return them in the data field", async () => {
       const findExistingWhitelistMock = jest
         .spyOn(DynamicNFTRepo, "findExistingWhitelist")
         // @ts-ignore
