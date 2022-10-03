@@ -1,5 +1,7 @@
 import ERC1155Metadata from "../db/ERC1155Metadata";
+import UserClaims from "../db/UserClaims";
 import IERC1155MetadataModel from "../interfaces/Schemas/IERC1155MetadataModel";
+import IUserClaim from "../interfaces/Schemas/IUserClaim";
 
 export const findMetadataERC1155 = async (
   token: number
@@ -27,4 +29,16 @@ export const findAll = async (): Promise<IERC1155MetadataModel[]> => {
     "attributes.trait_type": 1,
     "attributes.value": 1,
   });
+};
+
+export const createUserClaim = async (
+  model: IUserClaim
+): Promise<IUserClaim> => {
+  return UserClaims.create(model);
+};
+
+export const findUserClaims = async (
+  address: string
+): Promise<IUserClaim[]> => {
+  return UserClaims.find({ address: address });
 };

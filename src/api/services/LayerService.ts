@@ -3,6 +3,7 @@ import crypto from "crypto";
 import ILayerClaimModel from "../interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import { removeCouponForAddress } from "./CouponService";
+import { createUserClaim } from "../repositories/LayerRepo";
 
 export const getSignature = async (
   address: string,
@@ -31,20 +32,33 @@ const generateSignature = async (
 ): Promise<ILayerClaimModel> => {
   try {
     const wallet = new ethers.Wallet(process.env.SIGNER_KEY);
-    const saltHash = crypto.randomBytes(16).toString("base64");
+    const salt = crypto.randomBytes(16).toString("base64");
     const payload = ethers.utils.defaultAbiCoder.encode(
       ["string", "address", "address", "uint256"],
-      [saltHash, process.env.CONTRACT_LAYER_NFT_ADDRESS, address, tokenId]
+      [salt, process.env.CONTRACT_LAYER_NFT_ADDRESS, address, tokenId]
     );
     let payloadHash = ethers.utils.keccak256(payload);
     const signature: string = await wallet.signMessage(
       ethers.utils.arrayify(payloadHash)
     );
-    return {
-      saltHash,
-      signature,
-      tokenId,
-    };
+    const createResponse = await createUserClaim({
+      salt: salt,
+      proof: signature,
+      tokenId: tokenId,
+      address: address,
+      dateAdded: new Date(),
+      contractAddress: process.env.CONTRACT_LAYER_NFT_ADDRESS,
+    });
+
+    if (createResponse) {
+      return {
+        saltHash: salt,
+        signature: signature,
+        tokenId: tokenId,
+      };
+    } else {
+      throw new Error("Could not create user claim");
+    }
   } catch (e) {
     return;
   }
