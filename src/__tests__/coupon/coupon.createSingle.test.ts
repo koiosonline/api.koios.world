@@ -127,7 +127,7 @@ describe("coupon", () => {
 
 describe("coupon.createSingle", () => {
   describe("given coupon does already exist", () => {
-    it("should return create a coupon and return with creation message", async () => {
+    it("should add one coupon to the user", async () => {
       const couponRepoMock = jest
         .spyOn(CouponRepo, "findExistingCoupon")
         // @ts-ignore
