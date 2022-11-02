@@ -49,7 +49,6 @@ app.use(
       "https://koios.world",
       "https://dev-app.koios.world",
       "https://titans.koios.world",
-      "https://nfts-koios-world-fork-ddpzxfhck-bluntdev.vercel.app",
     ],
     methods: ["GET", "POST"],
   }),
