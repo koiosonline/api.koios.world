@@ -3,6 +3,8 @@ import { findWhitelistedAccount } from "../../repositories/WhitelistRepo";
 import { findExistingCoupon } from "../../repositories/CouponRepo";
 import { alchemyAPI } from "../../services/util/AlchemyService";
 import ICouponModel from "../../interfaces/Schemas/ICouponModel";
+import { findExistingBadge } from "../../repositories/BadgeRepo";
+import IBadgeRegisterModel from "../../interfaces/Schemas/IBadgeRegisterModel";
 
 export const verifyMessage = async (
   saltHash: string,
@@ -22,6 +24,15 @@ export const verifyMessageForLayer = async (
 ): Promise<ICouponModel> => {
   const address = ethers.utils.verifyMessage(saltHash, signature);
   return findExistingCoupon(address);
+};
+
+export const verifyMessageForBadge = async (
+  saltHash: string,
+  signature: string,
+  badgeId: number
+): Promise<IBadgeRegisterModel> => {
+  const address = ethers.utils.verifyMessage(saltHash, signature);
+  return findExistingBadge(address, badgeId);
 };
 
 export const verifyMessageForOwnedLayers = async (

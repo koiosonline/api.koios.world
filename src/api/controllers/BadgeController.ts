@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import ILayerClaimModel from "../interfaces/ILayerClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IUploadModel from "../interfaces/IUploadModel";
 import IBadgeRegisterModel from "../interfaces/Schemas/IBadgeRegisterModel";
@@ -7,7 +8,12 @@ import {
   uploadMultipleBadges,
   uploadSingleBadge,
 } from "../services/BadgeService";
-import { verifyMessage } from "../services/util/SignatureVerificationService";
+import generateSignature from "../services/util/SignatureGenerationService";
+import {
+  verifyMessage,
+  verifyMessageForBadge,
+  verifyMessageForLayer,
+} from "../services/util/SignatureVerificationService";
 
 export const getBadges = async (req: Request, res: Response) => {
   try {
@@ -74,6 +80,41 @@ export const uploadBadge = async (req: Request, res: Response) => {
       success: false,
       error: true,
       message: "Account not whitelisted",
+    });
+  } catch (err) {
+    res.status(400).send("Bad Request");
+  }
+};
+
+export const retrieveSignature = async (req: Request, res: Response) => {
+  try {
+    const signatureData: ILayerClaimModel = req.body;
+    const badgeModel: IBadgeRegisterModel = await verifyMessageForBadge(
+      signatureData.saltHash,
+      signatureData.signature,
+      signatureData.tokenId
+    );
+
+    if (badgeModel) {
+      const resData: ILayerClaimModel = await generateSignature(
+        badgeModel.address,
+        badgeModel.type,
+        process.env.CONTRACT_BADGES_NFT_ADDRESS
+      );
+
+      if (resData) {
+        return res.status(200).send({
+          success: true,
+          message: "Successfully retrieved signature",
+          data: resData,
+        });
+      }
+    }
+
+    return res.status(401).send({
+      success: false,
+      error: true,
+      message: "Error generating siganture!",
     });
   } catch (err) {
     res.status(400).send("Bad Request");
