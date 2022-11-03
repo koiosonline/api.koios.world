@@ -2,7 +2,6 @@ import ERC1155Metadata from "../db/ERC1155Metadata";
 import ERC721Metadata from "../db/ERC721Metadata";
 import UserClaims from "../db/UserClaims";
 import IERC1155MetadataModel from "../interfaces/Schemas/IERC1155MetadataModel";
-import IERC721ClaimModel from "../interfaces/Schemas/IERC721ClaimModel";
 import IERC721MetadataModel from "../interfaces/Schemas/IERC721MetadataModel";
 import IUserClaim from "../interfaces/Schemas/IUserClaim";
 

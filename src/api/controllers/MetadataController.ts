@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+import IBadgesMetadataModel from "../interfaces/Schemas/IBadgesMetadataModel";
 import IERC1155MetadataModel from "../interfaces/Schemas/IERC1155MetadataModel";
 import IERC721MetadataModel from "../interfaces/Schemas/IERC721MetadataModel";
+import { findAllBadges } from "../repositories/BadgeRepo";
 import { findMetadata } from "../repositories/DynamicNFTRepo";
 import {
   findMetadataERC1155,
@@ -58,6 +60,19 @@ export const retrieveAllTokens = async (req: Request, res: Response) => {
 export const retrieveAllTitans = async (req: Request, res: Response) => {
   try {
     const resData: IERC721MetadataModel[] = await findAllTitans();
+    if (resData) {
+      res.status(200).send(resData);
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("Bad Request");
+  }
+};
+
+export const retrieveAllBadges = async (req: Request, res: Response) => {
+  try {
+    const resData: IBadgesMetadataModel[] = await findAllBadges();
     if (resData) {
       res.status(200).send(resData);
       return;
