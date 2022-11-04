@@ -8,3 +8,4 @@ metadataRouter
   .get(metadataController.retrieveMetadataERC1155);
 metadataRouter.route("/erc1155/").get(metadataController.retrieveAllTokens);
 metadataRouter.route("/erc721/").get(metadataController.retrieveAllTitans);
+metadataRouter.route("/badges/").get(metadataController.retrieveAllBadges);
