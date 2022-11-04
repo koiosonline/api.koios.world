@@ -10,6 +10,7 @@ import { whitelistRouter } from "./routes/WhitelistRouter";
 import { dynamicNFTRouter } from "./routes/DynamicNFTRouter";
 import { metadataRouter } from "./routes/MetadataRouter";
 import { layerRouter } from "./routes/LayerRouter";
+import { badgeRouter } from "./routes/BadgeRouter";
 
 export const services = express.Router();
 
@@ -23,3 +24,4 @@ services.use("/whitelist", whitelistRouter);
 services.use("/dynamicNFT", dynamicNFTRouter);
 services.use("/metadata", metadataRouter);
 services.use("/layer", layerRouter);
+services.use("/badge", badgeRouter);
