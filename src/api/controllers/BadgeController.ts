@@ -1,19 +1,16 @@
 import { Request, Response } from "express";
-import ILayerClaimModel from "../interfaces/ILayerClaimModel";
+import IBadgeClaimModel from "../interfaces/IBadgeClaimModel";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IUploadModel from "../interfaces/IUploadModel";
 import IBadgeRegisterModel from "../interfaces/Schemas/IBadgeRegisterModel";
+import IUserClaim from "../interfaces/Schemas/IUserClaim";
+import { findExistingBadge } from "../repositories/UserClaimrepo";
 import {
   findBadgesForAccount,
   uploadMultipleBadges,
   uploadSingleBadge,
 } from "../services/BadgeService";
-import generateSignature from "../services/util/SignatureGenerationService";
-import {
-  verifyMessage,
-  verifyMessageForBadge,
-  verifyMessageForLayer,
-} from "../services/util/SignatureVerificationService";
+import { verifyMessage } from "../services/util/SignatureVerificationService";
 
 export const getBadges = async (req: Request, res: Response) => {
   try {
@@ -88,17 +85,12 @@ export const uploadBadge = async (req: Request, res: Response) => {
 
 export const retrieveSignature = async (req: Request, res: Response) => {
   try {
-    const signatureData: ILayerClaimModel = req.body;
-    const badgeModel: IBadgeRegisterModel = await verifyMessageForBadge(
-      signatureData.saltHash,
-      signatureData.signature,
-      signatureData.tokenId
-    );
+    const data: IBadgeClaimModel = req.body;
 
-    if (badgeModel) {
-      const resData: ILayerClaimModel = await generateSignature(
-        badgeModel.address,
-        badgeModel.type,
+    if (data) {
+      const resData: IUserClaim = await findExistingBadge(
+        data.address,
+        data.tokenId,
         process.env.CONTRACT_BADGES_NFT_ADDRESS
       );
 

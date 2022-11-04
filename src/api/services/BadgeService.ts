@@ -1,16 +1,21 @@
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import IBadgeRegisterModel from "../interfaces/Schemas/IBadgeRegisterModel";
+import IUserClaim from "../interfaces/Schemas/IUserClaim";
 import {
-  createBadge,
+  createBadgeClaim,
   findBadges,
   findExistingBadge,
-} from "../repositories/BadgeRepo";
+} from "../repositories/UserClaimrepo";
+import generateSignature from "./util/SignatureGenerationService";
 
 export const findBadgesForAccount = async (
   address: string
 ): Promise<IResponseMessage> => {
   try {
-    const res = await findBadges(address);
+    const res = await findBadges(
+      address,
+      process.env.CONTRACT_BADGES_NFT_ADDRESS
+    );
     if (res) {
       return {
         success: true,
@@ -37,13 +42,31 @@ export const uploadMultipleBadges = async (
   badges: IBadgeRegisterModel[]
 ): Promise<IResponseMessage> => {
   try {
-    let resData: IBadgeRegisterModel[] = [];
+    let resData: IUserClaim[] = [];
 
     for (const badge of badges) {
-      const alreadyExists = await findExistingBadge(badge.address, badge.type);
+      const alreadyExists = await findExistingBadge(
+        badge.address,
+        badge.type,
+        process.env.CONTRACT_BADGES_NFT_ADDRESS
+      );
       if (!alreadyExists) {
-        const resCreate = await createBadge(badge);
-        resData.push(resCreate);
+        const signatureData = await generateSignature(
+          badge.address,
+          badge.type,
+          process.env.CONTRACT_BADGES_NFT_ADDRESS
+        );
+
+        const createResponse = await createBadgeClaim({
+          salt: signatureData.saltHash,
+          proof: signatureData.signature,
+          tokenId: signatureData.tokenId,
+          address: badge.address,
+          dateAdded: new Date(),
+          contractAddress: process.env.CONTRACT_BADGES_NFT_ADDRESS,
+        });
+
+        resData.push(createResponse);
       }
     }
     return {
@@ -64,12 +87,30 @@ export const uploadSingleBadge = async (
   badge: IBadgeRegisterModel
 ): Promise<IResponseMessage> => {
   try {
-    let resData: IBadgeRegisterModel;
+    let resData: IUserClaim;
 
-    const alreadyExists = await findExistingBadge(badge.address, badge.type);
+    const alreadyExists = await findExistingBadge(
+      badge.address,
+      badge.type,
+      process.env.CONTRACT_BADGES_NFT_ADDRESS
+    );
     if (!alreadyExists) {
-      const resCreate = await createBadge(badge);
-      resData = resCreate;
+      const signatureData = await generateSignature(
+        badge.address,
+        badge.type,
+        process.env.CONTRACT_BADGES_NFT_ADDRESS
+      );
+
+      const createResponse = await createBadgeClaim({
+        salt: signatureData.saltHash,
+        proof: signatureData.signature,
+        tokenId: signatureData.tokenId,
+        address: badge.address,
+        dateAdded: new Date(),
+        contractAddress: process.env.CONTRACT_BADGES_NFT_ADDRESS,
+      });
+
+      resData = createResponse;
     }
 
     return {

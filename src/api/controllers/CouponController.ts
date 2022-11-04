@@ -1,4 +1,3 @@
-import { ethers } from "ethers";
 import { Request, Response } from "express";
 import { IResponseMessage } from "../interfaces/IResponseMessage";
 import ICouponModel from "../interfaces/Schemas/ICouponModel";
