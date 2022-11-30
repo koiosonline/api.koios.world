@@ -39,7 +39,7 @@ export const uploadMultiple = async (
         const resCreate = await createCoupon(coupon);
         resData.push(resCreate);
       } else {
-        const newCouponAmount = alreadyExists.amount + coupon.amount;
+        const newCouponAmount: number = +alreadyExists.amount + +coupon.amount;
         const newCoupon: ICouponModel = {
           address: coupon.address,
           amount: newCouponAmount,
